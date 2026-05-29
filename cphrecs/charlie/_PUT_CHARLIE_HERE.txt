@@ -1,0 +1,5 @@
+Drop Charlie photos/videos here, then list them in the <script> at the
+bottom of ../index.html (the CHARLIE_MEDIA array). Default expected names:
+  1.jpg  2.jpg  3.jpg  4.jpg  charlie-video.mp4
+Videos: .mp4/.webm/.mov. Anything that doesn't load is skipped silently.
+You can delete this note file once you've added media.

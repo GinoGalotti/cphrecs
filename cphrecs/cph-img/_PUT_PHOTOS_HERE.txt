@@ -1,0 +1,7 @@
+Drop the four highlight photos here, named exactly:
+  coffee-collective.jpg
+  yoburger.jpg
+  improv-comedy.jpg
+  brod-brownie.jpg
+Landscape, ~600px wide works best. Each slot stays invisible until its file exists.
+You can delete this note file once you've added them.

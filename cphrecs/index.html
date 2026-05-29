@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Copenhagen — a little eating guide</title>
+<meta name="description" content="A personal, lived-in guide to eating and wandering in Copenhagen." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f5ecdd;
+    --paper-2:#efe3cf;
+    --ink:#2a221c;
+    --ink-soft:#5b4f44;
+    --rust:#b14635;
+    --rust-deep:#8f3326;
+    --sage:#56715f;
+    --sage-soft:#dfe6d8;
+    --gold:#c2882c;
+    --line:#cdbca0;
+    --shadow:rgba(42,34,28,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Hanken Grotesk",system-ui,sans-serif;
+    font-size:clamp(16px,1.05vw + 13px,18px);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+    overflow-x:hidden;
+  }
+  /* paper grain */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:0 24px}
+
+  /* ---------- HERO ---------- */
+  header.hero{padding:84px 0 30px;text-align:center}
+  .kicker{
+    font-size:.78rem;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--rust);font-weight:700;margin-bottom:18px;
+  }
+  .hero h1{
+    font-family:"Fraunces",serif;font-weight:900;
+    font-size:clamp(2.9rem,9vw,5.4rem);line-height:.94;
+    letter-spacing:-.02em;color:var(--ink);
+  }
+  .hero h1 em{font-style:italic;font-weight:500;color:var(--rust)}
+  .flag{display:inline-block;margin:26px auto 0;width:62px;height:2px;background:var(--rust);position:relative}
+  .flag::before{content:"";position:absolute;left:24px;top:-9px;width:2px;height:20px;background:var(--rust)}
+  .lede{
+    max-width:540px;margin:34px auto 0;font-size:1.08rem;color:var(--ink-soft);
+  }
+  .lede strong{color:var(--ink);font-weight:600}
+
+  /* ---------- LEGEND ---------- */
+  .legend{
+    display:flex;flex-wrap:wrap;gap:10px 16px;justify-content:center;
+    margin:40px auto 0;max-width:600px;font-size:.9rem;color:var(--ink-soft);
+  }
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .pin{display:inline-flex;align-items:center;gap:5px;background:var(--sage-soft);color:var(--sage);
+    border-radius:100px;padding:2px 10px;font-weight:600;font-size:.8rem}
+  .price-chip{border:1.5px solid var(--line);border-radius:100px;padding:2px 10px;font-weight:600;font-size:.8rem;color:var(--ink)}
+
+  /* ---------- FEATURED ---------- */
+  .featured{margin:56px 0 0}
+  .featured .feat-label{
+    display:flex;align-items:center;gap:14px;justify-content:center;
+    font-family:"Fraunces",serif;font-style:italic;font-weight:600;
+    font-size:1.4rem;color:var(--ink);margin-bottom:26px;
+  }
+  .featured .feat-label::before,.featured .feat-label::after{
+    content:"";height:1px;width:46px;background:var(--rust)}
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .feat-card{
+    position:relative;display:flex;flex-direction:column;
+    background:var(--ink);color:var(--paper);border-radius:16px;
+    padding:24px 22px 22px;text-decoration:none;overflow:hidden;
+    box-shadow:0 6px 22px var(--shadow);transition:transform .25s ease,box-shadow .25s ease;
+  }
+  .feat-card::after{
+    content:"";position:absolute;inset:0;pointer-events:none;opacity:.07;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .feat-card:hover{transform:translateY(-4px);box-shadow:0 14px 32px var(--shadow)}
+  .feat-card .fc-eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);font-weight:700;margin-bottom:12px;position:relative;z-index:1}
+  .feat-card .fc-name{font-family:"Fraunces",serif;font-weight:600;font-size:1.5rem;
+    line-height:1.1;margin-bottom:10px;position:relative;z-index:1}
+  .feat-card .fc-why{font-size:.92rem;color:#e9dcc6;line-height:1.5;position:relative;z-index:1;flex:1}
+  .feat-card .fc-go{margin-top:16px;font-size:.82rem;font-weight:700;color:var(--paper);
+    position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px}
+  .feat-card .fc-go .arrow{color:var(--rust);transition:transform .25s}
+  .feat-card:hover .fc-go .arrow{transform:translate(3px,-3px)}
+  @media(max-width:680px){.feat-grid{grid-template-columns:1fr}}
+
+  /* ---------- TOP PICKS ---------- */
+  .picks{margin:54px 0 6px}
+  .picks-head{text-align:center;margin-bottom:26px}
+  .picks-head .eyebrow{font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--rust);font-weight:700}
+  .picks-head h2{font-family:"Fraunces",serif;font-style:italic;font-weight:600;font-size:clamp(1.6rem,5vw,2.3rem);margin-top:8px}
+  .picks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+  .pick{position:relative;display:block;text-decoration:none;color:var(--paper);
+    background:var(--rust);border-radius:16px;padding:22px 22px 20px;overflow:hidden;
+    box-shadow:0 6px 22px -10px var(--rust-deep);transition:transform .25s ease,box-shadow .25s ease}
+  .pick:nth-child(2){background:var(--sage)}
+  .pick:nth-child(3){background:var(--ink)}
+  .pick:nth-child(4){background:var(--gold)}
+  .pick:hover{transform:translateY(-4px);box-shadow:0 14px 30px -12px var(--rust-deep)}
+  .pick .star{font-size:.95rem;opacity:.9}
+  .pick .label{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;opacity:.85;font-weight:700;margin:10px 0 4px}
+  .pick .pname{font-family:"Fraunces",serif;font-weight:600;font-size:1.4rem;line-height:1.1}
+  .pick .pwhy{font-size:.9rem;opacity:.92;margin-top:8px;line-height:1.45}
+  .pick .pgo{font-size:.8rem;font-weight:700;margin-top:14px;display:inline-flex;align-items:center;gap:6px;opacity:.95}
+
+  /* starred venue accent in the lists */
+  .venue.featured{position:relative;padding-left:18px}
+  .venue.featured::before{content:"";position:absolute;left:0;top:26px;bottom:26px;width:4px;border-radius:4px;background:var(--rust)}
+
+  /* ---------- MAP ---------- */
+  .map-block{margin:48px 0 6px;text-align:center}
+  .map-head .eyebrow{font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--rust);font-weight:700}
+  .map-note{color:var(--ink-soft);margin:10px 0 22px;font-size:1rem}
+  .map-frame{position:relative;border:2px solid var(--ink);border-radius:16px;overflow:hidden;
+    box-shadow:0 10px 30px -14px var(--shadow);background:var(--paper-2)}
+  .map-frame iframe{display:block;width:100%;height:520px;border:0}
+  @media (max-width:600px){.map-frame iframe{height:420px}}
+  .map-link{display:inline-block;margin-top:16px;font-weight:700;font-size:.86rem;
+    letter-spacing:.04em;text-transform:uppercase;color:var(--rust);text-decoration:none;
+    border-bottom:2px solid transparent;transition:border-color .2s}
+  .map-link:hover{border-color:var(--rust)}
+
+  /* ---------- NAV ---------- */
+  nav.jump{
+    position:sticky;top:0;z-index:5;margin-top:54px;
+    background:color-mix(in srgb,var(--paper) 86%,transparent);
+    backdrop-filter:blur(8px);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  nav.jump ul{display:flex;flex-wrap:wrap;gap:4px 22px;justify-content:center;list-style:none;padding:14px 24px;max-width:820px;margin:0 auto}
+  nav.jump a{
+    color:var(--ink-soft);text-decoration:none;font-weight:600;font-size:.82rem;
+    letter-spacing:.04em;text-transform:uppercase;transition:color .2s;
+  }
+  nav.jump a:hover{color:var(--rust)}
+
+  /* ---------- SECTION ---------- */
+  section{padding:64px 0 8px}
+  .sec-head{margin-bottom:34px;border-bottom:2px solid var(--ink);padding-bottom:14px;
+    display:flex;align-items:baseline;gap:16px}
+  .sec-num{font-family:"Fraunces",serif;font-weight:900;font-size:1.1rem;color:var(--rust)}
+  .sec-head h2{font-family:"Fraunces",serif;font-weight:600;font-style:italic;
+    font-size:clamp(1.7rem,4.5vw,2.5rem);line-height:1.05;letter-spacing:-.01em}
+  .sec-intro{color:var(--ink-soft);margin:-18px 0 30px;font-size:1.02rem}
+
+  /* ---------- VENUE ---------- */
+  .venue{padding:24px 0;border-bottom:1px solid var(--line)}
+  .venue:last-child{border-bottom:none}
+  .v-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 14px;margin-bottom:8px}
+  .v-name{font-family:"Fraunces",serif;font-weight:600;font-size:1.5rem;
+    color:var(--ink);text-decoration:none;line-height:1.15;
+    background-image:linear-gradient(var(--rust),var(--rust));
+    background-size:0% 2px;background-repeat:no-repeat;background-position:0 100%;
+    transition:background-size .3s ease,color .2s}
+  .v-name:hover{color:var(--rust-deep);background-size:100% 2px}
+  .v-name .arrow{font-size:.85rem;color:var(--line);transition:color .2s}
+  .v-name:hover .arrow{color:var(--rust)}
+  .v-meta{display:flex;flex-wrap:wrap;gap:7px}
+  .tag{font-size:.74rem;font-weight:700;letter-spacing:.03em;border-radius:100px;
+    padding:3px 11px;white-space:nowrap}
+  .tag.price{border:1.5px solid var(--line);color:var(--ink-soft)}
+  .tag.park{background:var(--sage-soft);color:var(--sage)}
+  .tag.heads{background:#f0dfc4;color:var(--gold)}
+  .tag.star{background:var(--rust);color:var(--paper)}
+  .tag.pick{background:var(--gold);color:#fff;display:inline-flex;align-items:center;gap:4px}
+  .venue.is-pick{position:relative;padding-left:18px}
+  .venue.is-pick::before{content:"";position:absolute;left:0;top:24px;bottom:24px;width:3px;
+    background:var(--gold);border-radius:3px}
+  .do-card.is-pick{border-color:var(--gold);box-shadow:0 1px 0 var(--shadow),inset 3px 0 0 var(--gold)}
+  .v-desc{color:var(--ink-soft);max-width:62ch}
+  .v-desc b{color:var(--ink);font-weight:600}
+
+  /* ---------- DO SECTION (cards) ---------- */
+  .do-grid{display:grid;gap:18px}
+  .do-card{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;
+    padding:24px 26px;box-shadow:0 1px 0 var(--shadow)}
+  .do-card .v-name{font-size:1.4rem}
+  .mini{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .mini li{list-style:none;font-size:.92rem;color:var(--ink-soft);
+    background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+  .mini b{color:var(--ink)}
+
+  /* ---------- CLOSING ---------- */
+  .outro{margin:70px 0 30px;text-align:center;padding:46px 30px;
+    border:2px solid var(--ink);border-radius:18px;background:var(--paper-2)}
+  .outro p{font-family:"Fraunces",serif;font-style:italic;font-size:1.35rem;color:var(--ink);max-width:30ch;margin:0 auto}
+  footer{text-align:center;padding:40px 0 70px;color:var(--ink-soft);font-size:.84rem}
+  footer .flag{margin:0 auto 18px;display:block}
+
+  a.v-name:focus-visible,nav.jump a:focus-visible{outline:2px solid var(--rust);outline-offset:3px;border-radius:3px}
+
+  /* ---------- PICK THUMBNAILS (empty until a file exists) ---------- */
+  .pick-thumb{display:none;margin:-22px -22px 16px;height:130px;overflow:hidden;background:rgba(0,0,0,.12)}
+  .pick-thumb.has-img{display:block}
+  .pick-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+
+  /* ---------- CHARLIE TRIGGER ---------- */
+  .charlie-trigger{position:relative;cursor:pointer;border-bottom:1px dotted var(--line);
+    user-select:none;-webkit-user-select:none;transition:color .2s}
+  .charlie-trigger:hover{color:var(--rust)}
+  .charlie-trigger .paw{font-size:.7em;opacity:.45;margin-left:3px;transition:opacity .2s,transform .2s}
+  .charlie-trigger:hover .paw{opacity:1;transform:translateY(-1px) rotate(-8deg)}
+  .charlie-trigger:focus-visible{outline:2px solid var(--rust);outline-offset:3px;border-radius:3px}
+
+  /* ---------- CHARLIE MODAL ---------- */
+  .charlie-modal{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:20px}
+  .charlie-modal[hidden]{display:none}
+  .cm-backdrop{position:absolute;inset:0;background:rgba(42,34,28,.55);backdrop-filter:blur(3px);opacity:0;transition:opacity .25s}
+  .charlie-modal.open .cm-backdrop{opacity:1}
+  .cm-panel{position:relative;z-index:1;background:var(--paper);border:2px solid var(--ink);
+    border-radius:18px;max-width:680px;width:100%;max-height:86vh;overflow-y:auto;
+    padding:34px 30px 30px;text-align:center;
+    transform:translateY(14px) scale(.98);opacity:0;transition:transform .28s cubic-bezier(.2,.7,.3,1),opacity .28s}
+  .charlie-modal.open .cm-panel{transform:none;opacity:1}
+  .cm-x{position:absolute;top:12px;right:14px;background:none;border:none;font-size:1.9rem;line-height:1;
+    color:var(--ink-soft);cursor:pointer;padding:4px 8px;border-radius:8px;transition:color .2s,background .2s}
+  .cm-x:hover{color:var(--rust);background:var(--paper-2)}
+  .cm-eyebrow{font-size:.75rem;letter-spacing:.28em;text-transform:uppercase;color:var(--rust);font-weight:700}
+  .cm-title{font-family:"Fraunces",serif;font-weight:900;font-size:2.2rem;line-height:1;margin:8px 0 4px}
+  .cm-sub{color:var(--ink-soft);margin-bottom:22px;font-size:.98rem}
+  .cm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+  .cm-tile{position:relative;aspect-ratio:1;border:none;padding:0;border-radius:12px;overflow:hidden;
+    cursor:pointer;background:var(--paper-2);box-shadow:0 1px 0 var(--shadow)}
+  .cm-tile img,.cm-tile video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+  .cm-tile:hover img,.cm-tile:hover video{transform:scale(1.06)}
+  .cm-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-size:1.6rem;color:#fff;background:rgba(0,0,0,.25);pointer-events:none;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+  .cm-empty{margin-top:18px;font-size:.86rem;color:var(--ink-soft)}
+  .cm-empty code{background:var(--paper-2);padding:1px 6px;border-radius:5px;font-size:.92em}
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;
+    background:rgba(20,16,13,.92);opacity:0;transition:opacity .2s;padding:30px}
+  .lightbox[hidden]{display:none}
+  .lightbox.open{opacity:1}
+  .lb-stage{max-width:90vw;max-height:86vh;display:flex;align-items:center;justify-content:center}
+  .lb-stage img,.lb-stage video{max-width:90vw;max-height:86vh;border-radius:10px;box-shadow:0 20px 60px -20px #000}
+  .lb-x{position:absolute;top:18px;right:22px;background:none;border:none;color:#fff;font-size:2.4rem;
+    line-height:1;cursor:pointer;opacity:.8;transition:opacity .2s}
+  .lb-x:hover{opacity:1}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);
+    border:none;color:#fff;font-size:2.4rem;line-height:1;width:54px;height:54px;border-radius:50%;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+  .lb-nav:hover{background:rgba(255,255,255,.25)}
+  .lb-prev{left:18px}.lb-next{right:18px}
+  @media (max-width:600px){.lb-nav{width:44px;height:44px;font-size:1.9rem}.lb-prev{left:8px}.lb-next{right:8px}}
+
+  /* ---------- ENTRANCE ANIMATION ---------- */
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{opacity:0;transform:translateY(16px);animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards}
+    @keyframes rise{to{opacity:1;transform:none}}
+    .hero .kicker{animation-delay:.05s}.hero h1{animation-delay:.15s}
+    .hero .flag{animation-delay:.3s}.hero .lede{animation-delay:.4s}.hero .legend{animation-delay:.5s}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker reveal">A field guide from someone who lived there</p>
+    <h1 class="reveal">Eating your way<br>through <em>København</em></h1>
+    <span class="flag reveal" aria-hidden="true"></span>
+    <p class="lede reveal">I lived in Copenhagen for a while and kept a running list of where to send visitors. I've dusted it off, checked everything's still open, and added a few new finds. <strong>Have the best time.</strong></p>
+    <div class="legend reveal">
+      <span><span class="pin">📍 near the park</span> walkable from Fælledparken</span>
+      <span><span class="price-chip">SEK</span> prices ≈ converted from kr (1 kr ≈ 1.45 SEK)</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="picks reveal">
+    <div class="picks-head">
+      <span class="eyebrow">If you do nothing else</span>
+      <h2>My desert-island four</h2>
+    </div>
+    <div class="picks-grid">
+      <a class="pick" href="https://www.google.com/maps/search/?api=1&query=Coffee+Collective+Torvehallerne+Vendersgade+6D+Copenhagen" target="_blank" rel="noopener">
+        <span class="pick-thumb"><img src="cph-img/coffee-collective.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.parentElement.remove()"></span>
+        <span class="star">★</span>
+        <p class="label">Best coffee</p>
+        <p class="pname">Coffee Collective</p>
+        <p class="pwhy">The best cup in the city, no contest. ~15 min from the park.</p>
+        <span class="pgo">Open in Maps ↗</span>
+      </a>
+      <a class="pick" href="https://www.google.com/maps/search/?api=1&query=YOBURGER+Osterbrogade+64+Copenhagen" target="_blank" rel="noopener">
+        <span class="pick-thumb"><img src="cph-img/yoburger.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.parentElement.remove()"></span>
+        <span class="star">★</span>
+        <p class="label">Burger by the park</p>
+        <p class="pname">YOBURGER</p>
+        <p class="pwhy">Right at Fælledparken's edge. Get the avocado one. Dinner-only on weekdays.</p>
+        <span class="pgo">Open in Maps ↗</span>
+      </a>
+      <a class="pick" href="https://www.google.com/maps/search/?api=1&query=Improv+Comedy+Copenhagen+Frederiksholms+Kanal+2" target="_blank" rel="noopener">
+        <span class="pick-thumb"><img src="cph-img/improv-comedy.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.parentElement.remove()"></span>
+        <span class="star">★</span>
+        <p class="label">A night out</p>
+        <p class="pname">Improv Comedy CPH</p>
+        <p class="pwhy">My old stage. English-language improv, warm and funny. Thu–Sun.</p>
+        <span class="pgo">Open in Maps ↗</span>
+      </a>
+      <a class="pick" href="https://www.google.com/maps/search/?api=1&query=Bageriet+Brod+Enghave+Plads+7+Copenhagen" target="_blank" rel="noopener">
+        <span class="pick-thumb"><img src="cph-img/brod-brownie.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.parentElement.remove()"></span>
+        <span class="star">★</span>
+        <p class="label">The brownie</p>
+        <p class="pname">Bageriet Brød</p>
+        <p class="pwhy">Small, ludicrously rich, the kind you think about for months.</p>
+        <span class="pgo">Open in Maps ↗</span>
+      </a>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <section class="map-block reveal" id="map">
+    <div class="map-head">
+      <span class="eyebrow">Everything on one map</span>
+      <p class="map-note">Every spot below, sorted by colour. The starred ones are my must-dos.</p>
+    </div>
+    <div class="map-frame">
+      <iframe
+        src="https://www.google.com/maps/d/embed?mid=1TNPne4CDntQSjg38-zF5IEV6xVlplcA"
+        title="Copenhagen map — all the spots"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <a class="map-link" href="https://www.google.com/maps/d/u/1/edit?mid=1TNPne4CDntQSjg38-zF5IEV6xVlplcA&usp=sharing" target="_blank" rel="noopener">Open the full map ↗</a>
+  </section>
+</div>
+
+<nav class="jump">
+  <ul>
+    <li><a href="#map">Map</a></li>
+    <li><a href="#coffee">Coffee</a></li>
+    <li><a href="#food">Food</a></li>
+    <li><a href="#burgers">Burgers</a></li>
+    <li><a href="#veg">Plant-based</a></li>
+    <li><a href="#sweet">Sweet</a></li>
+    <li><a href="#do">Things to do</a></li>
+  </ul>
+</nav>
+
+<main class="wrap">
+
+  <!-- COFFEE -->
+  <section id="coffee">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Who said coffee?</h2></div>
+    <p class="sec-intro">Nothing is more Danish than overpaying for hygge in a cup. I don't drink it myself, but I've relayed enough addict recommendations to trust these.</p>
+
+    <div class="venue featured">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Coffee+Collective+Torvehallerne+Vendersgade+6D+Copenhagen" target="_blank" rel="noopener">Coffee Collective <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag star">★ top pick</span><span class="tag price">≈70 SEK latte</span><span class="tag park">📍 ~15 min walk</span></div>
+      </div>
+      <p class="v-desc">By many accounts the <b>best coffee in the city</b>. They brew it every possible way and sell the beans too. The Torvehallerne branch sits inside the food market, so you can eat while you're there.</p>
+    </div>
+
+    <div class="venue">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Democratic+Coffee+Krystalgade+15+Copenhagen" target="_blank" rel="noopener">Democratic Coffee <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag price">≈70 SEK latte</span></div>
+      </div>
+      <p class="v-desc">Tucked inside the <b>main public library</b> on Krystalgade — calm, bookish, lovely. Their almond croissants are a little bit famous.</p>
+    </div>
+
+    <div class="venue">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Emmerys+bakery+Copenhagen" target="_blank" rel="noopener">Emmerys <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag price">≈70 SEK latte</span></div>
+      </div>
+      <p class="v-desc">A reliable Danish bakery-café chain dotted across the city. Not the most thrilling, but consistent, and the cinnamon buns win people over.</p>
+    </div>
+
+    <div class="venue">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Mad+og+Kaffe+Sonder+Boulevard+68+Copenhagen" target="_blank" rel="noopener">Mad &amp; Kaffe <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag heads">book ahead</span></div>
+      </div>
+      <p class="v-desc">The most Instagrammable café around — you build your own brunch from little plates (pick 3, 5 or 7). The Sønder Boulevard original has the <b>cutest bathroom I've ever encountered</b>; I once brought family there just to show them, as a live demonstration of "hygge." Several locations now, all packed — reserve.</p>
+    </div>
+  </section>
+
+  <!-- FOOD -->
+  <section id="food">
+    <div class="sec-head"><span class="sec-num">02</span><h2>I'm starving — feed me</h2></div>
+    <p class="sec-intro">A mix of food-market grazing and proper, old-school Danish cooking.</p>
+
+    <div class="venue">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Torvehallerne+Frederiksborggade+21+Copenhagen" target="_blank" rel="noopener">Torvehallerne (market) <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag price">≈145 SEK</span><span class="tag park">📍 ~15 min walk</span></div>
+      </div>
+      <p class="v-desc">60+ stalls of prepared food and local produce. Some of the best <b>smørrebrød</b> (open-faced rye sandwiches) lives here — the fancy pricey kind. I always ended up at <b>Grød</b> for their risotto/porridge.</p>
+    </div>
+
+    <div class="venue">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Restaurant+Karla+Dantes+Plads+1+Copenhagen" target="_blank" rel="noopener">Restaurant Karla <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag price">≈mid</span><span class="tag heads">try for brunede kartofler</span></div>
+      </div>
+      <p class="v-desc">Cosy, traditional Danish done with love — pickled herring, tender <b>flæskesteg</b> (roast pork), the works. If you want <b>brunede kartofler</b> (caramelised "brown potatoes"), this is your best year-round bet — but a heads-up: they're really a Christmas dish, so they're a December thing. If the trip lands in winter, ask for the <b>julefrokost</b> menu and you're golden. Book ahead either way.</p>
+    </div>
+
+    <div class="venue">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Dalle+Valle+Axeltorv+4+Copenhagen" target="_blank" rel="noopener">Dalle Valle <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag price">≈190 SEK buffet</span></div>
+      </div>
+      <p class="v-desc">A big, cheap, no-pretensions buffet — great value when everyone's just hungry. One trap: the "2-for-1" deal <b>doesn't include drinks</b> and the sodas are pricey, so order water or you lose the saving.</p>
+    </div>
+
+    <div class="venue">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Kodbyen+Meatpacking+District+Copenhagen" target="_blank" rel="noopener">Kødbyen (Meatpacking District) <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag price">varies</span></div>
+      </div>
+      <p class="v-desc">A whole district of hip restaurants — Italian, steaks, seafood, natural wine. Buzzy in the evening. You'll find something for everyone.</p>
+    </div>
+
+    <div class="venue">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Kalaset+Vendersgade+16+Copenhagen" target="_blank" rel="noopener">Kalaset <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag price">≈220 SEK brunch</span><span class="tag park">📍 walkable</span></div>
+      </div>
+      <p class="v-desc">Won "best brunch in town" back in the day. A touch hipster for me, but everyone loves it and it fills fast — brunch before 2pm, dinner after.</p>
+    </div>
+
+    <div class="venue">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Slurp+Ramen+Nansensgade+90+Copenhagen" target="_blank" rel="noopener">Slurp Ramen <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag price">≈175 SEK</span><span class="tag park">📍 walkable</span></div>
+      </div>
+      <p class="v-desc">Now widely rated the <b>best ramen in the city</b> — the miso-butter n'duja bowl gets singled out. Small and snug, so expect to sit close to strangers.</p>
+    </div>
+  </section>
+
+  <!-- BURGERS -->
+  <section id="burgers">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Burgers, a personal passion</h2></div>
+    <p class="sec-intro">Including the holy grail: a burger drowning in brown gravy, Danish <em>bøfsandwich</em>-style.</p>
+
+    <div class="venue">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Vesterbros+Originale+Burgerrestaurant+Istedgade+36+Copenhagen" target="_blank" rel="noopener">Vesterbros Originale Burger <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag price">≈145 SEK</span><span class="tag star">the brown-gravy one</span></div>
+      </div>
+      <p class="v-desc">Order <b>"Den Legendariske"</b> — a beef burger drowned in brown gravy, basically the local <b>bøfsandwich</b> in burger form. Proper sit-down place, great quality. Bring an appetite (and maybe an apron).</p>
+    </div>
+
+    <div class="venue">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Halifax+Burgers+Trianglen+1+Copenhagen" target="_blank" rel="noopener">Halifax / ØB at Trianglen <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag park">📍 right by the park</span></div>
+      </div>
+      <p class="v-desc">If you want a burger <b>steps from Fælledparken</b>, the Trianglen corner has two solid spots: <b>Halifax</b> (build-your-own, organic beef) and <b>ØB</b> (a buzzy burger bar — "The Almighty" is a monster). Either is an easy post-park bite.</p>
+    </div>
+
+    <div class="venue featured">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=YOBURGER+Osterbrogade+64+Copenhagen" target="_blank" rel="noopener">YOBURGER <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag star">★ closest to the park</span><span class="tag price">≈175 SEK</span></div>
+      </div>
+      <p class="v-desc">The avocado one (no bacon) is my go-to — tasty, not too greasy. Right on Østerbrogade at the park's edge. Note it's <b>dinner-only on weekdays</b> (opens ~4:30pm), all day on weekends.</p>
+    </div>
+
+    <div class="venue">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Gasoline+Grill+Landgreven+10+Copenhagen" target="_blank" rel="noopener">Gasoline Grill <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag price">≈145 SEK</span><span class="tag heads">expect a queue</span></div>
+      </div>
+      <p class="v-desc">A bit of a cult — greasy, simple, tight menu, and now genuinely famous. The burger holds up; I never thought the fries were worth it.</p>
+    </div>
+  </section>
+
+  <!-- VEG -->
+  <section id="veg">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Skipping the animal products</h2></div>
+    <p class="sec-intro">Most places above have a veggie option, but here are some specialists.</p>
+
+    <div class="venue">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=DOP+Organic+Hotdog+Kobmagergade+52+Copenhagen" target="_blank" rel="noopener">DØP — Organic Hotdog Stand <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag price">≈50 SEK</span></div>
+      </div>
+      <p class="v-desc">An organic sausage stand with proper <b>veggie/vegan options</b>, so you can still do the classic Danish street hotdog. Two central stands, cheap, quick, very good.</p>
+    </div>
+
+    <div class="venue">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Riz+Raz+Store+Kannikestraede+19+Copenhagen" target="_blank" rel="noopener">Riz Raz <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag price">≈175 SEK buffet</span></div>
+      </div>
+      <p class="v-desc">A generous <b>Mediterranean veggie buffet</b> — great hummus, solid falafel, loads of salads. Family-friendly because there's meat on the menu too.</p>
+    </div>
+
+    <div class="venue">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=One+Bowl+Valgardsvej+2+Copenhagen" target="_blank" rel="noopener">One Bowl <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag price">pay as you feel</span><span class="tag heads">Sundays only</span></div>
+      </div>
+      <p class="v-desc">A vegan community kitchen — pay what you can, supporting people in need. I loved it. Two catches: it's now <b>Sundays only (5–8pm)</b> and out in Sydhavn, so it's a deliberate trip. Worth it if timing lines up.</p>
+    </div>
+  </section>
+
+  <!-- SWEET -->
+  <section id="sweet">
+    <div class="sec-head"><span class="sec-num">05</span><h2>For the sweet tooth</h2></div>
+    <p class="sec-intro">Oh. Dear. I get you. No judgement.</p>
+
+    <div class="venue featured">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Bageriet+Brod+Enghave+Plads+7+Copenhagen" target="_blank" rel="noopener">Bageriet Brød <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag star">★ the brownie</span></div>
+      </div>
+      <p class="v-desc">If you want a <b>crazy good brownie</b>, this is the one — small but so rich people say they <b>dream about it for months</b>. On Enghave Plads in Vesterbro, with a little park across the road to eat it in. The cinnamon rolls and almond croissant are stellar too.</p>
+    </div>
+
+    <div class="venue">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Bertels+Salon+Straedet+5+Copenhagen" target="_blank" rel="noopener">Bertels Salon <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag price">≈75 SEK slice</span><span class="tag star">best cheesecake</span></div>
+      </div>
+      <p class="v-desc">An award-winning <b>cheesecake</b> specialist right in the centre — huge selection, cosy two-floor space with a great view over the shopping street. (This replaces my old pick, Slice of San Francisco, which has sadly closed.)</p>
+    </div>
+
+    <div class="venue">
+      <div class="v-top">
+        <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Lagkagehuset+Frederiksberggade+23+Copenhagen" target="_blank" rel="noopener">Lagkagehuset <span class="arrow">↗</span></a>
+        <div class="v-meta"><span class="tag price">≈70 SEK pastry</span></div>
+      </div>
+      <p class="v-desc">My favourite of the franchise bakeries. Get a <b>kanelsnegle</b> (cinnamon roll); if you want something very local, try <b>brunsviger</b> — a brown-sugar sheet cake that tastes like nothing else.</p>
+    </div>
+  </section>
+
+  <!-- THINGS TO DO -->
+  <section id="do">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Beyond the eating</h2></div>
+    <p class="sec-intro">A couple of places close to my heart, plus a few easy extras.</p>
+
+    <div class="do-grid">
+      <div class="do-card">
+        <div class="v-top">
+          <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Improv+Comedy+Copenhagen+Frederiksholms+Kanal+2" target="_blank" rel="noopener">Improv Comedy Copenhagen <span class="arrow">↗</span></a>
+          <div class="v-meta"><span class="tag star">★ top pick</span></div>
+        </div>
+        <p class="v-desc">My old home stage — <b>English-language improv</b>, warm and a little chaotic, in an intimate room where the front row is fair game. A genuinely lovely night out. Shows Thursday–Sunday; tickets are cheap.</p>
+      </div>
+
+      <div class="do-card">
+        <div class="v-top">
+          <a class="v-name" href="https://www.google.com/maps/search/?api=1&query=Bastard+Cafe+Radhusstraede+13+Copenhagen" target="_blank" rel="noopener">Bastard Café <span class="arrow">↗</span></a>
+        </div>
+        <p class="v-desc">A board-game café with a <b>wall of games to play for free</b>, cheap drinks and chunky fries, open late. Great for a relaxed afternoon or evening with the family. Bonus: it's a 2-minute walk from the improv theatre, so you can pair them.</p>
+      </div>
+
+      <div class="do-card">
+        <a class="v-name" style="font-size:1.25rem">A few more ideas <span class="arrow">↓</span></a>
+        <ul class="mini">
+          <li><b>Botanical Garden</b> — free, with a gorgeous Victorian palm house, near the Torvehallerne cluster.</li>
+          <li><b>A harbour swim</b> — Islands Brygge or Sandkaj, clean water right in the city (summer only).</li>
+          <li><b>Reffen</b> — sprawling street-food island, fun for the whole family (warmer months).</li>
+          <li><b>Fælledparken itself</b> — the big park you're near; lovely for a wander or a coffee on the grass.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="outro">
+    <p>Made <span class="charlie-trigger" id="charlieTrigger" title="psst… double-click me" role="button" tabindex="0" aria-label="Open Charlie's gallery">with love<span class="paw" aria-hidden="true">🐾</span></span> and a slightly outdated memory of a city I still miss.</p>
+  </div>
+
+</main>
+
+<!-- ===== CHARLIE GALLERY (hidden easter egg: double-click "with love") ===== -->
+<div class="charlie-modal" id="charlieModal" role="dialog" aria-modal="true" aria-label="Charlie's gallery" hidden>
+  <div class="cm-backdrop" data-charlie-close></div>
+  <div class="cm-panel" role="document">
+    <button class="cm-x" data-charlie-close aria-label="Close gallery">×</button>
+    <p class="cm-eyebrow">🐾 You found him</p>
+    <h3 class="cm-title">Charlie</h3>
+    <p class="cm-sub">The best boy in Stockholm. Worth the detour.</p>
+    <div class="cm-grid" id="charlieGrid"></div>
+    <p class="cm-empty" id="charlieEmpty">Add photos &amp; videos to a <code>charlie/</code> folder and list them in the script below.</p>
+  </div>
+</div>
+
+<!-- lightbox -->
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-x" data-lb-close aria-label="Close">×</button>
+  <button class="lb-nav lb-prev" data-lb-prev aria-label="Previous">‹</button>
+  <div class="lb-stage" id="lbStage"></div>
+  <button class="lb-nav lb-next" data-lb-next aria-label="Next">›</button>
+</div>
+
+<footer>
+  <span class="flag" aria-hidden="true"></span>
+  Prices are rough guides in SEK · Copenhagen has gotten pricier, so treat them as a floor · Almost everywhere takes card.
+</footer>
+
+<script>
+(function(){
+  /* ---- EDIT THIS LIST: drop files in a charlie/ folder next to this page ---- */
+  /* type is inferred from extension; .mp4/.webm/.mov = video, everything else = image */
+  const CHARLIE_MEDIA = [
+    "charlie/1.jpg",
+    "charlie/2.jpg",
+    "charlie/3.jpg",
+    "charlie/4.jpg",
+    "charlie/charlie-video.mp4"
+  ];
+  /* -------------------------------------------------------------------------- */
+
+  const isVideo = src => /\.(mp4|webm|mov|m4v)$/i.test(src);
+  const modal   = document.getElementById('charlieModal');
+  const grid    = document.getElementById('charlieGrid');
+  const emptyMsg= document.getElementById('charlieEmpty');
+  const trigger = document.getElementById('charlieTrigger');
+  const lb      = document.getElementById('lightbox');
+  const lbStage = document.getElementById('lbStage');
+  let loaded = [];   // media confirmed to exist
+  let idx = 0;
+  let built = false;
+
+  function buildGrid(){
+    if(built) return; built = true;
+    CHARLIE_MEDIA.forEach((src) => {
+      const tile = document.createElement('button');
+      tile.className = 'cm-tile';
+      tile.type = 'button';
+      let media;
+      if(isVideo(src)){
+        media = document.createElement('video');
+        media.src = src; media.muted = true; media.playsInline = true;
+        media.preload = 'metadata';
+        const badge = document.createElement('span');
+        badge.className = 'cm-play'; badge.textContent = '▶';
+        tile.appendChild(badge);
+        media.onloadeddata = () => { tile.dataset.ok = '1'; registerOk(tile, src); };
+        media.onerror = () => tile.remove();
+      } else {
+        media = document.createElement('img');
+        media.src = src; media.alt = 'Charlie'; media.loading = 'lazy';
+        media.onload  = () => { tile.dataset.ok = '1'; registerOk(tile, src); };
+        media.onerror = () => tile.remove();
+      }
+      tile.insertBefore(media, tile.firstChild);
+      tile.addEventListener('click', () => openLightbox(src));
+      grid.appendChild(tile);
+    });
+    // if nothing loads, the empty hint stays; otherwise it hides
+    setTimeout(() => { if(loaded.length) emptyMsg.style.display = 'none'; }, 800);
+  }
+  function registerOk(tile, src){
+    if(!loaded.includes(src)) loaded.push(src);
+    emptyMsg.style.display = 'none';
+  }
+
+  /* ---- modal open/close ---- */
+  function openModal(){
+    buildGrid();
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => modal.classList.add('open'));
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { modal.hidden = true; }, 250);
+  }
+  trigger.addEventListener('dblclick', openModal);
+  trigger.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openModal(); }});
+  modal.querySelectorAll('[data-charlie-close]').forEach(el => el.addEventListener('click', closeModal));
+
+  /* ---- lightbox ---- */
+  function openLightbox(src){
+    idx = loaded.indexOf(src); if(idx < 0) idx = 0;
+    renderLb(); lb.hidden = false;
+    requestAnimationFrame(() => lb.classList.add('open'));
+  }
+  function renderLb(){
+    const src = loaded[idx];
+    lbStage.innerHTML = '';
+    let el;
+    if(isVideo(src)){
+      el = document.createElement('video');
+      el.src = src; el.controls = true; el.autoplay = true; el.playsInline = true;
+    } else {
+      el = document.createElement('img'); el.src = src; el.alt = 'Charlie';
+    }
+    lbStage.appendChild(el);
+  }
+  function closeLb(){ lb.classList.remove('open'); setTimeout(()=>{ lb.hidden = true; lbStage.innerHTML=''; }, 200); }
+  function next(){ if(!loaded.length) return; idx = (idx+1)%loaded.length; renderLb(); }
+  function prev(){ if(!loaded.length) return; idx = (idx-1+loaded.length)%loaded.length; renderLb(); }
+  lb.querySelector('[data-lb-close]').addEventListener('click', closeLb);
+  lb.querySelector('[data-lb-next]').addEventListener('click', next);
+  lb.querySelector('[data-lb-prev]').addEventListener('click', prev);
+  lb.addEventListener('click', e => { if(e.target === lb) closeLb(); });
+
+  /* keyboard */
+  document.addEventListener('keydown', e => {
+    if(!lb.hidden){
+      if(e.key==='Escape') closeLb();
+      else if(e.key==='ArrowRight') next();
+      else if(e.key==='ArrowLeft') prev();
+    } else if(!modal.hidden && e.key==='Escape'){ closeModal(); }
+  });
+
+  /* swipe on mobile */
+  let tx = 0;
+  lb.addEventListener('touchstart', e => { tx = e.changedTouches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if(Math.abs(dx) > 45){ dx < 0 ? next() : prev(); }
+  }, {passive:true});
+})();
+</script>
+
+</body>
+</html>
