@@ -107,7 +107,8 @@
   .picks-head{text-align:center;margin-bottom:26px}
   .picks-head .eyebrow{font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--rust);font-weight:700}
   .picks-head h2{font-family:"Fraunces",serif;font-style:italic;font-weight:600;font-size:clamp(1.6rem,5vw,2.3rem);margin-top:8px}
-  .picks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+  .picks-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:560px){.picks-grid{grid-template-columns:1fr}}
   .pick{position:relative;display:block;text-decoration:none;color:var(--paper);
     background:var(--rust);border-radius:16px;padding:22px 22px 20px;overflow:hidden;
     box-shadow:0 6px 22px -10px var(--rust-deep);transition:transform .25s ease,box-shadow .25s ease}
