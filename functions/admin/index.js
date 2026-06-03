@@ -8,23 +8,6 @@ const esc = s =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 
-// ⚠ LOCAL-DEV BYPASS
-// isLocalDev() returns true for localhost, skipping the Access JWT check.
-// Production requests are blocked by Cloudflare Access before they reach this
-// function, so this bypass never fires in prod — but confirm it with:
-//   grep -r "isLocalDev" functions/
-function isLocalDev(request) {
-  const { hostname } = new URL(request.url);
-  return hostname === 'localhost' || hostname === '127.0.0.1';
-}
-
-function requireAccess(request) {
-  if (isLocalDev(request)) return null; // ← LOCAL-DEV BYPASS (remove to test auth locally)
-  if (!request.headers.get('Cf-Access-Jwt-Assertion')) {
-    return new Response('Unauthorized — Cloudflare Access required', { status: 401 });
-  }
-  return null;
-}
 
 function storyRow(s) {
   const date = s.updated_at
@@ -134,10 +117,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.04;
 }
 
 export async function onRequestGet(context) {
-  const { env, request } = context;
-
-  const authError = requireAccess(request);
-  if (authError) return authError;
+  const { env } = context;
 
   if (!env.DB) return new Response('Database not configured', { status: 503 });
 

@@ -8,20 +8,6 @@ const esc = s =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 
-// ⚠ LOCAL-DEV BYPASS — same pattern as admin/index.js and api handler.
-// isLocalDev() skips the Access JWT check on localhost only.
-function isLocalDev(request) {
-  const { hostname } = new URL(request.url);
-  return hostname === 'localhost' || hostname === '127.0.0.1';
-}
-
-function requireAccess(request) {
-  if (isLocalDev(request)) return null; // ← LOCAL-DEV BYPASS
-  if (!request.headers.get('Cf-Access-Jwt-Assertion')) {
-    return new Response('Unauthorized — Cloudflare Access required', { status: 401 });
-  }
-  return null;
-}
 
 function pageEditor(story) {
   // Story data injected as JSON to avoid textarea/attribute escaping edge cases.
@@ -299,10 +285,7 @@ saveBtn.addEventListener('click', async () => {
 }
 
 export async function onRequestGet(context) {
-  const { params, env, request } = context;
-
-  const authError = requireAccess(request);
-  if (authError) return authError;
+  const { params, env } = context;
 
   if (!env.DB) return new Response('Database not configured', { status: 503 });
 
