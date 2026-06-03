@@ -1,0 +1,14 @@
+{
+	// Name must match your Cloudflare Pages project name exactly
+	"name": "ginogalotti",
+	"compatibility_date": "2024-09-23",
+	"pages_build_output_dir": ".",
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "ginogalotti-stories",
+			// Fill in after running: npx wrangler d1 create ginogalotti-stories
+			"database_id": "e8b0f224-ef28-4735-93a5-02b1198627e4"
+		}
+	]
+}
