@@ -1,0 +1,169 @@
+{
+  "_meta": {
+    "description": "Ingredient macro library. All values per 100g of raw/edible portion unless noted. Scale by (grams / 100) for any portion.",
+    "source": "USDA FoodData Central reference values",
+    "units": {
+      "kcal": "kcal",
+      "protein_g": "grams",
+      "fat_g": "grams",
+      "carbs_g": "grams (total, includes fiber)",
+      "fiber_g": "grams"
+    }
+  },
+  "ingredients": [
+    {
+      "id": "egg-whole-raw",
+      "name": "Egg, whole, raw",
+      "type": "by_grams",
+      "per_100g": { "kcal": 143, "protein_g": 12.6, "fat_g": 9.5, "carbs_g": 0.7, "fiber_g": 0 },
+      "notes": "Medium egg ~44g (~63 kcal). Complete protein, all essential amino acids. Yolk carries the fat/choline."
+    },
+    {
+      "id": "banana-raw",
+      "name": "Banana, raw",
+      "type": "by_grams",
+      "per_100g": { "kcal": 89, "protein_g": 1.1, "fat_g": 0.3, "carbs_g": 22.8, "fiber_g": 2.6 },
+      "notes": "Medium banana ~118g (~105 kcal). Riper = slightly more available sugar."
+    },
+    {
+      "id": "olive-oil-evoo",
+      "name": "Extra virgin olive oil",
+      "type": "by_grams",
+      "per_100g": { "kcal": 884, "protein_g": 0, "fat_g": 100, "carbs_g": 0, "fiber_g": 0 },
+      "notes": "1 tbsp ~13.5g (~119 kcal). Pure fat; calorie-dense, easy to under-count by eye."
+    },
+    {
+      "id": "sweet-potato-raw",
+      "name": "Sweet potato, raw",
+      "type": "by_grams",
+      "per_100g": { "kcal": 86, "protein_g": 1.6, "fat_g": 0.1, "carbs_g": 20.1, "fiber_g": 3.0 },
+      "notes": "Weight raw. Roasting concentrates by water loss but macros per portion stay the same."
+    },
+    {
+      "id": "red-bell-pepper-raw",
+      "name": "Red bell pepper, raw",
+      "type": "by_grams",
+      "per_100g": { "kcal": 31, "protein_g": 1.0, "fat_g": 0.3, "carbs_g": 6.0, "fiber_g": 2.1 },
+      "notes": "Medium pepper ~120g. High vitamin C."
+    },
+    {
+      "id": "onion-raw",
+      "name": "Onion, raw",
+      "type": "by_grams",
+      "per_100g": { "kcal": 40, "protein_g": 1.1, "fat_g": 0.1, "carbs_g": 9.3, "fiber_g": 1.7 },
+      "notes": "Yellow/brown onion. Sweet onion slightly lower kcal (~32)."
+    },
+    {
+      "id": "kvarg-natural-0.3",
+      "name": "Kvarg, natural 0.3% fat (Eldorado)",
+      "type": "by_grams",
+      "per_100g": { "kcal": 70, "protein_g": 12, "fat_g": 0.3, "carbs_g": 3.9, "fiber_g": 0 },
+      "notes": "From label. 500g tub. Complete protein (dairy). Carbs are all natural lactose sugar. Your main protein lever in this batch."
+    },
+    {
+      "id": "tomato-cherry-sauce-mutti",
+      "name": "Cherry tomato sauce (Mutti)",
+      "type": "by_grams",
+      "per_100g": { "kcal": 28, "protein_g": 1.2, "fat_g": 0.5, "carbs_g": 4.4, "fiber_g": 0 },
+      "notes": "From label; fiber not declared (canned tomato ~0.9g/100g if you want to estimate). Sat fat <0.1g, salt 0.01g."
+    },
+    {
+      "id": "tomato-passata-mutti",
+      "name": "Tomato passata (Mutti)",
+      "type": "by_grams",
+      "per_100g": { "kcal": 36, "protein_g": 1.6, "fat_g": 0.5, "carbs_g": 5.1, "fiber_g": 0 },
+      "notes": "From label; 99.5% tomato + salt (0.50g/100g). Fiber not declared (~1g/100g if estimating). 500g carton."
+    },
+    {
+      "id": "potato-baking-raw",
+      "name": "Potato, baking, raw (flesh + skin)",
+      "type": "by_grams",
+      "per_100g": { "kcal": 77, "protein_g": 2.0, "fat_g": 0.1, "carbs_g": 17.5, "fiber_g": 2.2 },
+      "notes": "USDA flesh+skin. Weight raw. Russet/baking type. Skin adds the fiber, so bake with skin on."
+    },
+    {
+      "id": "chia-seeds",
+      "name": "Chia seeds (Garant, organic)",
+      "type": "by_grams",
+      "per_100g": { "kcal": 479, "protein_g": 20, "fat_g": 36, "carbs_g": 1.3, "fiber_g": 35 },
+      "notes": "From label. Carbs shown are NET (1.3g) with fiber (35g) listed separately, EU-style. Omega-3 ALA 23g/100g. Sat fat 3.9g. High calcium/magnesium. Label suggests max 15g/day (~1.5 tbsp)."
+    },
+    {
+      "id": "dark-chocolate-70-fazer",
+      "name": "Dark chocolate 70% (Fazer)",
+      "type": "by_grams",
+      "per_100g": { "kcal": 571, "protein_g": 8.1, "fat_g": 44, "carbs_g": 33, "fiber_g": 0 },
+      "notes": "From label. 70% cocoa, baking/cooking choc. Sat fat 27g, sugars 30g. Fiber not declared (~8-11g/100g typical for 70%). 100g bar. Calorie-dense topping — weigh it."
+    },
+    {
+      "id": "oats-rolled",
+      "name": "Rolled oats (Garant, organic)",
+      "type": "by_grams",
+      "per_100g": { "kcal": 367, "protein_g": 13, "fat_g": 6.8, "carbs_g": 58, "fiber_g": 10 },
+      "notes": "From label. 100% wholegrain. 1 dl ≈ 40g dry. Lysine-limited protein — pairs well with your kvarg/eggs to complete it."
+    },
+    {
+      "id": "whey-choc-bodyscience",
+      "name": "Whey protein, Belgian chocolate (Body Science Whey 100%)",
+      "type": "by_grams",
+      "per_100g": { "kcal": 367, "protein_g": 70, "fat_g": 6.2, "carbs_g": 5.8, "fiber_g": 0 },
+      "notes": "From label. Scoop ~31g (=~115 kcal, ~22g protein). Sat fat 4.4g, sugars 3.4g. Complete protein. 1000g bag, ~32 servings."
+    },
+    {
+      "id": "pb2-powdered-peanut",
+      "name": "Powdered peanut butter / PB2 (Tru-Nut)",
+      "type": "by_grams",
+      "per_100g": { "kcal": 375, "protein_g": 41.7, "fat_g": 12.5, "carbs_g": 41.7, "fiber_g": 0 },
+      "notes": "From label. Defatted peanut powder (92% peanuts + sugar + salt). Fiber not declared (~8-10g/100g typical). Salt 1.38g. Big protein-per-calorie win vs regular PB."
+    },
+    {
+      "id": "whey-strawberry-pureness",
+      "name": "Whey protein, strawberry (Pureness)",
+      "type": "by_grams",
+      "per_100g": { "kcal": 360, "protein_g": 73, "fat_g": 4.8, "carbs_g": 4.4, "fiber_g": 0 },
+      "notes": "From label. Scoop ~26g (=~93 kcal, ~19g protein). Sat fat 3.2g, sugars 0g (stevia-sweetened). Complete protein, full amino profile printed on pack."
+    },
+    {
+      "id": "egg-whites-dava",
+      "name": "Egg whites, liquid pasteurized (Dava Äggvita)",
+      "type": "by_grams",
+      "per_100g": { "kcal": 40, "protein_g": 9.7, "fat_g": 0, "carbs_g": 0, "fiber_g": 0 },
+      "notes": "From label. 1 dl ≈ 3 egg whites. Pure protein, zero fat/carb. Complete protein but no yolk nutrients. Use within 28 days of opening."
+    },
+    {
+      "id": "cherries-frozen-pitted",
+      "name": "Cherries, frozen pitted (Garant)",
+      "type": "by_grams",
+      "per_100g": { "kcal": 69, "protein_g": 0, "fat_g": 0, "carbs_g": 15, "fiber_g": 1.9 },
+      "notes": "From label. Whole pitted, origin Chile. All carbs are sugar (15g). Label warns occasional pits may remain. Frozen weight = thawed weight."
+    },
+    {
+      "id": "chicken-thigh-fillet-raw",
+      "name": "Chicken thigh fillet, raw (Guldfågeln)",
+      "type": "by_grams",
+      "per_100g": { "kcal": 160, "protein_g": 19, "fat_g": 9.0, "carbs_g": 0, "fiber_g": 0 },
+      "notes": "From label. Raw weight; ~870g pack. Higher fat than breast = juicier, more forgiving to cook. Complete protein. Loses ~25% weight cooked."
+    },
+    {
+      "id": "chicken-breast-fillet-raw",
+      "name": "Chicken breast fillet, raw (Garant)",
+      "type": "by_grams",
+      "per_100g": { "kcal": 120, "protein_g": 23, "fat_g": 3.0, "carbs_g": 0, "fiber_g": 0 },
+      "notes": "From label. Raw weight; ~921g pack. Leanest big-protein source here (23g/100g). Complete protein. Loses ~25% weight cooked (so ~155g raw → ~115g cooked)."
+    },
+    {
+      "id": "butter-salted",
+      "name": "Butter, salted",
+      "type": "by_grams",
+      "per_100g": { "kcal": 717, "protein_g": 0.9, "fat_g": 81, "carbs_g": 0.1, "fiber_g": 0 },
+      "notes": "USDA standard salted butter. Sat fat ~51g. Calorie-dense; small amounts only."
+    },
+    {
+      "id": "onion-red-raw",
+      "name": "Red/purple onion, raw",
+      "type": "by_grams",
+      "per_100g": { "kcal": 40, "protein_g": 1.1, "fat_g": 0.1, "carbs_g": 9.3, "fiber_g": 1.7 },
+      "notes": "Macros essentially identical to yellow onion; red has more anthocyanins/quercetin (antioxidants), milder/sweeter flavour. Fiber 1.7g/100g."
+    }
+  ]
+}

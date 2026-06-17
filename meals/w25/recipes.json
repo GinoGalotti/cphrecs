@@ -1,0 +1,74 @@
+{
+  "_meta": {
+    "description": "Cooked meal-prep recipes. Ingredients reference ids in ingredients.json. Macros computed from raw inputs; per_portion divides batch totals by actual portions counted at portioning time.",
+    "convention": "Chicken/meat weights are RAW. 'adjustments' captures changes made during cooking (e.g. trimmed fat). per_100g_basis = 'raw_input' unless a cooked pot weight was recorded."
+  },
+  "recipes": [
+    {
+      "id": "bloody-seagull",
+      "name": "Bloody Seagull",
+      "note": "Chicken tomato stew. Internal joke name.",
+      "ingredients": [
+        { "id": "olive-oil-evoo", "grams": 35 },
+        { "id": "onion-raw", "grams": 120, "note": "frozen chopped onion; raw onion value used as proxy" },
+        { "id": "chicken-thigh-fillet-raw", "grams": 921, "note": "8 thighs, raw" },
+        { "id": "chicken-breast-fillet-raw", "grams": 810, "note": "8 pieces, raw" },
+        { "id": "tomato-passata-mutti", "grams": 1000 },
+        { "id": "tomato-cherry-sauce-mutti", "grams": 400 }
+      ],
+      "adjustments": [
+        { "desc": "trimmed chicken fat", "fat_g": -5, "kcal": -45 }
+      ],
+      "portions": 8,
+      "per_100g_basis": "raw_input",
+      "raw_input_g": 3286,
+      "totals": { "kcal": 3230, "protein_g": 383.4, "fat_g": 144.3, "carbs_g": 79.8, "fiber_g": 2.0 },
+      "per_100g_raw": { "kcal": 98, "protein_g": 11.7, "fat_g": 4.4, "carbs_g": 2.4, "fiber_g": 0.1 },
+      "per_portion": { "kcal": 404, "protein_g": 47.9, "fat_g": 18.0, "carbs_g": 10.0, "fiber_g": 0.3 }
+    },
+    {
+      "id": "panownie",
+      "name": "Panownie",
+      "note": "Pancake-brownie, healthy-wannabe. Counted per pancake (20 made).",
+      "ingredients": [
+        { "id": "oats-rolled", "grams": 58 },
+        { "id": "chia-seeds", "grams": 20 },
+        { "id": "banana-raw", "grams": 264 },
+        { "id": "whey-choc-bodyscience", "grams": 75 },
+        { "id": "dark-chocolate-70-fazer", "grams": 50 },
+        { "id": "kvarg-natural-0.3", "grams": 203 },
+        { "id": "egg-whole-raw", "grams": 100 },
+        { "id": "egg-whites-dava", "grams": 147 },
+        { "id": "butter-salted", "grams": 10 },
+        { "id": "pb2-powdered-peanut", "grams": 19 }
+      ],
+      "adjustments": [],
+      "portions": 20,
+      "portion_unit": "pancake",
+      "per_100g_basis": "raw_input",
+      "raw_input_g": 946,
+      "totals": { "kcal": 1591.2, "protein_g": 130.2, "fat_g": 59.2, "carbs_g": 131.5, "fiber_g": 19.7 },
+      "per_100g_raw": { "kcal": 168.2, "protein_g": 13.8, "fat_g": 6.3, "carbs_g": 13.9, "fiber_g": 2.1 },
+      "per_portion": { "kcal": 79.6, "protein_g": 6.5, "fat_g": 3.0, "carbs_g": 6.6, "fiber_g": 1.0 }
+    },
+    {
+      "id": "roasted-veggies",
+      "name": "Roasted Veggies",
+      "note": "Carb/fibre side. Batch split in two halves.",
+      "ingredients": [
+        { "id": "onion-red-raw", "grams": 321 },
+        { "id": "red-bell-pepper-raw", "grams": 460 },
+        { "id": "sweet-potato-raw", "grams": 709 },
+        { "id": "potato-baking-raw", "grams": 671 }
+      ],
+      "adjustments": [],
+      "portions": 2,
+      "portion_unit": "half",
+      "per_100g_basis": "raw_input",
+      "raw_input_g": 2161,
+      "totals": { "kcal": 1397.4, "protein_g": 32.9, "fat_g": 3.1, "carbs_g": 317.4, "fiber_g": 51.1 },
+      "per_100g_raw": { "kcal": 64.7, "protein_g": 1.5, "fat_g": 0.1, "carbs_g": 14.7, "fiber_g": 2.4 },
+      "per_portion": { "kcal": 698.7, "protein_g": 16.4, "fat_g": 1.5, "carbs_g": 158.7, "fiber_g": 25.6 }
+    }
+  ]
+}
