@@ -30,9 +30,9 @@ test.describe('Week 25 meal-prep menu', () => {
     const hero = card.locator('.basis.portion');
     await expect(hero).toHaveText('per portion');
     const heroVals = card.locator('.macros').first().locator('.macro .v');
-    await expect(heroVals.nth(0)).toHaveText('404');     // kcal -> whole
+    await expect(heroVals.nth(0)).toHaveText('400');     // kcal -> whole
     await expect(heroVals.nth(1)).toHaveText('47.9g');   // protein -> 1 dp (raw, not the HTML's 48)
-    await expect(heroVals.nth(2)).toHaveText('18.0g');
+    await expect(heroVals.nth(2)).toHaveText('17.7g');
     await expect(heroVals.nth(3)).toHaveText('10.0g');
     await expect(heroVals.nth(4)).toHaveText('0.3g');
 

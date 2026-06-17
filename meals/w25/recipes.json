@@ -9,7 +9,7 @@
       "name": "Bloody Seagull",
       "note": "Chicken tomato stew. Internal joke name.",
       "ingredients": [
-        { "id": "olive-oil-evoo", "grams": 35 },
+        { "id": "olive-oil-evoo", "grams": 32, "note": "reduced 3 g to offset trimmed chicken fat" },
         { "id": "onion-raw", "grams": 120, "note": "frozen chopped onion; raw onion value used as proxy" },
         { "id": "chicken-thigh-fillet-raw", "grams": 921, "note": "8 thighs, raw" },
         { "id": "chicken-breast-fillet-raw", "grams": 810, "note": "8 pieces, raw" },
@@ -21,10 +21,10 @@
       ],
       "portions": 8,
       "per_100g_basis": "raw_input",
-      "raw_input_g": 3286,
-      "totals": { "kcal": 3230, "protein_g": 383.4, "fat_g": 144.3, "carbs_g": 79.8, "fiber_g": 2.0 },
-      "per_100g_raw": { "kcal": 98, "protein_g": 11.7, "fat_g": 4.4, "carbs_g": 2.4, "fiber_g": 0.1 },
-      "per_portion": { "kcal": 404, "protein_g": 47.9, "fat_g": 18.0, "carbs_g": 10.0, "fiber_g": 0.3 }
+      "raw_input_g": 3283,
+      "totals": { "kcal": 3203, "protein_g": 383.4, "fat_g": 141.3, "carbs_g": 79.8, "fiber_g": 2.0 },
+      "per_100g_raw": { "kcal": 98, "protein_g": 11.7, "fat_g": 4.3, "carbs_g": 2.4, "fiber_g": 0.1 },
+      "per_portion": { "kcal": 400, "protein_g": 47.9, "fat_g": 17.7, "carbs_g": 10.0, "fiber_g": 0.3 }
     },
     {
       "id": "panownie",
@@ -35,7 +35,7 @@
         { "id": "chia-seeds", "grams": 20 },
         { "id": "banana-raw", "grams": 264 },
         { "id": "whey-choc-bodyscience", "grams": 75 },
-        { "id": "dark-chocolate-70-fazer", "grams": 50 },
+        { "id": "dark-chocolate-70-fazer", "grams": 40 },
         { "id": "kvarg-natural-0.3", "grams": 203 },
         { "id": "egg-whole-raw", "grams": 100 },
         { "id": "egg-whites-dava", "grams": 147 },
@@ -46,10 +46,10 @@
       "portions": 20,
       "portion_unit": "pancake",
       "per_100g_basis": "raw_input",
-      "raw_input_g": 946,
-      "totals": { "kcal": 1591.2, "protein_g": 130.2, "fat_g": 59.2, "carbs_g": 131.5, "fiber_g": 19.7 },
-      "per_100g_raw": { "kcal": 168.2, "protein_g": 13.8, "fat_g": 6.3, "carbs_g": 13.9, "fiber_g": 2.1 },
-      "per_portion": { "kcal": 79.6, "protein_g": 6.5, "fat_g": 3.0, "carbs_g": 6.6, "fiber_g": 1.0 }
+      "raw_input_g": 936,
+      "totals": { "kcal": 1534.1, "protein_g": 129.4, "fat_g": 54.8, "carbs_g": 128.2, "fiber_g": 19.7 },
+      "per_100g_raw": { "kcal": 163.9, "protein_g": 13.8, "fat_g": 5.9, "carbs_g": 13.7, "fiber_g": 2.1 },
+      "per_portion": { "kcal": 76.7, "protein_g": 6.5, "fat_g": 2.7, "carbs_g": 6.4, "fiber_g": 1.0 }
     },
     {
       "id": "roasted-veggies",
