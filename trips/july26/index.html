@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Long weekend: London or Amsterdam — July 2026</title>
+<title>London &amp; Copenhagen — July 2026</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -19,8 +19,8 @@
     --gold-soft:#e9d9bd;
     --lon:#3a6ea5;
     --lon-soft:#e2ecf6;
-    --ams:#c8743a;
-    --ams-soft:#f7e8da;
+    --cph:#c14a3a;
+    --cph-soft:#f7e1dc;
     --good:#3b6d43;
     --warn:#9a5b1d;
     --radius:14px;
@@ -48,10 +48,10 @@
     font-size:clamp(40px,8vw,82px);
   }
   h1.title .v{color:var(--lon);}
-  h1.title .or{color:var(--ink-soft);font-weight:400;font-style:italic;}
-  h1.title .v2{color:var(--ams);}
+  h1.title .amp{color:var(--ink-soft);font-weight:400;font-style:italic;}
+  h1.title .v2{color:var(--cph);}
   .sub{
-    margin:22px 0 0;max-width:60ch;font-size:18px;color:var(--ink-soft);
+    margin:22px 0 0;max-width:62ch;font-size:18px;color:var(--ink-soft);
   }
   .meta-row{
     display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;
@@ -62,13 +62,13 @@
   }
   .chip strong{color:var(--ink);font-weight:700;}
 
-  /* ---- Verdict band ---- */
+  /* ---- Plan band ---- */
   .verdict{
     margin:34px 0 0;padding:22px 24px;border-radius:var(--radius);
     background:var(--ink);color:#f3eee2;
   }
   .verdict h2{margin:0 0 8px;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--gold-soft);}
-  .verdict p{margin:0;font-size:16px;color:#e7e1d3;max-width:75ch;}
+  .verdict p{margin:0;font-size:16px;color:#e7e1d3;max-width:78ch;}
   .verdict p + p{margin-top:10px;}
   .verdict b{color:#fff;}
 
@@ -78,6 +78,25 @@
   .sec-num{font-size:14px;font-weight:700;color:var(--gold);letter-spacing:.1em;}
   h2.sec-title{margin:0;font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.015em;}
   .sec-lead{margin:10px 0 30px;max-width:68ch;color:var(--ink-soft);font-size:16px;}
+  .leg-ribbon{
+    display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    padding:4px 12px;border-radius:999px;margin-bottom:14px;
+  }
+  .leg-ribbon.lon{background:var(--lon-soft);color:var(--lon);}
+  .leg-ribbon.cph{background:var(--cph-soft);color:var(--cph);}
+
+  /* ---- Flight timeline ---- */
+  .legs{display:flex;flex-direction:column;gap:12px;}
+  .leg{
+    display:grid;grid-template-columns:128px 1fr auto;gap:18px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 20px;
+  }
+  .leg .when{font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);}
+  .leg .route{font-size:20px;font-weight:800;letter-spacing:-.01em;}
+  .leg .route small{display:block;font-size:13px;font-weight:500;color:var(--ink-soft);letter-spacing:0;text-transform:none;margin-top:2px;}
+  .leg .clock{text-align:right;white-space:nowrap;}
+  .leg .clock b{font-size:18px;font-weight:800;}
+  .leg .clock span{display:block;font-size:12px;color:var(--ink-soft);}
 
   /* ---- City toggle ---- */
   .toggle{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:4px;background:var(--paper-2);margin-bottom:28px;}
@@ -87,7 +106,7 @@
   }
   .toggle button[data-active="true"]{color:#fff;}
   .toggle button[data-city="london"][data-active="true"]{background:var(--lon);}
-  .toggle button[data-city="amsterdam"][data-active="true"]{background:var(--ams);}
+  .toggle button[data-city="copenhagen"][data-active="true"]{background:var(--cph);}
 
   .city-pane[hidden]{display:none;}
 
@@ -97,37 +116,36 @@
     background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
     padding:20px 22px;display:flex;flex-direction:column;
   }
-  .card.feature{border-width:2px;}
-  .london .card.feature{border-color:var(--lon);}
-  .amsterdam .card.feature{border-color:var(--ams);}
+  .card.feature{border-width:2px;border-color:var(--lon);}
   .badge{
     align-self:flex-start;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
     padding:4px 11px;border-radius:999px;margin-bottom:13px;
   }
-  .london .badge{background:var(--lon-soft);color:var(--lon);}
-  .amsterdam .badge{background:var(--ams-soft);color:var(--ams);}
+  .badge{background:var(--lon-soft);color:var(--lon);}
   .badge.gold{background:var(--gold-soft);color:#7a5618;}
+  .badge.cph{background:var(--cph-soft);color:var(--cph);}
   .card h3{margin:0 0 3px;font-size:18px;font-weight:800;}
-  .card .where{margin:0 0 12px;font-size:13.5px;color:var(--ink-soft);}
-  .card p.body{margin:0 0 14px;font-size:14.5px;color:var(--ink);}
-  .card .foot{margin-top:auto;font-size:13px;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:11px;}
-  .card .foot b{color:var(--ink);font-weight:800;}
-
-  /* ---- Flight rows ---- */
-  .flights{display:flex;flex-direction:column;gap:10px;}
-  .frow{
-    display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;
-    background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:14px 18px;
+  .card h3 a{color:inherit;text-decoration:none;border-bottom:1px solid var(--gold-soft);transition:.15s;}
+  .card h3 a:hover{border-color:var(--gold);color:var(--gold);}
+  .card h3 a::after{content:" \2197";font-size:12px;color:var(--ink-soft);font-weight:600;}
+  .card .where{margin:0 0 4px;font-size:13.5px;color:var(--ink-soft);}
+  .card .score{margin:0 0 12px;font-size:13px;font-weight:700;color:var(--good);}
+  .card .score.muted{color:var(--ink-soft);font-weight:600;}
+  .card p.body{margin:0 0 12px;font-size:14.5px;color:var(--ink);}
+  .card .pc{list-style:none;margin:0 0 14px;padding:0;font-size:13.5px;}
+  .card .pc li{margin:0 0 3px;padding-left:20px;position:relative;color:var(--ink-soft);}
+  .card .pc li.up::before{content:"+";position:absolute;left:4px;color:var(--good);font-weight:800;}
+  .card .pc li.down::before{content:"\2212";position:absolute;left:4px;color:var(--warn);font-weight:800;}
+  .card .foot{margin-top:auto;font-size:13px;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:11px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;}
+  .card .foot .price b{color:var(--ink);font-weight:800;}
+  .card .foot a.view{font-size:13px;font-weight:700;text-decoration:none;color:#fff;background:var(--lon);padding:7px 14px;border-radius:9px;white-space:nowrap;}
+  .card .foot a.view:hover{background:#2f5c8a;}
+  .warn-flag{
+    font-size:12.5px;background:#fbf1e3;border:1px solid var(--gold-soft);color:var(--warn);
+    border-radius:9px;padding:8px 11px;margin:0 0 12px;
   }
-  .frow.sweet{border-left:4px solid var(--gold);}
-  .ftime{font-size:17px;font-weight:800;letter-spacing:-.01em;white-space:nowrap;}
-  .froute{font-size:13.5px;color:var(--ink-soft);}
-  .froute b{color:var(--ink);}
-  .fprice{text-align:right;white-space:nowrap;}
-  .fprice .pts{font-size:17px;font-weight:800;}
-  .fprice .lbl{display:block;font-size:11.5px;color:var(--ink-soft);letter-spacing:.03em;}
-  .fprice.hot .pts{color:var(--good);}
-  .fprice.cold .pts{color:var(--ink-soft);font-weight:700;}
+  .pending{font-size:12.5px;font-style:italic;color:var(--ink-soft);background:var(--paper);border:1px dashed var(--line);border-radius:9px;padding:8px 11px;margin:0 0 12px;}
+
   .leg-label{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin:18px 0 8px;}
   .leg-label:first-child{margin-top:0;}
 
@@ -138,9 +156,8 @@
     border:1px solid var(--line);color:var(--ink);background:var(--paper-2);transition:.15s;
   }
   a.btn:hover{border-color:var(--ink);}
-  a.btn.solid{color:#fff;border:0;}
-  .london a.btn.solid{background:var(--lon);}
-  .amsterdam a.btn.solid{background:var(--ams);}
+  a.btn.solid{color:#fff;border:0;background:var(--lon);}
+  a.btn.cph{background:var(--cph);}
 
   .note{font-size:13px;color:var(--ink-soft);margin-top:14px;font-style:italic;}
 
@@ -159,8 +176,8 @@
   footer p{margin:0;font-size:13px;color:var(--ink-soft);}
 
   @media (max-width:560px){
-    .frow{grid-template-columns:1fr auto;}
-    .froute{grid-column:1 / -1;order:3;}
+    .leg{grid-template-columns:1fr auto;}
+    .leg .when{grid-column:1 / -1;}
   }
 </style>
 </head>
@@ -168,20 +185,20 @@
 
 <header class="hero">
   <div class="wrap">
-    <p class="eyebrow">A long weekend on points · July 2026</p>
-    <h1 class="title"><span class="v">London</span> <span class="or">or</span> <span class="v2">Amsterdam</span></h1>
-    <p class="sub">Two cities, two sets of dates, both reachable from Arlanda on SAS EuroBonus points. Here's the side-by-side — flights, places to stay, and what's worth doing — so we can just pick one.</p>
+    <p class="eyebrow">A summer trip on points · July 2026</p>
+    <h1 class="title"><span class="v">London</span> <span class="amp">&amp;</span> <span class="v2">Copenhagen</span></h1>
+    <p class="sub">It's booked. Three nights in London, two in Copenhagen, home on the Wednesday. This is the working plan — flights locked, places to stay shortlisted, and the good stuff to do in each city.</p>
     <div class="meta-row">
       <span class="chip"><strong>From</strong> Stockholm (ARN)</span>
-      <span class="chip"><strong>London</strong> Wed 1 → Sat 4 Jul</span>
-      <span class="chip"><strong>Amsterdam</strong> Fri 3 → Tue 7 Jul</span>
+      <span class="chip"><strong>London</strong> Fri 3 → Mon 6 Jul</span>
+      <span class="chip"><strong>Copenhagen</strong> Mon 6 → Wed 8 Jul</span>
       <span class="chip"><strong>Party</strong> 2 people</span>
     </div>
 
     <div class="verdict">
-      <h2>The short version</h2>
-      <p><b>London</b> is the bucket-list pick, but the cheap award seats sit at the awkward ends of the day: the only 15k-point outbound is the <b>19:45 departure</b> (lands ~21:20), and the matching cheap return is early-to-mid afternoon. That's really two full days on the ground.</p>
-      <p><b>Amsterdam</b> is now the easier trip on every axis — friendlier flight times and, if you extend one night to <b>Tue 7 Jul</b>, a direct 15k return that beats London's awkward afternoon slot. Smaller city, more relaxed, very walkable. London is still the bucket-list pick if you want the big-city hit; Amsterdam wins on low-stress logistics and a fuller stay.</p>
+      <h2>The plan</h2>
+      <p>Fly into <b>London on Fri 3 Jul</b> (lands late afternoon) for a full three-night long weekend — South Bank, Soho, markets and a couple of Ella-shaped nights out. Then hop to <b>Copenhagen on Mon 6 Jul</b> for two slower nights of eating our way around town before the early flight home on <b>Wed 8 Jul</b>.</p>
+      <p>Below: the locked flights, a shortlist of <b>five places to stay in London</b> to pick from, what's worth doing, and the Copenhagen leg (which leans on the <a href="/cphrecs" style="color:#f0c98a;">existing eating guide</a>).</p>
     </div>
   </div>
 </header>
@@ -189,255 +206,143 @@
 <!-- ============ FLIGHTS ============ -->
 <section id="flights">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">Flights</h2></div>
-    <p class="sec-lead">Points prices are the real SAS award availability for our dates. The gold edge marks the cheapest 15k-point seats. Cash figures are rough reference if points don't work out.</p>
+    <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">The flights</h2></div>
+    <p class="sec-lead">All three legs are booked and direct. Departure times are confirmed; arrival times marked “≈” are estimated from flight duration and time zones — check the boarding pass for the exact minute.</p>
 
-    <div class="toggle" data-group="flights">
-      <button data-city="london" data-active="true">London</button>
-      <button data-city="amsterdam" data-active="false">Amsterdam</button>
+    <div class="legs">
+      <div class="leg">
+        <div class="when">Fri 3 Jul</div>
+        <div class="route">Stockholm → London <small>ARN → LHR · direct</small></div>
+        <div class="clock"><b>15:25 → 17:00</b><span>2h 35m</span></div>
+      </div>
+      <div class="leg">
+        <div class="when">Mon 6 Jul</div>
+        <div class="route">London → Copenhagen <small>LHR → CPH · direct</small></div>
+        <div class="clock"><b>19:05 → ≈21:55</b><span>≈1h 50m</span></div>
+      </div>
+      <div class="leg">
+        <div class="when">Wed 8 Jul</div>
+        <div class="route">Copenhagen → Stockholm <small>CPH → ARN · direct</small></div>
+        <div class="clock"><b>09:00 → ≈10:20</b><span>≈1h 20m</span></div>
+      </div>
     </div>
-
-    <!-- LONDON FLIGHTS -->
-    <div class="city-pane london" data-pane="london">
-      <p class="leg-label">Outbound · Wed 1 Jul (ARN → LHR)</p>
-      <div class="flights">
-        <div class="frow sweet">
-          <div class="ftime">19:45 – 21:20</div>
-          <div class="froute">Direct · 2h 35m · <b>SAS Connect</b></div>
-          <div class="fprice hot"><span class="pts">15 000 p</span><span class="lbl">economy · the cheap one</span></div>
-        </div>
-        <div class="frow">
-          <div class="ftime">07:05 – 08:55</div>
-          <div class="froute">Direct · 2h 50m · earliest option</div>
-          <div class="fprice cold"><span class="pts">72 795 p</span><span class="lbl">economy</span></div>
-        </div>
-        <div class="frow">
-          <div class="ftime">15:25 – 17:00</div>
-          <div class="froute">Direct · 2h 35m · mid-afternoon</div>
-          <div class="fprice cold"><span class="pts">72 795 p</span><span class="lbl">economy</span></div>
-        </div>
-      </div>
-
-      <p class="leg-label">Return · Sat 4 Jul (LHR → ARN)</p>
-      <div class="flights">
-        <div class="frow sweet">
-          <div class="ftime">13:55 – 17:25</div>
-          <div class="froute">Direct · 2h 30m · <b>SAS Connect</b></div>
-          <div class="fprice hot"><span class="pts">15 000 p</span><span class="lbl">economy · the cheap one</span></div>
-        </div>
-        <div class="frow sweet">
-          <div class="ftime">17:30 – 21:00</div>
-          <div class="froute">Direct · 2h 30m · <b>SAS</b> · latest, most day in London</div>
-          <div class="fprice hot"><span class="pts">15 000 p</span><span class="lbl">economy · or 35k business</span></div>
-        </div>
-        <div class="frow">
-          <div class="ftime">06:40 – 10:05</div>
-          <div class="froute">Direct · 2h 25m · early bird</div>
-          <div class="fprice cold"><span class="pts">23 568 p</span><span class="lbl">economy</span></div>
-        </div>
-      </div>
-      <p class="note">Best clean combo: out 19:45 Wed, back 17:30 Sat — 30k points each, both directions on the cheap seats, and the Saturday flight leaves late enough for a full last day. Kontantpris ≈ 1 450–1 800 kr tur och retur.</p>
-    </div>
-
-    <!-- AMSTERDAM FLIGHTS -->
-    <div class="city-pane amsterdam" data-pane="amsterdam" hidden>
-      <p class="leg-label">Outbound · Fri 3 Jul (ARN → AMS)</p>
-      <div class="flights">
-        <div class="frow sweet">
-          <div class="ftime">08:10 – 10:20</div>
-          <div class="froute">Direct · 2h 10m · <b>SAS Connect</b> · full day ahead</div>
-          <div class="fprice hot"><span class="pts">15 000 p</span><span class="lbl">economy · or 35k business</span></div>
-        </div>
-        <div class="frow sweet">
-          <div class="ftime">16:10 – 18:15</div>
-          <div class="froute">Direct · 2h 05m · <b>SAS Connect</b> · after work</div>
-          <div class="fprice hot"><span class="pts">15 000 p</span><span class="lbl">economy · or 35k business</span></div>
-        </div>
-      </div>
-
-      <p class="leg-label">Return · Tue 7 Jul (AMS → ARN) · the good one</p>
-      <div class="flights">
-        <div class="frow sweet">
-          <div class="ftime">19:00 – 21:00</div>
-          <div class="froute">Direct · 2h · <b>Cityjet</b> · cheap <em>and</em> direct</div>
-          <div class="fprice hot"><span class="pts">15 000 p</span><span class="lbl">economy · best of both</span></div>
-        </div>
-        <div class="frow">
-          <div class="ftime">11:05 – 13:05</div>
-          <div class="froute">Direct · 2h · <b>SAS</b> · midday departure</div>
-          <div class="fprice cold"><span class="pts">68 510 p</span><span class="lbl">economy · pricey</span></div>
-        </div>
-      </div>
-      <p class="note">Extending one night to <b>Tue 7 Jul</b> unlocks a direct 19:00 return at 15,000 p — same cheap points, no Copenhagen detour. This makes it a 5-day trip but removes the only real downside Amsterdam had.</p>
-
-      <p class="leg-label">Return · Mon 6 Jul (AMS → ARN) · if you want 4 days</p>
-      <div class="flights">
-        <div class="frow">
-          <div class="ftime">17:40 – 22:35</div>
-          <div class="froute">1 stop via CPH · 4h 55m · <b>Cityjet</b> · cheapest Mon seat</div>
-          <div class="fprice cold"><span class="pts">15 000 p</span><span class="lbl">economy · but long</span></div>
-        </div>
-        <div class="frow">
-          <div class="ftime">19:00 – 21:00</div>
-          <div class="froute">Direct · 2h · <b>SAS</b> · civilised but costs more</div>
-          <div class="fprice cold"><span class="pts">26 785 p</span><span class="lbl">economy</span></div>
-        </div>
-      </div>
-      <p class="note">Stay 4 days (back Mon 6) and your choice is a long 15k connection via Copenhagen, or 26,785 p for the direct. The Tuesday return above sidesteps both. Kontantpris ≈ 1 500–2 050 kr tur och retur.</p>
-    </div>
+    <p class="note">Three nights in London (Fri, Sat, Sun), two in Copenhagen (Mon, Tue), wheels-up home Wednesday morning — so Tuesday is the last real day in Copenhagen.</p>
   </div>
 </section>
 
-<!-- ============ HOTELS ============ -->
-<section id="hotels">
+<!-- ============ WHERE TO STAY (LONDON) ============ -->
+<section id="stay">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">Hotels</h2></div>
-    <p class="sec-lead">Two or three central options per city, across price points — all walkable to the centre so we barely touch public transport.</p>
+    <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">Where to stay in London</h2></div>
+    <span class="leg-ribbon lon">London · 3–6 Jul · 3 nights</span>
+    <p class="sec-lead">Five real options for our dates — three hotels and two apartments — with totals for all three nights (3–6 Jul, 2 people) so we can compare and pick one. Hit “Photos →” on any card to see the rooms. The two Hyde Park apartments come out cheapest; the hotels are clustered around 9–10k kr.</p>
 
-    <div class="toggle" data-group="hotels">
-      <button data-city="london" data-active="true">London</button>
-      <button data-city="amsterdam" data-active="false">Amsterdam</button>
-    </div>
+    <p class="leg-label">Hotels</p>
+    <div class="grid">
+      <div class="card feature">
+        <span class="badge">Best balance</span>
+        <h3>ibis London Blackfriars</h3>
+        <p class="where">Southwark / South Bank · 49 Blackfriars Rd, SE1 8NZ</p>
+        <p class="score">8.2 / 10 · ~2,700 reviews</p>
+        <p class="body">Solid, modern, properly central for our plan — 2 min to Southwark station, ~10 min walk to Tate Modern and Borough Market.</p>
+        <ul class="pc">
+          <li class="up">Great location for the South Bank days</li>
+          <li class="up">Well-rated breakfast &amp; staff</li>
+          <li class="up">Cheapest of the three hotels</li>
+          <li class="down">Compact rooms, pod-style bathrooms</li>
+        </ul>
+        <div class="foot">
+          <span class="price"><b>9 096 kr</b> total · ~3 032 kr/natt</span>
+          <a class="view" href="https://www.booking.com/hotel/gb/ibis-london-blackfriars.en-gb.html?checkin=2026-07-03&checkout=2026-07-06&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
 
-    <div class="city-pane london" data-pane="london">
-      <div class="grid">
-        <div class="card feature">
-          <span class="badge">Best balance</span>
-          <h3>Wilde Aparthotels</h3>
-          <p class="where">Covent Garden · 4.9★ (4,662)</p>
-          <p class="body">Right by the Strand. Modern, very quiet inside, kitchenette in every room. Compact but rated the cleanest in the area.</p>
-          <div class="foot"><b>~2 400–3 300 kr</b> / natt</div>
+      <div class="card">
+        <span class="badge gold">Best for nightlife</span>
+        <h3>Chapter Spitalfields</h3>
+        <p class="where">Spitalfields / Shoreditch edge · 9 Frying Pan Alley, E1 7HS</p>
+        <p class="score muted">Studios &amp; apartments · 32nd-floor view bar</p>
+        <p class="body">Studios with a kitchenette right behind Liverpool Street — &lt;5 min to the station, steps from Brick Lane and Old Spitalfields Market. Best base for bars and gigs.</p>
+        <ul class="pc">
+          <li class="up">Unbeatable spot for Shoreditch nights</li>
+          <li class="up">Kitchenette + panoramic rooftop bar</li>
+          <li class="down">Price is for 2 separate single rooms, not one shared room</li>
+        </ul>
+        <div class="warn-flag">⚠ This rate is <b>two individual rooms</b> (Chapter is student-style accommodation), so we'd be in separate rooms — not a double. Summer dates are usually let to anyone, but confirm there's no student-ID check before paying.</div>
+        <div class="foot">
+          <span class="price"><b>9 210 kr</b> total · ~3 070 kr/natt · 2 rooms</span>
+          <a class="view" href="https://www.booking.com/hotel/gb/chapter-spitafields-greater-london.en-gb.html?checkin=2026-07-03&checkout=2026-07-06&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Photos →</a>
         </div>
-        <div class="card">
-          <span class="badge gold">Liveliest</span>
-          <h3>Mimi's Hotel Soho</h3>
-          <p class="where">Frith St, Soho · 4.0★ (908)</p>
-          <p class="body">In the thick of Soho's bars and restaurants. Stylish and spotless — but rooms run genuinely small, so book a larger category.</p>
-          <div class="foot"><b>~1 900–2 800 kr</b> / natt</div>
-        </div>
-        <div class="card">
-          <span class="badge gold">Splurge</span>
-          <h3>NoMad London</h3>
-          <p class="where">Bow St, Covent Garden · 4.5★ (1,062)</p>
-          <p class="body">A converted magistrates' court opposite the Royal Opera House — heritage grandeur and a destination bar downstairs.</p>
-          <div class="foot"><b>~5 800+ kr</b> / natt</div>
+      </div>
+
+      <div class="card">
+        <span class="badge gold">Space &amp; value</span>
+        <h3>The Bedford, Balham</h3>
+        <p class="where">Balham, south London (Zone 3) · above a live-music pub</p>
+        <p class="score">8.2 / 10 · big, stylish rooms</p>
+        <p class="body">Spacious, well-decorated rooms over a pub that doubles as a gig venue — genuinely good value and well sound-proofed, right by Balham station.</p>
+        <ul class="pc">
+          <li class="up">Roomiest of the three, strong value</li>
+          <li class="up">Has a bathtub — the only one that does</li>
+          <li class="up">It's a live-music venue — on-theme for Ella</li>
+          <li class="down">~20 min south of the centre by Tube</li>
+        </ul>
+        <div class="foot">
+          <span class="price"><b>9 793 kr</b> total · ~3 264 kr/natt</span>
+          <a class="view" href="https://www.booking.com/hotel/gb/the-bedford-pub-and.en-gb.html?checkin=2026-07-03&checkout=2026-07-06&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Photos →</a>
         </div>
       </div>
     </div>
 
-    <div class="city-pane amsterdam" data-pane="amsterdam" hidden>
-      <div class="grid">
-        <div class="card feature">
-          <span class="badge">Best balance</span>
-          <h3>The Hoxton, Amsterdam</h3>
-          <p class="where">Herengracht canal · 4.5★</p>
-          <p class="body">Five canal houses on the Herengracht. Buzzy lobby, good rooms, the kind of central-but-calm spot that suits a long weekend.</p>
-          <div class="foot"><b>~2 300–3 200 kr</b> / natt</div>
-        </div>
-        <div class="card">
-          <span class="badge gold">Design-led</span>
-          <h3>Sir Adam / Kimpton De Witt</h3>
-          <p class="where">Centrum / A'DAM area · 4.4★</p>
-          <p class="body">Sharp, design-forward rooms near Centraal. Easy to reach from the airport and a short walk to the old centre.</p>
-          <div class="foot"><b>~2 000–2 750 kr</b> / natt</div>
-        </div>
-        <div class="card">
-          <span class="badge gold">Quieter base</span>
-          <h3>Conscious Hotel Vondelpark</h3>
-          <p class="where">By Vondelpark · 4.4★</p>
-          <p class="body">Greener, calmer side of town next to the park and the museum quarter. Good if we want mornings that start with a run.</p>
-          <div class="foot"><b>~1 650–2 300 kr</b> / natt</div>
+    <p class="leg-label">Apartments (Airbnb)</p>
+    <div class="grid">
+      <div class="card feature">
+        <span class="badge">Cheapest overall</span>
+        <h3>Large Studio by Hyde Park</h3>
+        <p class="where">Hyde Park · entire studio · 2 guests</p>
+        <p class="score">6 320 kr total — the best price of all five</p>
+        <p class="body">A whole studio to ourselves by Hyde Park, with a kitchen. Less square footage than the one-bed, but easily the cheapest option and a proper private apartment.</p>
+        <ul class="pc">
+          <li class="up">Lowest total of the whole shortlist</li>
+          <li class="up">Entire place + kitchen, green &amp; central by Hyde Park</li>
+          <li class="down">Studio layout — one room</li>
+        </ul>
+        <div class="foot">
+          <span class="price"><b>6 320 kr</b> total · ~2 107 kr/natt</span>
+          <a class="view" href="https://www.airbnb.com/rooms/1470063087661499900?adults=2&check_in=2026-07-03&check_out=2026-07-06" target="_blank" rel="noopener">Photos →</a>
         </div>
       </div>
-      <p class="note">Amsterdam adds a city tourist tax (~12.5% of the room rate) on top — factor it into the per-night comparison.</p>
-    </div>
-  </div>
-</section>
 
-<!-- ============ AIRBNB ============ -->
-<section id="airbnb">
-  <div class="wrap">
-    <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">Airbnb, for comparison</h2></div>
-    <p class="sec-lead">I can't pull live listings here, so these are realistic profiles for our dates plus a direct search link to live results. For two people a central one-bed often beats a hotel on space and a kitchen, though London's nightly rates have crept up.</p>
-
-    <div class="toggle" data-group="airbnb">
-      <button data-city="london" data-active="true">London</button>
-      <button data-city="amsterdam" data-active="false">Amsterdam</button>
+      <div class="card">
+        <span class="badge">More space</span>
+        <h3>One-Bedroom Hyde Park Apartment</h3>
+        <p class="where">Hyde Park · entire apartment · 2 guests</p>
+        <p class="score">7 772 kr total · separate bedroom</p>
+        <p class="body">A proper one-bed apartment by Hyde Park — separate bedroom and living space, kitchen included. Still cheaper than any of the hotels.</p>
+        <ul class="pc">
+          <li class="up">Separate bedroom + living room</li>
+          <li class="up">Entire place with kitchen, central location</li>
+          <li class="down">~1 450 kr more than the studio</li>
+        </ul>
+        <div class="foot">
+          <span class="price"><b>7 772 kr</b> total · ~2 591 kr/natt</span>
+          <a class="view" href="https://www.airbnb.com/rooms/30252194?adults=2&check_in=2026-07-03&check_out=2026-07-06" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
     </div>
-
-    <div class="city-pane london" data-pane="london">
-      <div class="grid">
-        <div class="card">
-          <span class="badge">Value</span>
-          <h3>One-bed in Shoreditch / Hackney</h3>
-          <p class="where">East, 15 min to centre by Tube</p>
-          <p class="body">Trendy, residential, lots of cafés and bars. Best price-to-space ratio; you trade a little distance for a real neighbourhood feel.</p>
-          <div class="foot"><b>~1 400–1 900 kr</b> / natt</div>
-        </div>
-        <div class="card feature">
-          <span class="badge">Sweet spot</span>
-          <h3>Studio / one-bed in Soho or Covent Garden</h3>
-          <p class="where">Dead central, walk everywhere</p>
-          <p class="body">Same footprint as the hotels, with a kitchen and usually a sofa. The convenient pick — step out the door into the action.</p>
-          <div class="foot"><b>~2 050–2 800 kr</b> / natt</div>
-        </div>
-        <div class="card">
-          <span class="badge gold">Roomier</span>
-          <h3>One-bed in South Bank / Bankside</h3>
-          <p class="where">By the river, near Tate &amp; Borough</p>
-          <p class="body">Slightly more space, riverside walks, and you're next to half the Saturday plan already. Good middle ground on price and location.</p>
-          <div class="foot"><b>~1 900–2 550 kr</b> / natt</div>
-        </div>
-      </div>
-      <div class="links">
-        <a class="btn solid" href="https://www.airbnb.com/s/London--United-Kingdom/homes?checkin=2026-07-01&checkout=2026-07-04&adults=2" target="_blank" rel="noopener">Open live London search →</a>
-        <a class="btn" href="https://www.airbnb.com/s/Soho--London/homes?checkin=2026-07-01&checkout=2026-07-04&adults=2" target="_blank" rel="noopener">Just Soho</a>
-      </div>
-      <p class="note">London entire-home median is ~1 650–2 350 kr/natt in 2026, higher in the centre. Check the cleaning fee — it can swing the per-night maths on a 3-night stay.</p>
-    </div>
-
-    <div class="city-pane amsterdam" data-pane="amsterdam" hidden>
-      <div class="grid">
-        <div class="card feature">
-          <span class="badge">Sweet spot</span>
-          <h3>Canal-house one-bed in Jordaan</h3>
-          <p class="where">Jordaan / Centrum, walk everywhere</p>
-          <p class="body">The classic Amsterdam stay — narrow stairs, canal view, the prettiest neighbourhood. Books up fast for summer weekends.</p>
-          <div class="foot"><b>~2 200–3 000 kr</b> / natt</div>
-        </div>
-        <div class="card">
-          <span class="badge">Value</span>
-          <h3>One-bed in De Pijp or Oost</h3>
-          <p class="where">South/east, 10 min by tram or bike</p>
-          <p class="body">Lively, less touristy, great food. The Albert Cuyp market is here. Best price for a real local feel.</p>
-          <div class="foot"><b>~1 650–2 200 kr</b> / natt</div>
-        </div>
-        <div class="card">
-          <span class="badge gold">Calmer</span>
-          <h3>Apartment by Vondelpark / Oud-West</h3>
-          <p class="where">Museum quarter, leafy</p>
-          <p class="body">Greener and quieter, next to the park and museums. Suits a long weekend with morning runs and slow coffees.</p>
-          <div class="foot"><b>~1 900–2 550 kr</b> / natt</div>
-        </div>
-      </div>
-      <div class="links">
-        <a class="btn solid" href="https://www.airbnb.com/s/Amsterdam--Netherlands/homes?checkin=2026-07-03&checkout=2026-07-06&adults=2" target="_blank" rel="noopener">Open live Amsterdam search →</a>
-        <a class="btn" href="https://www.airbnb.com/s/Jordaan--Amsterdam/homes?checkin=2026-07-03&checkout=2026-07-06&adults=2" target="_blank" rel="noopener">Just Jordaan</a>
-      </div>
-      <p class="note">Amsterdam caps short-term rentals at 30 nights/year per home and requires a registration number — legit listings show one. The city tourist tax applies to Airbnb too.</p>
-    </div>
+    <p class="note">Quick read by price: <b>Studio by Hyde Park 6 320 kr</b> (cheapest) · <b>One-bed Hyde Park 7 772 kr</b> · <b>ibis Blackfriars 9 096 kr</b> · <b>Chapter 9 210 kr</b> (2 separate rooms) · <b>The Bedford 9 793 kr</b> (roomiest, has a bathtub). The apartments are the value play; ibis is the safe central hotel; Chapter is best for nightlife but means separate rooms; the Bedford trades location for space and that bathtub.</p>
   </div>
 </section>
 
 <!-- ============ THINGS TO DO ============ -->
 <section id="do">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">What's worth doing</h2></div>
-    <p class="sec-lead">A menu, not a schedule — pick what appeals. Grouped by mood so we can mix landmarks, culture and food to taste.</p>
+    <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">What's worth doing</h2></div>
+    <p class="sec-lead">A menu, not a schedule — pick what appeals. London gets the long weekend; Copenhagen is two easy days, mostly built around eating (see the guide in section 05).</p>
 
     <div class="toggle" data-group="do">
       <button data-city="london" data-active="true">London</button>
-      <button data-city="amsterdam" data-active="false">Amsterdam</button>
+      <button data-city="copenhagen" data-active="false">Copenhagen</button>
     </div>
 
     <div class="city-pane london" data-pane="london">
@@ -455,87 +360,82 @@
       </div>
       <p class="leg-label">Food &amp; nights out</p>
       <div class="grid">
-        <div class="card"><h3>Borough Market</h3><p class="body">Open Thu–Sat — perfect for our dates. Graze breakfast, go early. 4.6★</p></div>
-        <div class="card"><h3>Soho &amp; Covent Garden</h3><p class="body">Bars, restaurants, Neal's Yard — likely our hotel base anyway.</p></div>
+        <div class="card"><h3>Borough Market</h3><p class="body">Open Thu–Sat — perfect for our Fri/Sat. Graze breakfast, go early. 4.6★</p></div>
+        <div class="card"><h3>Soho &amp; Covent Garden</h3><p class="body">Bars, restaurants, Neal's Yard — the natural evening base.</p></div>
         <div class="card"><h3>A West End show</h3><p class="body">Book ahead, or grab same-day deals at TKTS in Leicester Square.</p></div>
       </div>
     </div>
 
-    <div class="city-pane amsterdam" data-pane="amsterdam" hidden>
-      <p class="leg-label">Canals &amp; on foot</p>
+    <div class="city-pane copenhagen" data-pane="copenhagen" hidden>
+      <p class="leg-label">Two easy days</p>
       <div class="grid">
-        <div class="card"><h3>Jordaan wander</h3><p class="body">The prettiest quarter — canals, indie shops, brown cafés. No plan needed, just walk.</p></div>
-        <div class="card"><h3>Canal cruise</h3><p class="body">Touristy but genuinely the best way to read the city. Go for a small-boat evening one.</p></div>
-        <div class="card"><h3>Vondelpark</h3><p class="body">The big central park — rent bikes, or run it in the morning. Free.</p></div>
+        <div class="card"><h3>Nyhavn &amp; the harbour</h3><p class="body">The postcard canal, then a harbour-bus or walk along the water. Free, and the obvious first stroll.</p></div>
+        <div class="card"><h3>Tivoli Gardens</h3><p class="body">Right by Central Station — historic pleasure garden, lovely in the evening. Good for our last night.</p></div>
+        <div class="card"><h3>Rosenborg &amp; the King's Garden</h3><p class="body">Renaissance castle, crown jewels, and the city's nicest park to sit in.</p></div>
       </div>
-      <p class="leg-label">Museums &amp; culture</p>
+      <p class="leg-label">Neighbourhoods &amp; eating</p>
       <div class="grid">
-        <div class="card"><h3>Rijksmuseum</h3><p class="body">Rembrandt, Vermeer and the Dutch Masters. Book a timed slot. 4.8★</p></div>
-        <div class="card"><h3>Van Gogh Museum</h3><p class="body">The world's largest Van Gogh collection, next door to the Rijks. Book ahead — it sells out.</p></div>
-        <div class="card"><h3>Anne Frank House</h3><p class="body">Sobering and essential. Tickets release on a strict timed schedule — book the moment they open.</p></div>
+        <div class="card"><h3>Torvehallerne</h3><p class="body">Glass food-hall by Nørreport — smørrebrød, coffee, snacks. A great grazing lunch.</p></div>
+        <div class="card"><h3>Reffen / Refshaleøen</h3><p class="body">Sprawling street-food yard on the harbour island — go for an evening, bring an appetite.</p></div>
+        <div class="card"><h3>Nørrebro &amp; Vesterbro</h3><p class="body">The two best wander-and-eat neighbourhoods. The eating guide covers these in depth.</p></div>
       </div>
-      <p class="leg-label">Food &amp; neighbourhoods</p>
-      <div class="grid">
-        <div class="card"><h3>Albert Cuyp Market</h3><p class="body">De Pijp's street market — stroopwafels made fresh, cheese, herring if you're brave.</p></div>
-        <div class="card"><h3>De Pijp &amp; Oost</h3><p class="body">Best eating-and-drinking neighbourhoods, away from the centre's crowds.</p></div>
-        <div class="card"><h3>A brown café evening</h3><p class="body">Cosy old Dutch pubs — the proper way to spend a slow night.</p></div>
-      </div>
+      <p class="note">The full Copenhagen rundown lives in section 05 — it links straight to the detailed <a href="/cphrecs">eating guide</a>.</p>
     </div>
   </div>
 </section>
 
+<!-- ============ FOR ELLA (LONDON) ============ -->
 <section id="ella">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">For Ella</h2></div>
+    <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">For Ella · in London</h2></div>
     <p class="sec-lead">The good stuff: small gigs (punk/rock by preference), anything Pokémon-flavoured, and proper cocktails. Live music is the one to check closer to the date — small venues book weeks out, so the spots below are where to look rather than confirmed shows.</p>
 
-    <div class="toggle" data-group="ella">
-      <button data-city="london" data-active="true">London</button>
-      <button data-city="amsterdam" data-active="false">Amsterdam</button>
+    <p class="leg-label">Small gigs · punk &amp; rock</p>
+    <div class="grid">
+      <div class="card"><h3>The Windmill, Brixton</h3><p class="body">The legendary South London grassroots room — cheap, sweaty, and where tomorrow's bands play tonight. Check listings for early July. 4.5★</p></div>
+      <div class="card"><h3>MOTH Club, Hackney</h3><p class="body">A converted working men's club with a glittery gold stage. Intimate, brilliant for up-and-comers. 4.5★</p></div>
+      <div class="card"><h3>Hootananny, Brixton</h3><p class="body">Pub-venue with live bands and a loud, friendly crowd most nights. Reggae, ska, punk-leaning. 4.3★</p></div>
+    </div>
+    <p class="note">If we land at <b>The Bedford in Balham</b>, the gig venue is literally downstairs — check who's playing 3–5 Jul.</p>
+
+    <p class="leg-label">Pokémon &amp; collectibles</p>
+    <div class="grid">
+      <div class="card"><h3>Brotherhood Games Café</h3><p class="body">Best TCG spot in London per the regulars — play Pokémon over food, fair prices, great events. Bermondsey. 4.8★</p></div>
+      <div class="card"><h3>Fanatics Collectibles, Regent St</h3><p class="body">Big central TCG store — cards, sealed product, singles. Expect a managed queue at busy times. 4.7★</p></div>
+      <div class="card"><h3>Forbidden Planet, Shaftesbury Ave</h3><p class="body">Two floors of pop-culture everything — Pokémon plush, figures, merch alongside manga and comics. 4.6★</p></div>
+    </div>
+    <p class="note">Heads up: the official Pokémon Center pop-ups (ExCeL and the Natural History Museum) ran Feb–April 2026 and are closed by July. The shops above are the year-round options. POP MART on Oxford St is also fun for blind-box collectibles.</p>
+
+    <p class="leg-label">Cocktails</p>
+    <div class="grid">
+      <div class="card"><h3>Swift, Soho</h3><p class="body">A serious cocktail bar that locals rate — best Irish coffee in London, expert twists on classics. Book if you can. 4.6★</p></div>
+      <div class="card"><h3>Cahoots, Carnaby</h3><p class="body">Immersive 1940s-Underground-station theme with live music — drinks served in lanterns and tube carriages. 4.6★</p></div>
+      <div class="card"><h3>SOMA, Soho</h3><p class="body">A genuine speakeasy — clear ice, freezer glassware, no fruit-salad garnishes. For the real thing. 4.7★</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COPENHAGEN ============ -->
+<section id="copenhagen">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">The Copenhagen leg</h2></div>
+    <span class="leg-ribbon cph">Copenhagen · 6–8 Jul · 2 nights</span>
+    <p class="sec-lead">Two nights, no rush — this is the eating-and-wandering half of the trip. We already have a detailed Copenhagen guide on the site, so the plan here is light: arrive Monday night, one full day Tuesday, fly home Wednesday morning.</p>
+
+    <div class="links">
+      <a class="btn cph" href="/cphrecs" target="_blank" rel="noopener">Open the Copenhagen eating guide →</a>
     </div>
 
-    <div class="city-pane london" data-pane="london">
-      <p class="leg-label">Small gigs · punk &amp; rock</p>
-      <div class="grid">
-        <div class="card"><h3>The Windmill, Brixton</h3><p class="body">The legendary South London grassroots room — cheap, sweaty, and where tomorrow's bands play tonight. Check listings for early July. 4.5★</p></div>
-        <div class="card"><h3>MOTH Club, Hackney</h3><p class="body">A converted working men's club with a glittery gold stage. Intimate, brilliant for up-and-comers. (Currently fighting redevelopment — go support it.) 4.5★</p></div>
-        <div class="card"><h3>Hootananny, Brixton</h3><p class="body">Pub-venue with live bands and a loud, friendly crowd most nights. Reggae, ska, punk-leaning. 4.3★</p></div>
-      </div>
-      <p class="leg-label">Pokémon &amp; collectibles</p>
-      <div class="grid">
-        <div class="card"><h3>Brotherhood Games Café</h3><p class="body">Best TCG spot in London per the regulars — play Pokémon over food, fair prices, great events. Bermondsey, a little out but worth it. 4.8★</p></div>
-        <div class="card"><h3>Fanatics Collectibles, Regent St</h3><p class="body">Big central TCG store — cards, sealed product, singles. Expect a managed queue at busy times. 4.7★</p></div>
-        <div class="card"><h3>Forbidden Planet, Shaftesbury Ave</h3><p class="body">Two floors of pop-culture everything — Pokémon plush, figures, merch alongside manga and comics. 4.6★</p></div>
-      </div>
-      <p class="note">Heads up: the official Pokémon Center pop-ups (ExCeL and the Natural History Museum) ran Feb–April 2026 and are closed by July. No permanent Pokémon Center in London — the shops above are the year-round options. POP MART on Oxford St is also fun for blind-box collectibles if that's her thing.</p>
-      <p class="leg-label">Cocktails</p>
-      <div class="grid">
-        <div class="card"><h3>Swift, Soho</h3><p class="body">A serious cocktail bar that locals rate — best Irish coffee in London, expert twists on classics. Book if you can. 4.6★</p></div>
-        <div class="card"><h3>Cahoots, Carnaby</h3><p class="body">Immersive 1940s-Underground-station theme with live music — drinks served in lanterns and tube carriages. Fun over purist. 4.6★</p></div>
-        <div class="card"><h3>SOMA, Soho</h3><p class="body">A genuine speakeasy — clear ice, freezer glassware, no fruit-salad garnishes. For when she wants the real thing. 4.7★</p></div>
-      </div>
-    </div>
+    <p class="leg-label" style="margin-top:30px;">Where to stay (to decide)</p>
+    <p class="sec-lead" style="margin-bottom:18px;">No booking yet — for two nights, base in or near the centre so we can walk it. Good areas: <b>Indre By</b> (old centre, walk everywhere), <b>Vesterbro</b> (by the station, great food, our flight leaves from here-side), or <b>Nørrebro</b> (younger, foodie, slightly out). Say the word and I'll shortlist a few hotels the same way as London.</p>
 
-    <div class="city-pane amsterdam" data-pane="amsterdam" hidden>
-      <p class="leg-label">Small gigs · punk &amp; rock</p>
-      <div class="grid">
-        <div class="card"><h3>Vrankrijk</h3><p class="body">A 40-year-old legal squat off Spuistraat — proper underground punk gigs, dirt-cheap drinks, friendly crowd. Cash only. The real deal. 4.7★</p></div>
-        <div class="card"><h3>The Cave Rock Club</h3><p class="body">Tiny metal/rock bar near the centre with a built-in stage and live Dutch bands at weekends. Loud, cosy, welcoming. 4.7★</p></div>
-        <div class="card"><h3>The Waterhole</h3><p class="body">Dive-bar aesthetic near Leidseplein with live rock most nights and a small entry fee. Pool tables, happy hour. 4.5★</p></div>
-      </div>
-      <p class="leg-label">Pokémon &amp; collectibles</p>
-      <div class="grid">
-        <div class="card"><h3>The Gamekeeper, Jordaan</h3><p class="body">Beautifully old-school family-run toy/game shop on Hartenstraat with a lovely Pokémon collection. Central, in your neighbourhood. 4.4★</p></div>
-        <div class="card"><h3>Amsterdam Toys (Duivendrecht)</h3><p class="body">Regulars call it the best TCG store in the Netherlands — great prices, strong anti-scalper rules. A metro ride out, open Wed–Sat. 4.8★</p></div>
-        <div class="card"><h3>Collectableworld, Kalverstraat</h3><p class="body">Central card shop with a big Pokémon selection and singles. Pricier on sealed product — good for hunting specific cards. 3.5★</p></div>
-      </div>
-      <p class="leg-label">Cocktails</p>
-      <div class="grid">
-        <div class="card"><h3>Sins of Sal, Jordaan</h3><p class="body">Creative, intentional cocktails and Latin small plates right in the Jordaan. Warm crew, great vibe — book a day ahead. 4.8★</p></div>
-        <div class="card"><h3>Bar Oldenhof, Jordaan</h3><p class="body">Cosy, classic craft-cocktail bar — bartenders build custom drinks around what you like. Neighbourhood gem. 4.8★</p></div>
-        <div class="card"><h3>Belly of the Beast</h3><p class="body">Often called the best cocktail bar in the city — unique menu, chill atmosphere, the kind of place you return to three nights running. 4.5★</p></div>
-      </div>
+    <p class="leg-label">If you only do a few things</p>
+    <div class="grid">
+      <div class="card"><span class="badge cph">Mon night</span><h3>Arrive &amp; eat</h3><p class="body">Land ~22:00, drop bags, late bite nearby. Keep it easy — the real day is Tuesday.</p></div>
+      <div class="card"><span class="badge cph">Tue</span><h3>Wander + food hall</h3><p class="body">Nyhavn &amp; harbour walk, lunch at Torvehallerne, an afternoon neighbourhood, dinner from the guide.</p></div>
+      <div class="card"><span class="badge cph">Tue night</span><h3>Tivoli or harbour</h3><p class="body">Tivoli in the evening light, or a relaxed harbour-side last night before the early flight.</p></div>
     </div>
+    <p class="note">Wednesday's flight is <b>09:00</b> — that's a ~07:00 airport arrival, so Tuesday night stays sensible.</p>
   </div>
 </section>
 
@@ -543,16 +443,17 @@
 <section id="map">
   <div class="wrap">
     <div class="sec-head"><span class="sec-num">06</span><h2 class="sec-title">On the map</h2></div>
-    <p class="sec-lead">Everything above, pinned. Colour-coded by type so you can see how close the hotels sit to the sights, the gigs and the bars. Free OpenStreetMap — no Google key needed. Pins are placed by hand and are approximate; click one for the name.</p>
+    <p class="sec-lead">Everything above, pinned — including the three shortlisted London hotels, so you can see how central each one is. Colour-coded by type. Free OpenStreetMap, no Google key needed. Pins are placed by hand and are approximate; click one for the name.</p>
 
     <div class="toggle" data-group="map">
       <button data-city="london" data-active="true">London</button>
-      <button data-city="amsterdam" data-active="false">Amsterdam</button>
+      <button data-city="copenhagen" data-active="false">Copenhagen</button>
     </div>
 
     <div class="map-legend">
       <span><i style="background:#3a6ea5"></i> Hotels</span>
       <span><i style="background:#7a5618"></i> Sights &amp; culture</span>
+      <span><i style="background:#c8743a"></i> Food &amp; markets</span>
       <span><i style="background:#9a2f2f"></i> Gigs</span>
       <span><i style="background:#3b6d43"></i> Pokémon</span>
       <span><i style="background:#7a3a8f"></i> Cocktails</span>
@@ -561,16 +462,16 @@
     <div class="city-pane london" data-pane="london">
       <div class="map-shell"><div class="map" id="map-london"></div></div>
     </div>
-    <div class="city-pane amsterdam" data-pane="amsterdam" hidden>
-      <div class="map-shell"><div class="map" id="map-amsterdam"></div></div>
+    <div class="city-pane copenhagen" data-pane="copenhagen" hidden>
+      <div class="map-shell"><div class="map" id="map-copenhagen"></div></div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <p>Built as a planning scratchpad — flight points reflect real SAS award availability seen for these dates; hotel and Airbnb figures are indicative and should be checked live before booking. Prices and seats change.</p>
-    <p style="margin-top:8px;">Prices converted to SEK at June 2026 rates (≈ 12.8 kr/£, 11.05 kr/€, 9.7 kr/$) and rounded.</p>
+    <p>Built as a planning scratchpad — flights are booked; hotel scores and locations are from the live listings, prices and Airbnb details are to be filled in before booking. Things change, check live before you pay.</p>
+    <p style="margin-top:8px;">London hotel info via Booking.com listings (June 2026). Copenhagen details lean on the site's own <a href="/cphrecs">eating guide</a>.</p>
   </div>
 </footer>
 
@@ -600,22 +501,20 @@
 
   /* ---- Maps (Leaflet + OpenStreetMap, no API key) ---- */
   var CAT = {
-    hotel:    '#3a6ea5',
-    sight:    '#7a5618',
-    gig:      '#9a2f2f',
-    pokemon:  '#3b6d43',
-    cocktail: '#7a3a8f'
+    hotel:'#3a6ea5', sight:'#7a5618', food:'#c8743a',
+    gig:'#9a2f2f', pokemon:'#3b6d43', cocktail:'#7a3a8f'
   };
   var CAT_LABEL = {
-    hotel:'Hotel', sight:'Sight & culture', gig:'Gig', pokemon:'Pokémon', cocktail:'Cocktails'
+    hotel:'Hotel', sight:'Sight & culture', food:'Food & market',
+    gig:'Gig', pokemon:'Pokémon', cocktail:'Cocktails'
   };
 
   var PLACES = {
     london: [
-      // hotels
-      ['hotel','Wilde Aparthotels — Covent Garden',51.5112,-0.1190],
-      ["hotel","Mimi's Hotel Soho",51.5135,-0.1316],
-      ['hotel','NoMad London — Bow St',51.5135,-0.1218],
+      // shortlisted hotels
+      ['hotel','ibis London Blackfriars',51.5042,-0.1037],
+      ['hotel','Chapter Spitalfields',51.5172,-0.0808],
+      ['hotel','The Bedford, Balham',51.4432,-0.1525],
       // sights & culture
       ['sight','Tower of London',51.5081,-0.0759],
       ['sight','Sky Garden',51.5111,-0.0837],
@@ -623,7 +522,7 @@
       ['sight','British Museum',51.5194,-0.1270],
       ['sight','Tate Modern',51.5076,-0.0994],
       ['sight','National Gallery',51.5089,-0.1283],
-      ['sight','Borough Market',51.5055,-0.0905],
+      ['food','Borough Market',51.5055,-0.0905],
       // gigs
       ['gig','The Windmill, Brixton',51.4626,-0.1136],
       ['gig','MOTH Club, Hackney',51.5366,-0.0556],
@@ -637,34 +536,20 @@
       ['cocktail','Cahoots, Carnaby',51.5128,-0.1389],
       ['cocktail','SOMA, Soho',51.5135,-0.1330]
     ],
-    amsterdam: [
-      // hotels
-      ['hotel','The Hoxton — Herengracht',52.3686,4.8869],
-      ['hotel','Kimpton De Witt',52.3776,4.9000],
-      ['hotel','Conscious Hotel Vondelpark',52.3578,4.8686],
-      // sights & culture
-      ['sight','Rijksmuseum',52.3600,4.8852],
-      ['sight','Van Gogh Museum',52.3584,4.8811],
-      ['sight','Anne Frank House',52.3752,4.8840],
-      ['sight','Vondelpark',52.3579,4.8686],
-      ['sight','Jordaan',52.3740,4.8810],
-      ['sight','Albert Cuyp Market',52.3556,4.8918],
-      // gigs
-      ['gig','Vrankrijk',52.3741,4.8908],
-      ['gig','The Cave Rock Club',52.3683,4.8970],
-      ['gig','The Waterhole, Leidseplein',52.3640,4.8810],
-      // pokemon
-      ['pokemon','The Gamekeeper, Jordaan',52.3736,4.8848],
-      ['pokemon','Collectableworld, Kalverstraat',52.3700,4.8910],
-      // cocktails
-      ['cocktail','Sins of Sal, Jordaan',52.3745,4.8830],
-      ['cocktail','Bar Oldenhof, Jordaan',52.3722,4.8830]
+    copenhagen: [
+      ['sight','Nyhavn',55.6796,12.5910],
+      ['sight','Tivoli Gardens',55.6737,12.5681],
+      ['sight','Rosenborg Castle',55.6857,12.5774],
+      ['sight','Christiania',55.6760,12.5990],
+      ['food','Torvehallerne market',55.6838,12.5713],
+      ['food','Reffen street food',55.6925,12.6075],
+      ['gig','Loppen, Christiania (live music)',55.6755,12.5985]
     ]
   };
 
   var CENTRES = {
-    london:    [51.5074,-0.1100],
-    amsterdam: [52.3676,4.8850]
+    london:[51.5074,-0.1100],
+    copenhagen:[55.6790,12.5790]
   };
 
   function dot(color){
@@ -695,7 +580,22 @@
   }
 
   buildMap('london');
-  buildMap('amsterdam');
+  buildMap('copenhagen');
+
+  /* ---- Linkify activity/venue cards to Google Maps (photos + location) ---- */
+  document.querySelectorAll('#do .card h3, #ella .card h3').forEach(function(h){
+    if (h.querySelector('a')) return;
+    var pane = h.closest('.city-pane');
+    var city = (pane && pane.classList.contains('copenhagen')) ? 'Copenhagen' : 'London';
+    var text = h.textContent.trim();
+    var a = document.createElement('a');
+    a.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(text + ' ' + city);
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.textContent = text;
+    h.textContent = '';
+    h.appendChild(a);
+  });
 </script>
 </body>
 </html>
