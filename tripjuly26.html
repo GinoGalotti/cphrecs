@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>London &amp; Copenhagen — July 2026</title>
-<meta name="description" content="Three nights in London, two in Copenhagen — booked flights, places to stay compared with prices, and what's worth doing. A July 2026 trip plan.">
+<meta name="description" content="Three nights in London (Pimlico), two in Copenhagen (Amager) — booked flights and base, plus where to eat, drink, browse and catch a gig around each one. July 2026.">
 <!-- Open Graph / social share card -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ginogalotti.com">
 <meta property="og:title" content="London &amp; Copenhagen — July 2026">
-<meta property="og:description" content="Three nights in London, two in Copenhagen — booked flights, places to stay compared with prices, and what's worth doing.">
+<meta property="og:description" content="Three nights in London, two in Copenhagen — booked flights and bases, plus where to eat, drink, browse and catch a gig around each one.">
 <meta property="og:url" content="https://ginogalotti.com/trips/july26">
 <meta property="og:image" content="https://ginogalotti.com/trips/july26/og.png">
 <meta property="og:image:width" content="1200">
@@ -17,7 +17,7 @@
 <meta property="og:image:alt" content="London & Copenhagen — a July 2026 trip from Stockholm">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="London &amp; Copenhagen — July 2026">
-<meta name="twitter:description" content="Three nights in London, two in Copenhagen — flights, stays compared, and what's worth doing.">
+<meta name="twitter:description" content="Three nights in London, two in Copenhagen — flights, bases, and where to eat, drink and browse.">
 <meta name="twitter:image" content="https://ginogalotti.com/trips/july26/og.png">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -25,63 +25,30 @@
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <style>
   :root{
-    --ink:#1b2440;
-    --ink-soft:#4a5578;
-    --paper:#f6f3ec;
-    --paper-2:#fffdf8;
-    --line:#d9d3c5;
-    --gold:#b8893a;
-    --gold-soft:#e9d9bd;
-    --lon:#3a6ea5;
-    --lon-soft:#e2ecf6;
-    --cph:#c14a3a;
-    --cph-soft:#f7e1dc;
-    --good:#3b6d43;
-    --warn:#9a5b1d;
-    --radius:14px;
-    --sans:"Helvetica Neue",Arial,sans-serif;
+    --ink:#1b2440;--ink-soft:#4a5578;--paper:#f6f3ec;--paper-2:#fffdf8;
+    --line:#d9d3c5;--gold:#b8893a;--gold-soft:#e9d9bd;
+    --lon:#3a6ea5;--lon-soft:#e2ecf6;--cph:#c14a3a;--cph-soft:#f7e1dc;
+    --good:#3b6d43;--good-soft:#dcebd9;--warn:#9a5b1d;
+    --radius:14px;--sans:"Helvetica Neue",Arial,sans-serif;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{
-    margin:0;background:var(--paper);color:var(--ink);
-    font-family:var(--sans);line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;}
   .wrap{max-width:1060px;margin:0 auto;padding:0 22px;}
 
   /* ---- Hero ---- */
-  header.hero{
-    padding:64px 0 40px;border-bottom:1px solid var(--line);
-  }
-  .eyebrow{
-    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--gold);font-weight:700;margin:0 0 14px;
-  }
-  h1.title{
-    margin:0;font-weight:800;line-height:1.02;letter-spacing:-.02em;
-    font-size:clamp(40px,8vw,82px);
-  }
+  header.hero{padding:64px 0 40px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:0 0 14px;}
+  h1.title{margin:0;font-weight:800;line-height:1.02;letter-spacing:-.02em;font-size:clamp(40px,8vw,82px);}
   h1.title .v{color:var(--lon);}
   h1.title .amp{color:var(--ink-soft);font-weight:400;font-style:italic;}
   h1.title .v2{color:var(--cph);}
-  .sub{
-    margin:22px 0 0;max-width:62ch;font-size:18px;color:var(--ink-soft);
-  }
-  .meta-row{
-    display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;
-  }
-  .chip{
-    font-size:13px;padding:7px 14px;border:1px solid var(--line);
-    border-radius:999px;background:var(--paper-2);color:var(--ink-soft);
-  }
+  .sub{margin:22px 0 0;max-width:62ch;font-size:18px;color:var(--ink-soft);}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+  .chip{font-size:13px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:var(--paper-2);color:var(--ink-soft);}
   .chip strong{color:var(--ink);font-weight:700;}
 
-  /* ---- Plan band ---- */
-  .verdict{
-    margin:34px 0 0;padding:22px 24px;border-radius:var(--radius);
-    background:var(--ink);color:#f3eee2;
-  }
+  .verdict{margin:34px 0 0;padding:22px 24px;border-radius:var(--radius);background:var(--ink);color:#f3eee2;}
   .verdict h2{margin:0 0 8px;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--gold-soft);}
   .verdict p{margin:0;font-size:16px;color:#e7e1d3;max-width:78ch;}
   .verdict p + p{margin-top:10px;}
@@ -93,19 +60,13 @@
   .sec-num{font-size:14px;font-weight:700;color:var(--gold);letter-spacing:.1em;}
   h2.sec-title{margin:0;font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.015em;}
   .sec-lead{margin:10px 0 30px;max-width:68ch;color:var(--ink-soft);font-size:16px;}
-  .leg-ribbon{
-    display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-    padding:4px 12px;border-radius:999px;margin-bottom:14px;
-  }
+  .leg-ribbon{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:999px;margin-bottom:14px;}
   .leg-ribbon.lon{background:var(--lon-soft);color:var(--lon);}
   .leg-ribbon.cph{background:var(--cph-soft);color:var(--cph);}
 
   /* ---- Flight timeline ---- */
   .legs{display:flex;flex-direction:column;gap:12px;}
-  .leg{
-    display:grid;grid-template-columns:128px 1fr auto;gap:18px;align-items:center;
-    background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 20px;
-  }
+  .leg{display:grid;grid-template-columns:128px 1fr auto;gap:18px;align-items:center;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 20px;}
   .leg .when{font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);}
   .leg .route{font-size:20px;font-weight:800;letter-spacing:-.01em;}
   .leg .route small{display:block;font-size:13px;font-weight:500;color:var(--ink-soft);letter-spacing:0;text-transform:none;margin-top:2px;}
@@ -115,33 +76,21 @@
 
   /* ---- City toggle ---- */
   .toggle{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:4px;background:var(--paper-2);margin-bottom:28px;}
-  .toggle button{
-    border:0;background:transparent;font-family:var(--sans);font-size:15px;font-weight:700;
-    padding:9px 22px;border-radius:999px;cursor:pointer;color:var(--ink-soft);transition:.18s;
-  }
+  .toggle button{border:0;background:transparent;font-family:var(--sans);font-size:15px;font-weight:700;padding:9px 22px;border-radius:999px;cursor:pointer;color:var(--ink-soft);transition:.18s;}
   .toggle button[data-active="true"]{color:#fff;}
   .toggle button[data-city="london"][data-active="true"]{background:var(--lon);}
   .toggle button[data-city="copenhagen"][data-active="true"]{background:var(--cph);}
-
   .city-pane[hidden]{display:none;}
 
   /* ---- Cards grid ---- */
   .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
-  .card{
-    background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
-    padding:20px 22px;display:flex;flex-direction:column;
-  }
+  .card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;}
   .card.feature{border-width:2px;border-color:var(--lon);}
   .card.feature.cph{border-color:var(--cph);}
-  .card.cph .foot a.view{background:var(--cph);}
-  .card.cph .foot a.view:hover{background:#a23a2c;}
-  .badge{
-    align-self:flex-start;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
-    padding:4px 11px;border-radius:999px;margin-bottom:13px;
-  }
-  .badge{background:var(--lon-soft);color:var(--lon);}
+  .badge{align-self:flex-start;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:999px;margin-bottom:13px;background:var(--lon-soft);color:var(--lon);}
   .badge.gold{background:var(--gold-soft);color:#7a5618;}
   .badge.cph{background:var(--cph-soft);color:var(--cph);}
+  .badge.booked{background:var(--good-soft);color:var(--good);}
   .card h3{margin:0 0 3px;font-size:18px;font-weight:800;}
   .card h3 a{color:inherit;text-decoration:none;border-bottom:1px solid var(--gold-soft);transition:.15s;}
   .card h3 a:hover{border-color:var(--gold);color:var(--gold);}
@@ -154,41 +103,50 @@
   .card .pc li{margin:0 0 3px;padding-left:20px;position:relative;color:var(--ink-soft);}
   .card .pc li.up::before{content:"+";position:absolute;left:4px;color:var(--good);font-weight:800;}
   .card .pc li.down::before{content:"\2212";position:absolute;left:4px;color:var(--warn);font-weight:800;}
+  .card .tag{align-self:flex-start;margin:0 0 10px;font-size:11.5px;font-weight:700;letter-spacing:.04em;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px 10px;}
   .card .foot{margin-top:auto;font-size:13px;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:11px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;}
   .card .foot .price b{color:var(--ink);font-weight:800;}
   .card .foot a.view{font-size:13px;font-weight:700;text-decoration:none;color:#fff;background:var(--lon);padding:7px 14px;border-radius:9px;white-space:nowrap;}
   .card .foot a.view:hover{background:#2f5c8a;}
-  .warn-flag{
-    font-size:12.5px;background:#fbf1e3;border:1px solid var(--gold-soft);color:var(--warn);
-    border-radius:9px;padding:8px 11px;margin:0 0 12px;
-  }
-  .pending{font-size:12.5px;font-style:italic;color:var(--ink-soft);background:var(--paper);border:1px dashed var(--line);border-radius:9px;padding:8px 11px;margin:0 0 12px;}
+  .card.cph .foot a.view{background:var(--cph);}
+  .card.cph .foot a.view:hover{background:#a23a2c;}
 
-  .leg-label{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin:18px 0 8px;}
+  .leg-label{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin:30px 0 10px;}
   .leg-label:first-child{margin-top:0;}
+  .leg-label .hint{font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink-soft);opacity:.8;}
+
+  /* ---- collapsible shortlist ---- */
+  details.shortlist{margin-top:24px;border:1px solid var(--line);border-radius:12px;background:var(--paper-2);}
+  details.shortlist summary{cursor:pointer;padding:14px 18px;font-weight:700;font-size:14.5px;color:var(--ink);list-style:none;}
+  details.shortlist summary::-webkit-details-marker{display:none;}
+  details.shortlist summary::before{content:"\25B8 ";color:var(--gold);}
+  details.shortlist[open] summary::before{content:"\25BE ";}
+  details.shortlist .rows{padding:0 18px 14px;}
+  .srow{display:flex;justify-content:space-between;gap:12px;align-items:baseline;padding:9px 0;border-top:1px solid var(--line);font-size:14px;}
+  .srow .nm{font-weight:700;}
+  .srow .nm small{font-weight:500;color:var(--ink-soft);}
+  .srow .rt{white-space:nowrap;color:var(--ink-soft);}
+  .srow a{color:var(--lon);text-decoration:none;font-weight:700;}
 
   /* ---- Links / CTA ---- */
-  .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
-  a.btn{
-    text-decoration:none;font-size:14px;font-weight:700;padding:10px 18px;border-radius:10px;
-    border:1px solid var(--line);color:var(--ink);background:var(--paper-2);transition:.15s;
-  }
+  .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+  a.btn{text-decoration:none;font-size:14px;font-weight:700;padding:10px 18px;border-radius:10px;border:1px solid var(--line);color:var(--ink);background:var(--paper-2);transition:.15s;}
   a.btn:hover{border-color:var(--ink);}
   a.btn.solid{color:#fff;border:0;background:var(--lon);}
-  a.btn.cph{background:var(--cph);}
-
-  .note{font-size:13px;color:var(--ink-soft);margin-top:14px;font-style:italic;}
+  a.btn.cph{background:var(--cph);color:#fff;border:0;}
+  .note{font-size:13px;color:var(--ink-soft);margin-top:16px;font-style:italic;}
 
   /* ---- Map ---- */
   .map-shell{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--paper-2);}
-  .map{height:480px;width:100%;}
+  .map{height:520px;width:100%;}
   .map-legend{display:flex;flex-wrap:wrap;gap:14px;margin:16px 0 4px;}
   .map-legend span{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-soft);}
   .map-legend i{width:13px;height:13px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.18);}
+  .map-legend i.home{width:16px;height:16px;background:var(--gold);}
   .leaflet-popup-content{font-family:var(--sans);font-size:13.5px;line-height:1.45;margin:11px 14px;}
   .leaflet-popup-content b{display:block;font-size:14.5px;color:var(--ink);margin-bottom:2px;}
   .leaflet-popup-content .cat{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);}
-  @media (max-width:560px){.map{height:380px;}}
+  @media (max-width:560px){.map{height:400px;}}
 
   footer{padding:40px 0 70px;}
   footer p{margin:0;font-size:13px;color:var(--ink-soft);}
@@ -205,18 +163,18 @@
   <div class="wrap">
     <p class="eyebrow">A summer trip on points · July 2026</p>
     <h1 class="title"><span class="v">London</span> <span class="amp">&amp;</span> <span class="v2">Copenhagen</span></h1>
-    <p class="sub">It's booked. Three nights in London, two in Copenhagen, home on the Wednesday. This is the working plan — flights locked, places to stay shortlisted, and the good stuff to do in each city.</p>
+    <p class="sub">It's all booked. Three nights in London staying in <b>Pimlico</b>, two in Copenhagen staying out in <b>Amager</b>, home on the Wednesday. Below: the flights, the two bases, and — built around each one — where to eat, drink, browse and catch a gig.</p>
     <div class="meta-row">
       <span class="chip"><strong>From</strong> Stockholm (ARN)</span>
-      <span class="chip"><strong>London</strong> Fri 3 → Mon 6 Jul</span>
-      <span class="chip"><strong>Copenhagen</strong> Mon 6 → Wed 8 Jul</span>
+      <span class="chip"><strong>London</strong> Fri 3 → Mon 6 Jul · Pimlico</span>
+      <span class="chip"><strong>Copenhagen</strong> Mon 6 → Wed 8 Jul · Amager</span>
       <span class="chip"><strong>Party</strong> 2 people</span>
     </div>
 
     <div class="verdict">
       <h2>The plan</h2>
-      <p>Fly into <b>London on Fri 3 Jul</b> (lands late afternoon) for a full three-night long weekend — South Bank, Soho, markets and a couple of Ella-shaped nights out. Then hop to <b>Copenhagen on Mon 6 Jul</b> for two slower nights of eating our way around town before the early flight home on <b>Wed 8 Jul</b>.</p>
-      <p>Below: the locked flights, a shortlist of <b>five places to stay in London</b> to pick from, what's worth doing, and the Copenhagen leg (which leans on the <a href="/cphrecs" style="color:#f0c98a;">existing eating guide</a>).</p>
+      <p>Fly into <b>London on Fri 3 Jul</b> for a three-night long weekend from a base by Victoria — markets, Soho, a couple of Ella-shaped nights out, and the splurge dinners of Pimlico on the doorstep. Then hop to <b>Copenhagen on Mon 6 Jul</b> for two slower, eating-focused nights from an Amager flat near the beach, before the early flight home on <b>Wed 8 Jul</b>.</p>
+      <p>The Copenhagen leg also leans on the site's own <a href="/cphrecs" style="color:#f0c98a;">eating guide</a>.</p>
     </div>
   </div>
 </header>
@@ -225,8 +183,7 @@
 <section id="flights">
   <div class="wrap">
     <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">The flights</h2></div>
-    <p class="sec-lead">All three legs are booked and direct. Departure times are confirmed; arrival times marked “≈” are estimated from flight duration and time zones — check the boarding pass for the exact minute.</p>
-
+    <p class="sec-lead">All three legs are booked and direct. Departures are confirmed; arrivals marked “≈” are estimated from flight time and time zones.</p>
     <div class="legs">
       <div class="leg">
         <div class="when">Fri 3 Jul</div>
@@ -248,291 +205,194 @@
   </div>
 </section>
 
-<!-- ============ WHERE TO STAY (LONDON) ============ -->
+<!-- ============ WHERE WE'RE STAYING ============ -->
 <section id="stay">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">Where to stay in London</h2></div>
-    <span class="leg-ribbon lon">London · 3–6 Jul · 3 nights</span>
-    <p class="sec-lead">Five real options for our dates — three hotels and two apartments — with totals for all three nights (3–6 Jul, 2 people) so we can compare and pick one. Hit “Photos →” on any card to see the rooms. The two Hyde Park apartments come out cheapest; the hotels are clustered around 9–10k kr.</p>
+    <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">Where we're staying</h2></div>
+    <p class="sec-lead">Both bases are booked. Everything in the next section is built around these two addresses.</p>
 
-    <p class="leg-label">Hotels</p>
     <div class="grid">
       <div class="card feature">
-        <span class="badge">Best balance</span>
-        <h3>ibis London Blackfriars</h3>
-        <p class="where">Southwark / South Bank · 49 Blackfriars Rd, SE1 8NZ</p>
-        <p class="score">8.2 / 10 · ~2,700 reviews</p>
-        <p class="body">Solid, modern, properly central for our plan — 2 min to Southwark station, ~10 min walk to Tate Modern and Borough Market.</p>
-        <ul class="pc">
-          <li class="up">Great location for the South Bank days</li>
-          <li class="up">Well-rated breakfast &amp; staff</li>
-          <li class="up">Cheapest of the three hotels</li>
-          <li class="down">Compact rooms, pod-style bathrooms</li>
-        </ul>
+        <span class="badge booked">✓ Booked · London</span>
+        <h3>Best Western Victoria Palace</h3>
+        <p class="where">Pimlico · 60–64 Warwick Way, SW1V 1SA</p>
+        <p class="score muted">3★ · 2 min from Victoria station</p>
+        <p class="body">A classic Pimlico townhouse hotel a few minutes from Victoria — walkable to Westminster, Buckingham Palace and the river, and surrounded by the breakfast and dinner spots below.</p>
         <div class="foot">
-          <span class="price"><b>9 096 kr</b> total · ~3 032 kr/natt</span>
-          <a class="view" href="https://www.booking.com/hotel/gb/ibis-london-blackfriars.en-gb.html?checkin=2026-07-03&checkout=2026-07-06&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Photos →</a>
+          <span class="price">Pimlico / Victoria base</span>
+          <a class="view" href="https://www.bestwestern.se/hotell/best-western-victoria-palace-83873" target="_blank" rel="noopener">Photos →</a>
         </div>
       </div>
 
-      <div class="card">
-        <span class="badge gold">Best for nightlife</span>
-        <h3>Chapter Spitalfields</h3>
-        <p class="where">Spitalfields / Shoreditch edge · 9 Frying Pan Alley, E1 7HS</p>
-        <p class="score muted">Studios &amp; apartments · 32nd-floor view bar</p>
-        <p class="body">Studios with a kitchenette right behind Liverpool Street — &lt;5 min to the station, steps from Brick Lane and Old Spitalfields Market. Best base for bars and gigs.</p>
-        <ul class="pc">
-          <li class="up">Unbeatable spot for Shoreditch nights</li>
-          <li class="up">Kitchenette + panoramic rooftop bar</li>
-          <li class="down">Price is for 2 separate single rooms, not one shared room</li>
-        </ul>
-        <div class="warn-flag">⚠ This rate is <b>two individual rooms</b> (Chapter is student-style accommodation), so we'd be in separate rooms — not a double. Summer dates are usually let to anyone, but confirm there's no student-ID check before paying.</div>
+      <div class="card cph feature">
+        <span class="badge booked">✓ Booked · Copenhagen</span>
+        <h3>Studio in Amager</h3>
+        <p class="where">Amager · next to Amager Centret · by the beach</p>
+        <p class="score">3 000 kr total · ~1 500 kr/natt</p>
+        <p class="body">An entire studio out in Amager — near the beach, a short metro or ~20-min walk to the old town, and right in the neighbourhood you used to live in. The cheap, local base for the eating leg.</p>
         <div class="foot">
-          <span class="price"><b>9 210 kr</b> total · ~3 070 kr/natt · 2 rooms</span>
-          <a class="view" href="https://www.booking.com/hotel/gb/chapter-spitafields-greater-london.en-gb.html?checkin=2026-07-03&checkout=2026-07-06&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Photos →</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="badge gold">Space &amp; value</span>
-        <h3>The Bedford, Balham</h3>
-        <p class="where">Balham, south London (Zone 3) · above a live-music pub</p>
-        <p class="score">8.2 / 10 · big, stylish rooms</p>
-        <p class="body">Spacious, well-decorated rooms over a pub that doubles as a gig venue — genuinely good value and well sound-proofed, right by Balham station.</p>
-        <ul class="pc">
-          <li class="up">Roomiest of the three, strong value</li>
-          <li class="up">Has a bathtub — the only one that does</li>
-          <li class="up">It's a live-music venue — on-theme for Ella</li>
-          <li class="down">~20 min south of the centre by Tube</li>
-        </ul>
-        <div class="foot">
-          <span class="price"><b>9 793 kr</b> total · ~3 264 kr/natt</span>
-          <a class="view" href="https://www.booking.com/hotel/gb/the-bedford-pub-and.en-gb.html?checkin=2026-07-03&checkout=2026-07-06&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Photos →</a>
+          <span class="price">Amagerbro base</span>
+          <a class="view" href="https://www.airbnb.co.uk/rooms/663651923276074930" target="_blank" rel="noopener">Photos →</a>
         </div>
       </div>
     </div>
 
-    <p class="leg-label">Apartments (Airbnb)</p>
-    <div class="grid">
-      <div class="card feature">
-        <span class="badge">Cheapest overall</span>
-        <h3>Large Studio by Hyde Park</h3>
-        <p class="where">Hyde Park · entire studio · 2 guests</p>
-        <p class="score">6 320 kr total — the best price of all five</p>
-        <p class="body">A whole studio to ourselves by Hyde Park, with a kitchen. Less square footage than the one-bed, but easily the cheapest option and a proper private apartment.</p>
-        <ul class="pc">
-          <li class="up">Lowest total of the whole shortlist</li>
-          <li class="up">Entire place + kitchen, green &amp; central by Hyde Park</li>
-          <li class="down">Studio layout — one room</li>
-        </ul>
-        <div class="foot">
-          <span class="price"><b>6 320 kr</b> total · ~2 107 kr/natt</span>
-          <a class="view" href="https://www.airbnb.com/rooms/1470063087661499900?adults=2&check_in=2026-07-03&check_out=2026-07-06" target="_blank" rel="noopener">Photos →</a>
-        </div>
+    <details class="shortlist">
+      <summary>The options we compared before booking</summary>
+      <div class="rows">
+        <div class="srow"><span class="nm">London · Studio by Hyde Park <small>(Airbnb)</small></span><span class="rt">6 320 kr · <a href="https://www.airbnb.com/rooms/1470063087661499900?adults=2&check_in=2026-07-03&check_out=2026-07-06" target="_blank" rel="noopener">photos</a></span></div>
+        <div class="srow"><span class="nm">London · One-Bed Hyde Park <small>(Airbnb)</small></span><span class="rt">7 772 kr · <a href="https://www.airbnb.com/rooms/30252194?adults=2&check_in=2026-07-03&check_out=2026-07-06" target="_blank" rel="noopener">photos</a></span></div>
+        <div class="srow"><span class="nm">London · ibis Blackfriars</span><span class="rt">9 096 kr · <a href="https://www.booking.com/hotel/gb/ibis-london-blackfriars.en-gb.html?checkin=2026-07-03&checkout=2026-07-06&group_adults=2&no_rooms=1" target="_blank" rel="noopener">photos</a></span></div>
+        <div class="srow"><span class="nm">London · Chapter Spitalfields <small>(2 rooms)</small></span><span class="rt">9 210 kr · <a href="https://www.booking.com/hotel/gb/chapter-spitafields-greater-london.en-gb.html?checkin=2026-07-03&checkout=2026-07-06&group_adults=2&no_rooms=1" target="_blank" rel="noopener">photos</a></span></div>
+        <div class="srow"><span class="nm">London · The Bedford, Balham <small>(bathtub)</small></span><span class="rt">9 793 kr · <a href="https://www.booking.com/hotel/gb/the-bedford-pub-and.en-gb.html?checkin=2026-07-03&checkout=2026-07-06&group_adults=2&no_rooms=1" target="_blank" rel="noopener">photos</a></span></div>
+        <div class="srow"><span class="nm">Copenhagen · Apartment in Nørrebro <small>(Airbnb)</small></span><span class="rt">3 037 kr · <a href="https://www.airbnb.com/rooms/1700678164162673885?adults=2&check_in=2026-07-06&check_out=2026-07-08" target="_blank" rel="noopener">photos</a></span></div>
+        <div class="srow"><span class="nm">Copenhagen · Hotel SP34 <small>(Latin Quarter)</small></span><span class="rt">8 766 kr · <a href="https://www.booking.com/hotel/dk/sp34-apartments.en-gb.html?checkin=2026-07-06&checkout=2026-07-08&group_adults=2&no_rooms=1" target="_blank" rel="noopener">photos</a></span></div>
+        <div class="srow"><span class="nm">Copenhagen · 1 Hotel Copenhagen</span><span class="rt">8 748 kr · <a href="https://www.booking.com/hotel/dk/1-hotel-copenhagen.en-gb.html?checkin=2026-07-06&checkout=2026-07-08&group_adults=2&no_rooms=1" target="_blank" rel="noopener">photos</a></span></div>
       </div>
-
-      <div class="card">
-        <span class="badge">More space</span>
-        <h3>One-Bedroom Hyde Park Apartment</h3>
-        <p class="where">Hyde Park · entire apartment · 2 guests</p>
-        <p class="score">7 772 kr total · separate bedroom</p>
-        <p class="body">A proper one-bed apartment by Hyde Park — separate bedroom and living space, kitchen included. Still cheaper than any of the hotels.</p>
-        <ul class="pc">
-          <li class="up">Separate bedroom + living room</li>
-          <li class="up">Entire place with kitchen, central location</li>
-          <li class="down">~1 450 kr more than the studio</li>
-        </ul>
-        <div class="foot">
-          <span class="price"><b>7 772 kr</b> total · ~2 591 kr/natt</span>
-          <a class="view" href="https://www.airbnb.com/rooms/30252194?adults=2&check_in=2026-07-03&check_out=2026-07-06" target="_blank" rel="noopener">Photos →</a>
-        </div>
-      </div>
-    </div>
-    <p class="note">Quick read by price: <b>Studio by Hyde Park 6 320 kr</b> (cheapest) · <b>One-bed Hyde Park 7 772 kr</b> · <b>ibis Blackfriars 9 096 kr</b> · <b>Chapter 9 210 kr</b> (2 separate rooms) · <b>The Bedford 9 793 kr</b> (roomiest, has a bathtub). The apartments are the value play; ibis is the safe central hotel; Chapter is best for nightlife but means separate rooms; the Bedford trades location for space and that bathtub.</p>
+    </details>
   </div>
 </section>
 
-<!-- ============ THINGS TO DO ============ -->
-<section id="do">
+<!-- ============ AROUND TOWN ============ -->
+<section id="around">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">What's worth doing</h2></div>
-    <p class="sec-lead">A menu, not a schedule — pick what appeals. London gets the long weekend; Copenhagen is two easy days, mostly built around eating (see the guide in section 05).</p>
+    <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">Around each base</h2></div>
+    <p class="sec-lead">The good stuff, sorted by what you're in the mood for. Each card title is a link — tap it to open the place on a map with photos. “WALK / TUBE / METRO” notes are from the base.</p>
 
-    <div class="toggle" data-group="do">
-      <button data-city="london" data-active="true">London</button>
-      <button data-city="copenhagen" data-active="false">Copenhagen</button>
+    <div class="toggle" data-group="around">
+      <button data-city="london" data-active="true">London · Pimlico</button>
+      <button data-city="copenhagen" data-active="false">Copenhagen · Amager</button>
     </div>
 
+    <!-- ===== LONDON ===== -->
     <div class="city-pane london" data-pane="london">
-      <p class="leg-label">Landmarks &amp; views</p>
+      <p class="leg-label">Breakfast &amp; brunch <span class="hint">· near the base</span></p>
       <div class="grid">
-        <div class="card"><h3>Tower of London</h3><p class="body">Crown Jewels and the Beefeater tour. Arrive at 9am opening to beat the queues. 4.7★</p></div>
-        <div class="card"><h3>Sky Garden</h3><p class="body">Free rooftop garden with the best City skyline view — book a timed slot ahead. 4.6★</p></div>
-        <div class="card"><h3>Westminster walk</h3><p class="body">Big Ben, the Abbey, the bridges. Self-guided and free, best in the evening light.</p></div>
+        <div class="card"><h3>Pimlico Fresh</h3><p class="where">Wilton Rd · 5-min walk</p><p class="body">Tiny indie café with a blackboard of porridge, French toast and sourdough — the local favourite.</p></div>
+        <div class="card"><h3>Timmy Green</h3><p class="where">Nova, Victoria · 3-min walk</p><p class="body">Bright, airy Aussie all-day brunch — corn fritters, big windows, a terrace, right by the station.</p></div>
+        <div class="card"><h3>The English Rose Café</h3><p class="where">Wilton Rd · 5-min walk</p><p class="body">Family-run independent doing a proper full English a stone's throw from the door.</p></div>
+        <div class="card"><h3>Daylesford Organic</h3><p class="where">Belgravia · 12-min walk</p><p class="body">Smart farm-to-table café for organic eggs, pastries and a more upmarket weekend brunch.</p></div>
       </div>
-      <p class="leg-label">Museums &amp; galleries · all free</p>
+
+      <p class="leg-label">Afternoon tea</p>
       <div class="grid">
-        <div class="card"><h3>British Museum</h3><p class="body">Rosetta Stone, Egypt, Greece. Vast — pick two wings rather than all of it. 4.7★</p></div>
-        <div class="card"><h3>Tate Modern</h3><p class="body">A power station on the river; ride to the 10th-floor view. 4.5★</p></div>
-        <div class="card"><h3>National Gallery</h3><p class="body">Trafalgar Square — Van Gogh, Turner, Whistlejacket. 4.8★</p></div>
+        <div class="card"><span class="tag">Classic splurge</span><h3>The Goring</h3><p class="where">Beeston Pl, Victoria · 5-min walk</p><p class="body">Royal-Warrant hotel doing impeccable traditional afternoon tea, literally behind the station.</p></div>
+        <div class="card"><span class="tag">Grand café</span><h3>The Wolseley</h3><p class="where">Piccadilly, Mayfair · short tube</p><p class="body">Stunning room, excellent scones and prime people-watching — the mid-range classic.</p></div>
+        <div class="card"><span class="tag">Quirky</span><h3>Brigit's Bakery Tea Bus</h3><p class="where">Departs Victoria Coach Station</p><p class="body">Tea and cakes on a vintage Routemaster as it loops past Big Ben and Buckingham Palace.</p></div>
       </div>
-      <p class="leg-label">Food &amp; nights out</p>
+
+      <p class="leg-label">Lunch &amp; dinner</p>
       <div class="grid">
-        <div class="card"><h3>Borough Market</h3><p class="body">Open Thu–Sat — perfect for our Fri/Sat. Graze breakfast, go early. 4.6★</p></div>
-        <div class="card"><h3>Soho &amp; Covent Garden</h3><p class="body">Bars, restaurants, Neal's Yard — the natural evening base.</p></div>
-        <div class="card"><h3>A West End show</h3><p class="body">Book ahead, or grab same-day deals at TKTS in Leicester Square.</p></div>
+        <div class="card"><span class="tag">Easy / cheap</span><h3>Market Hall Victoria</h3><p class="where">Terminus Pl · 2-min walk</p><p class="body">Buzzy multi-vendor food hall — tacos, bao, burgers, roof terrace — when you can't agree on one thing.</p></div>
+        <div class="card"><span class="tag">Mid-range</span><h3>Tozi</h3><p class="where">Gillingham St, Victoria · 5-min walk</p><p class="body">Lively Venetian cicchetti and small plates with Prosecco on tap — great value near the base.</p></div>
+        <div class="card"><span class="tag">Special</span><h3>Lorne</h3><p class="where">Wilton Rd, Pimlico · 6-min walk</p><p class="body">Small, acclaimed modern-European bistro with a brilliant wine list — the nice dinner.</p></div>
+        <div class="card"><span class="tag">Splurge</span><h3>A. Wong</h3><p class="where">Wilton Rd, Pimlico · 6-min walk</p><p class="body">Andrew Wong's two-Michelin-star Chinese — one of London's very best, right in Pimlico.</p></div>
+      </div>
+
+      <p class="leg-label">Pubs &amp; live music</p>
+      <div class="grid">
+        <div class="card"><h3>The Queens Arms</h3><p class="where">Warwick Way, Pimlico · 5-min walk</p><p class="body">Classic 1840s corner local for real ale and pub dinners — basically around the corner.</p></div>
+        <div class="card"><h3>The Cask Pub &amp; Kitchen</h3><p class="where">Charlwood St, Pimlico · 10-min walk</p><p class="body">Superb craft-beer and cask-ale backstreet pub — the best beer destination near the base.</p></div>
+        <div class="card"><h3>The 100 Club</h3><p class="where">Oxford St · short tube</p><p class="body">Legendary 1942 basement that helped birth UK punk, still booking grassroots rock and punk.</p></div>
+        <div class="card"><h3>The Underworld</h3><p class="where">Camden · tube north</p><p class="body">Sweaty 500-cap basement — London's go-to for punk, hardcore and metal almost nightly.</p></div>
+      </div>
+      <p class="note">More grassroots gigs for Ella: <b>The Windmill (Brixton)</b> and <b>MOTH Club (Hackney)</b> — both worth checking listings for 3–5 Jul.</p>
+
+      <p class="leg-label">Vintage &amp; second-hand <span class="hint">· the scene</span></p>
+      <div class="grid">
+        <div class="card"><h3>Beyond Retro</h3><p class="where">Soho · ~10-min tube</p><p class="body">Huge curated warehouse of vintage Americana, denim and party wear — the closest serious vintage.</p></div>
+        <div class="card"><h3>Rokit Vintage</h3><p class="where">Covent Garden · ~10-min tube</p><p class="body">Long-running vintage shop strong on reworked denim, band tees and 80s/90s pieces.</p></div>
+        <div class="card"><h3>Brick Lane Vintage Market</h3><p class="where">Shoreditch (East) · a trek</p><p class="body">Basement of ~100 dealers — the best concentration of alt/punk vintage in London.</p></div>
+        <div class="card"><h3>Camden Market</h3><p class="where">Camden (North) · ~20-min tube</p><p class="body">Stalls of punk, goth, band merch and one-off vintage — the spiritual home of the alt scene.</p></div>
+      </div>
+
+      <p class="leg-label">Landmarks &amp; museums <span class="hint">· all the museums are free</span></p>
+      <div class="grid">
+        <div class="card"><h3>Westminster &amp; St James's Park</h3><p class="where">Walkable from the base</p><p class="body">Big Ben, the Abbey, Buckingham Palace — a self-guided evening loop right from Pimlico.</p></div>
+        <div class="card"><h3>Tate Britain</h3><p class="where">Millbank, Pimlico · 10-min walk</p><p class="body">Turner and British art on the river, the nearest big gallery — and free.</p></div>
+        <div class="card"><h3>Borough Market</h3><p class="where">Southwark · Thu–Sat</p><p class="body">Open for our Fri/Sat — graze breakfast, go early. The best food market in town.</p></div>
+        <div class="card"><h3>British Museum</h3><p class="where">Bloomsbury</p><p class="body">Rosetta Stone, Egypt, Greece. Vast — pick two wings rather than all of it.</p></div>
+        <div class="card"><h3>Tate Modern</h3><p class="where">Bankside · on the river</p><p class="body">A power station turned gallery; ride to the 10th-floor view.</p></div>
+        <div class="card"><h3>Sky Garden</h3><p class="where">The City</p><p class="body">Free rooftop garden with the best City skyline view — book a timed slot ahead.</p></div>
       </div>
     </div>
 
+    <!-- ===== COPENHAGEN ===== -->
     <div class="city-pane copenhagen" data-pane="copenhagen" hidden>
-      <p class="leg-label">Two easy days</p>
+      <p class="leg-label">Breakfast &amp; brunch <span class="hint">· near the Amager base</span></p>
       <div class="grid">
-        <div class="card"><h3>Nyhavn &amp; the harbour</h3><p class="body">The postcard canal, then a harbour-bus or walk along the water. Free, and the obvious first stroll.</p></div>
-        <div class="card"><h3>Tivoli Gardens</h3><p class="body">Right by Central Station — historic pleasure garden, lovely in the evening. Good for our last night.</p></div>
-        <div class="card"><h3>Rosenborg &amp; the King's Garden</h3><p class="body">Renaissance castle, crown jewels, and the city's nicest park to sit in.</p></div>
+        <div class="card cph"><h3>Mad &amp; Kaffe</h3><p class="where">Amagerbro, Holmbladsgade · near base</p><p class="body">Build-your-own brunch board — pick 3/5/7 small dishes. A Copenhagen institution and a local favourite.</p></div>
+        <div class="card cph"><h3>Wulff &amp; Konstali</h3><p class="where">Amager · near base</p><p class="body">Café-bakery hybrid with a generous build-your-own brunch plate, fresh bread and pastries.</p></div>
+        <div class="card cph"><h3>Sneezing Fruits</h3><p class="where">Islands Brygge · short bus/walk</p><p class="body">Tiny spot doing some of the city's best croissants and top-notch coffee.</p></div>
+        <div class="card cph"><h3>Atelier September</h3><p class="where">Indre By · 20–25 min in</p><p class="body">Bright, design-led café famous for its avocado/skyr plates — photogenic, expect a queue.</p></div>
       </div>
-      <p class="leg-label">Neighbourhoods &amp; eating</p>
+
+      <p class="leg-label">Eat — incl. Reffen</p>
       <div class="grid">
-        <div class="card"><h3>Torvehallerne</h3><p class="body">Glass food-hall by Nørreport — smørrebrød, coffee, snacks. A great grazing lunch.</p></div>
-        <div class="card"><h3>Reffen / Refshaleøen</h3><p class="body">Sprawling street-food yard on the harbour island — go for an evening, bring an appetite.</p></div>
-        <div class="card"><h3>Nørrebro &amp; Vesterbro</h3><p class="body">The two best wander-and-eat neighbourhoods. The eating guide covers these in depth.</p></div>
+        <div class="card cph"><span class="tag">The one you wanted</span><h3>Reffen</h3><p class="where">Refshaleøen · harbour bus 991/992 or bus 2A</p><p class="body">Northern Europe's biggest street-food market — ~35 container stalls, bars and an on-site brewery. Open daily to ~22:00 in July.</p></div>
+        <div class="card cph"><span class="tag">Easy / walkable</span><h3>Scarpetta</h3><p class="where">Islands Brygge waterfront · Amager side</p><p class="body">Modern Italian with strong pizza/pasta and harbour views — relaxed mid-range on the base side of the water.</p></div>
+        <div class="card cph"><span class="tag">Waterfront</span><h3>Aristo</h3><p class="where">Islands Brygge · Amager</p><p class="body">Nordic plates with sunset views over the harbour — a good casual dinner near the base.</p></div>
+        <div class="card cph"><span class="tag">Nicer dinner</span><h3>PONY</h3><p class="where">Vesterbro · 25–30 min in</p><p class="body">Kadeau's relaxed "little brother" — seasonal New Nordic, the well-priced four-course "Pony Kick".</p></div>
+        <div class="card cph"><span class="tag">Splurge</span><h3>Kadeau</h3><p class="where">Christianshavn · book ahead</p><p class="body">Two-Michelin-star Bornholm-inspired New Nordic tasting menu — the big Copenhagen blow-out.</p></div>
       </div>
-      <p class="note">The full Copenhagen rundown lives in section 05 — it links straight to the detailed <a href="/cphrecs">eating guide</a>.</p>
+
+      <p class="leg-label">Pubs &amp; live music</p>
+      <div class="grid">
+        <div class="card cph"><h3>Loppen</h3><p class="where">Christiania · short walk/metro</p><p class="body">Collective-run alternative/punk/rock venue since 1973, cheap tickets — exactly Ella's scene, and close to Amager.</p></div>
+        <div class="card cph"><h3>Brewers Inc.</h3><p class="where">Islands Brygge · near base</p><p class="body">Neighbourhood craft-beer bar — 16 taps plus 150+ cans, focused on small Danish breweries.</p></div>
+        <div class="card cph"><h3>Stengade</h3><p class="where">Nørrebro · 25–30 min in</p><p class="body">Raw underground venue running ~250 gigs a year, heavy on punk, metal and experimental acts.</p></div>
+        <div class="card cph"><h3>Pumpehuset</h3><p class="where">Indre By · 20–25 min in</p><p class="body">Historic two-hall venue known for louder, harder and more diverse live shows.</p></div>
+      </div>
+
+      <p class="leg-label">Wander &amp; sights</p>
+      <div class="grid">
+        <div class="card cph"><h3>Amager Strand</h3><p class="where">Amager · near base</p><p class="body">The city beach on your doorstep — a morning walk or swim before heading into town.</p></div>
+        <div class="card cph"><h3>Nyhavn</h3><p class="where">Indre By, harbour</p><p class="body">The postcard canal — then a harbour-bus or walk along the water.</p></div>
+        <div class="card cph"><h3>Tivoli Gardens</h3><p class="where">By Central Station</p><p class="body">Historic pleasure garden, lovely in the evening — good for the last night.</p></div>
+        <div class="card cph"><h3>Christiania</h3><p class="where">Christianshavn</p><p class="body">The freetown — wander, and it's the same trip as Loppen for a gig.</p></div>
+      </div>
+
+      <div class="links">
+        <a class="btn cph" href="/cphrecs" target="_blank" rel="noopener">Open the full Copenhagen eating guide →</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ FOR ELLA (LONDON) ============ -->
+<!-- ============ FOR ELLA ============ -->
 <section id="ella">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">For Ella · in London</h2></div>
-    <p class="sec-lead">The good stuff: small gigs (punk/rock by preference), anything Pokémon-flavoured, and proper cocktails. Live music is the one to check closer to the date — small venues book weeks out, so the spots below are where to look rather than confirmed shows.</p>
+    <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">For Ella</h2></div>
+    <p class="sec-lead">Beyond the gigs and bars above — the Pokémon hunt and the proper cocktails. (Live music is in “Around each base”: <b>100 Club</b>, <b>Underworld</b>, <b>Windmill</b> in London; <b>Loppen</b>, <b>Stengade</b> in Copenhagen.)</p>
 
-    <p class="leg-label">Small gigs · punk &amp; rock</p>
+    <p class="leg-label">Pokémon &amp; collectibles · London</p>
     <div class="grid">
-      <div class="card"><h3>The Windmill, Brixton</h3><p class="body">The legendary South London grassroots room — cheap, sweaty, and where tomorrow's bands play tonight. Check listings for early July. 4.5★</p></div>
-      <div class="card"><h3>MOTH Club, Hackney</h3><p class="body">A converted working men's club with a glittery gold stage. Intimate, brilliant for up-and-comers. 4.5★</p></div>
-      <div class="card"><h3>Hootananny, Brixton</h3><p class="body">Pub-venue with live bands and a loud, friendly crowd most nights. Reggae, ska, punk-leaning. 4.3★</p></div>
+      <div class="card"><h3>Brotherhood Games Café</h3><p class="where">Bermondsey</p><p class="body">Best TCG spot in London per the regulars — play Pokémon over food, fair prices, great events.</p></div>
+      <div class="card"><h3>Fanatics Collectibles, Regent St</h3><p class="where">Regent Street</p><p class="body">Big central TCG store — cards, sealed product, singles. Expect a managed queue at busy times.</p></div>
+      <div class="card"><h3>Forbidden Planet</h3><p class="where">Shaftesbury Ave</p><p class="body">Two floors of pop-culture everything — Pokémon plush, figures and merch alongside manga.</p></div>
     </div>
-    <p class="note">If we land at <b>The Bedford in Balham</b>, the gig venue is literally downstairs — check who's playing 3–5 Jul.</p>
+    <p class="note">The official Pokémon Center pop-ups ran Feb–April 2026 and are closed by July — the shops above are the year-round options. In Copenhagen, try <b>Faraos Cigarer</b> and <b>Bog &amp; Idé</b> for cards.</p>
 
-    <p class="leg-label">Pokémon &amp; collectibles</p>
+    <p class="leg-label">Cocktails · London</p>
     <div class="grid">
-      <div class="card"><h3>Brotherhood Games Café</h3><p class="body">Best TCG spot in London per the regulars — play Pokémon over food, fair prices, great events. Bermondsey. 4.8★</p></div>
-      <div class="card"><h3>Fanatics Collectibles, Regent St</h3><p class="body">Big central TCG store — cards, sealed product, singles. Expect a managed queue at busy times. 4.7★</p></div>
-      <div class="card"><h3>Forbidden Planet, Shaftesbury Ave</h3><p class="body">Two floors of pop-culture everything — Pokémon plush, figures, merch alongside manga and comics. 4.6★</p></div>
+      <div class="card"><h3>Swift, Soho</h3><p class="where">Soho</p><p class="body">A serious cocktail bar locals rate — best Irish coffee in London, expert twists on classics.</p></div>
+      <div class="card"><h3>Cahoots, Carnaby</h3><p class="where">Carnaby</p><p class="body">Immersive 1940s-Underground theme with live music — drinks in lanterns and tube carriages.</p></div>
+      <div class="card"><h3>SOMA, Soho</h3><p class="where">Soho</p><p class="body">A genuine speakeasy — clear ice, freezer glassware, no fruit-salad garnishes. The real thing.</p></div>
     </div>
-    <p class="note">Heads up: the official Pokémon Center pop-ups (ExCeL and the Natural History Museum) ran Feb–April 2026 and are closed by July. The shops above are the year-round options. POP MART on Oxford St is also fun for blind-box collectibles.</p>
 
-    <p class="leg-label">Cocktails</p>
+    <p class="leg-label">Cocktails · Copenhagen</p>
     <div class="grid">
-      <div class="card"><h3>Swift, Soho</h3><p class="body">A serious cocktail bar that locals rate — best Irish coffee in London, expert twists on classics. Book if you can. 4.6★</p></div>
-      <div class="card"><h3>Cahoots, Carnaby</h3><p class="body">Immersive 1940s-Underground-station theme with live music — drinks served in lanterns and tube carriages. 4.6★</p></div>
-      <div class="card"><h3>SOMA, Soho</h3><p class="body">A genuine speakeasy — clear ice, freezer glassware, no fruit-salad garnishes. For the real thing. 4.7★</p></div>
+      <div class="card cph"><h3>Ruby</h3><p class="where">Indre By</p><p class="body">Copenhagen's benchmark cocktail bar — a canal-side townhouse, faultless classics, easy-going.</p></div>
+      <div class="card cph"><h3>Lidkoeb</h3><p class="where">Vesterbro</p><p class="body">Candle-lit three-floor bar in a courtyard — top floor is a whisky room. A proper Copenhagen night.</p></div>
     </div>
-  </div>
-</section>
-
-<!-- ============ COPENHAGEN ============ -->
-<section id="copenhagen">
-  <div class="wrap">
-    <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">The Copenhagen leg</h2></div>
-    <span class="leg-ribbon cph">Copenhagen · 6–8 Jul · 2 nights</span>
-    <p class="sec-lead">Two nights, no rush — this is the eating-and-wandering half of the trip. We already have a detailed Copenhagen guide on the site, so the plan here is light: arrive Monday night, one full day Tuesday, fly home Wednesday morning.</p>
-
-    <div class="links">
-      <a class="btn cph" href="/cphrecs" target="_blank" rel="noopener">Open the Copenhagen eating guide →</a>
-    </div>
-
-    <p class="leg-label" style="margin-top:34px;">Where to stay · 2 nights</p>
-    <p class="sec-lead" style="margin-bottom:22px;">Four options, totals for both nights (6–8 Jul, 2 people). The split is stark: the two apartments are a third of the price of the central hotels, in exchange for a ~20-minute walk in. Hit “Photos →” to see each.</p>
-
-    <div class="grid">
-      <div class="card cph feature">
-        <span class="badge cph">Cheapest · personal pick</span>
-        <h3>Studio in Amager (Airbnb)</h3>
-        <p class="where">Amager · ~20 min walk · by the beach</p>
-        <p class="score">3 000 kr total · ~1 500 kr/natt</p>
-        <p class="body">Entire apartment a short walk out, close to the beach — and right in the neighbourhood you used to live in. The most us, and by far the cheapest.</p>
-        <ul class="pc">
-          <li class="up">Cheapest of everything, by the beach</li>
-          <li class="up">Your old neighbourhood — local, not touristy</li>
-          <li class="down">~20 min walk to the centre</li>
-        </ul>
-        <div class="foot">
-          <span class="price"><b>3 000 kr</b> total · ~1 500 kr/natt</span>
-          <a class="view" href="https://www.airbnb.com/rooms/663651923276074930?adults=2&check_in=2026-07-06&check_out=2026-07-08" target="_blank" rel="noopener">Photos →</a>
-        </div>
-      </div>
-
-      <div class="card cph">
-        <span class="badge cph">Value · hip area</span>
-        <h3>Apartment in Nørrebro (Airbnb)</h3>
-        <p class="where">Nørrebro · ~20 min walk · trendy</p>
-        <p class="score">3 037 kr total · ~1 519 kr/natt</p>
-        <p class="body">Same kind of deal — entire place, ~20-minute walk in — but in Nørrebro, the city's hippest neighbourhood, full of cafés and bars. Near-identical price to the Amager studio.</p>
-        <ul class="pc">
-          <li class="up">Great-value entire apartment</li>
-          <li class="up">Lively, cool neighbourhood on the doorstep</li>
-          <li class="down">~20 min walk to the centre</li>
-        </ul>
-        <div class="foot">
-          <span class="price"><b>3 037 kr</b> total · ~1 519 kr/natt</span>
-          <a class="view" href="https://www.airbnb.com/rooms/1700678164162673885?adults=2&check_in=2026-07-06&check_out=2026-07-08" target="_blank" rel="noopener">Photos →</a>
-        </div>
-      </div>
-
-      <div class="card cph">
-        <span class="badge cph">Central boutique</span>
-        <h3>Hotel SP34 Apartments</h3>
-        <p class="where">Latin Quarter · Sankt Peders Stræde 34</p>
-        <p class="score">8.2 / 10 · location 9.4 · 300 m to Strøget</p>
-        <p class="body">Stylish boutique aparthotel right in the Latin Quarter — 300 m from City Hall Square and the main pedestrian street, 8 min to Tivoli. Several in-house bars.</p>
-        <ul class="pc">
-          <li class="up">Dead central, top-rated location</li>
-          <li class="up">Design-led, with bars/terrace on site</li>
-          <li class="down">Rooms can be small/dim; ~3× the apartments</li>
-        </ul>
-        <div class="foot">
-          <span class="price"><b>8 766 kr</b> total · ~4 383 kr/natt</span>
-          <a class="view" href="https://www.booking.com/hotel/dk/sp34-apartments.en-gb.html?checkin=2026-07-06&checkout=2026-07-08&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Photos →</a>
-        </div>
-      </div>
-
-      <div class="card cph">
-        <span class="badge cph">Luxury splurge</span>
-        <h3>1 Hotel Copenhagen</h3>
-        <p class="where">Latin Quarter / historic centre</p>
-        <p class="score muted">Luxury · sustainable · “world's best new hotel”</p>
-        <p class="body">High-end, biophilic, sustainability-led design in the historic centre near the Round Tower and Strøget — a proper treat-yourself option for the last two nights.</p>
-        <ul class="pc">
-          <li class="up">Award-winning design, dead central</li>
-          <li class="up">Basically the same price as SP34, but more luxe</li>
-          <li class="down">~3× the apartments for two nights</li>
-        </ul>
-        <div class="foot">
-          <span class="price"><b>8 748 kr</b> total · ~4 374 kr/natt</span>
-          <a class="view" href="https://www.booking.com/hotel/dk/1-hotel-copenhagen.en-gb.html?checkin=2026-07-06&checkout=2026-07-08&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Photos →</a>
-        </div>
-      </div>
-    </div>
-    <p class="note">Quick read: the two <b>apartments (~3 000 kr)</b> are unbeatable on price and feel local — worth the 20-min walk for two nights. <b>SP34</b> is the central, design-y hotel if we'd rather step straight out into the old town; <b>1 Hotel</b> is the splurge. Given Copenhagen is only two nights and built around eating, the cheap-and-local apartments make a lot of sense.</p>
-
-    <p class="leg-label">If you only do a few things</p>
-    <div class="grid">
-      <div class="card"><span class="badge cph">Mon night</span><h3>Arrive &amp; eat</h3><p class="body">Land ~22:00, drop bags, late bite nearby. Keep it easy — the real day is Tuesday.</p></div>
-      <div class="card"><span class="badge cph">Tue</span><h3>Wander + food hall</h3><p class="body">Nyhavn &amp; harbour walk, lunch at Torvehallerne, an afternoon neighbourhood, dinner from the guide.</p></div>
-      <div class="card"><span class="badge cph">Tue night</span><h3>Tivoli or harbour</h3><p class="body">Tivoli in the evening light, or a relaxed harbour-side last night before the early flight.</p></div>
-    </div>
-    <p class="note">Wednesday's flight is <b>09:00</b> — that's a ~07:00 airport arrival, so Tuesday night stays sensible.</p>
   </div>
 </section>
 
 <!-- ============ MAP ============ -->
 <section id="map">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">06</span><h2 class="sec-title">On the map</h2></div>
-    <p class="sec-lead">Everything above, pinned — including the three shortlisted London hotels, so you can see how central each one is. Colour-coded by type. Free OpenStreetMap, no Google key needed. Pins are placed by hand and are approximate; click one for the name.</p>
+    <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">On the map</h2></div>
+    <p class="sec-lead">Each map is centred on the base (🏠), with everything above pinned around it. Free OpenStreetMap, no Google key. Pins are placed by hand and approximate — click one for the name; the cards link to exact locations.</p>
 
     <div class="toggle" data-group="map">
       <button data-city="london" data-active="true">London</button>
@@ -540,11 +400,11 @@
     </div>
 
     <div class="map-legend">
-      <span><i style="background:#3a6ea5"></i> Hotels</span>
-      <span><i style="background:#7a5618"></i> Sights &amp; culture</span>
-      <span><i style="background:#c8743a"></i> Food &amp; markets</span>
-      <span><i style="background:#9a2f2f"></i> Gigs</span>
-      <span><i style="background:#3b6d43"></i> Pokémon</span>
+      <span><i class="home"></i> Your base</span>
+      <span><i style="background:#c8743a"></i> Food &amp; drink</span>
+      <span><i style="background:#7a5618"></i> Sights</span>
+      <span><i style="background:#9a2f2f"></i> Pubs &amp; live music</span>
+      <span><i style="background:#3b6d43"></i> Shops (vintage / Pokémon)</span>
       <span><i style="background:#7a3a8f"></i> Cocktails</span>
     </div>
 
@@ -559,8 +419,8 @@
 
 <footer>
   <div class="wrap">
-    <p>Built as a planning scratchpad — flights are booked; hotel scores and locations are from the live listings, prices and Airbnb details are to be filled in before booking. Things change, check live before you pay.</p>
-    <p style="margin-top:8px;">London hotel info via Booking.com listings (June 2026). Copenhagen details lean on the site's own <a href="/cphrecs">eating guide</a>.</p>
+    <p>Built as a planning scratchpad — flights and both bases are booked; everything else is researched and should be checked live (opening hours, gig listings) before relying on it.</p>
+    <p style="margin-top:8px;">Recommendations gathered June 2026. Copenhagen details also lean on the site's own <a href="/cphrecs">eating guide</a>.</p>
   </div>
 </footer>
 
@@ -579,112 +439,142 @@
         section.querySelectorAll('.city-pane').forEach(function(pane){
           pane.hidden = pane.getAttribute('data-pane') !== city;
         });
-        // Leaflet mis-sizes when its container was hidden at init — fix on reveal.
         if (group === 'map' && maps[city]) {
           maps[city].map.invalidateSize();
-          maps[city].map.fitBounds(maps[city].bounds, {padding:[36,36]});
+          maps[city].map.setView(maps[city].center, maps[city].zoom);
+          if (maps[city].base) maps[city].base.openPopup();
         }
       });
     });
   });
 
   /* ---- Maps (Leaflet + OpenStreetMap, no API key) ---- */
-  var CAT = {
-    hotel:'#3a6ea5', sight:'#7a5618', food:'#c8743a',
-    gig:'#9a2f2f', pokemon:'#3b6d43', cocktail:'#7a3a8f'
-  };
-  var CAT_LABEL = {
-    hotel:'Hotel', sight:'Sight & culture', food:'Food & market',
-    gig:'Gig', pokemon:'Pokémon', cocktail:'Cocktails'
-  };
+  var CAT = { base:'#b8893a', food:'#c8743a', sight:'#7a5618', music:'#9a2f2f', shop:'#3b6d43', cocktail:'#7a3a8f' };
+  var CAT_LABEL = { base:'Your base', food:'Food & drink', sight:'Sight', music:'Pub / live music', shop:'Shop', cocktail:'Cocktails' };
 
   var PLACES = {
     london: [
-      // shortlisted hotels
-      ['hotel','ibis London Blackfriars',51.5042,-0.1037],
-      ['hotel','Chapter Spitalfields',51.5172,-0.0808],
-      ['hotel','The Bedford, Balham',51.4432,-0.1525],
-      // sights & culture
-      ['sight','Tower of London',51.5081,-0.0759],
-      ['sight','Sky Garden',51.5111,-0.0837],
-      ['sight','Westminster / Big Ben',51.5007,-0.1246],
-      ['sight','British Museum',51.5194,-0.1270],
-      ['sight','Tate Modern',51.5076,-0.0994],
-      ['sight','National Gallery',51.5089,-0.1283],
+      ['base','Best Western Victoria Palace (base)',51.4917,-0.1447],
+      // breakfast / eat / tea  -> food
+      ['food','Pimlico Fresh',51.4929,-0.1410],
+      ['food','Timmy Green (Nova)',51.4956,-0.1430],
+      ['food','The English Rose Café',51.4926,-0.1404],
+      ['food','Daylesford Organic',51.4906,-0.1528],
+      ['food','The Goring (afternoon tea)',51.4977,-0.1448],
+      ['food','Market Hall Victoria',51.4958,-0.1437],
+      ['food','Tozi',51.4933,-0.1452],
+      ['food','Lorne',51.4930,-0.1402],
+      ['food','A. Wong',51.4924,-0.1410],
       ['food','Borough Market',51.5055,-0.0905],
-      // gigs
-      ['gig','The Windmill, Brixton',51.4626,-0.1136],
-      ['gig','MOTH Club, Hackney',51.5366,-0.0556],
-      ['gig','Hootananny, Brixton',51.4596,-0.1163],
-      // pokemon
-      ['pokemon','Forbidden Planet, Shaftesbury Ave',51.5163,-0.1287],
-      ['pokemon','Fanatics Collectibles, Regent St',51.5128,-0.1389],
-      ['pokemon','Brotherhood Games Café, Bermondsey',51.4955,-0.0820],
+      // pubs & live music -> music
+      ['music','The Queens Arms',51.4912,-0.1462],
+      ['music','The Cask Pub & Kitchen',51.4902,-0.1396],
+      ['music','The 100 Club',51.5160,-0.1378],
+      ['music','The Underworld, Camden',51.5392,-0.1426],
+      ['music','The Windmill, Brixton',51.4626,-0.1136],
+      ['music','MOTH Club, Hackney',51.5366,-0.0556],
+      // shops -> vintage + pokemon
+      ['shop','Beyond Retro, Soho',51.5146,-0.1392],
+      ['shop','Rokit, Covent Garden',51.5128,-0.1247],
+      ['shop','Brick Lane Vintage Market',51.5205,-0.0715],
+      ['shop','Camden Market',51.5414,-0.1465],
+      ['shop','Forbidden Planet',51.5163,-0.1287],
+      ['shop','Fanatics, Regent St',51.5128,-0.1389],
+      // sights
+      ['sight','Westminster / Big Ben',51.5007,-0.1246],
+      ['sight','Tate Britain',51.4911,-0.1278],
+      ['sight','Tate Modern',51.5076,-0.0994],
+      ['sight','British Museum',51.5194,-0.1270],
+      ['sight','Sky Garden',51.5111,-0.0837],
       // cocktails
       ['cocktail','Swift, Soho',51.5138,-0.1320],
       ['cocktail','Cahoots, Carnaby',51.5128,-0.1389],
       ['cocktail','SOMA, Soho',51.5135,-0.1330]
     ],
     copenhagen: [
-      ['hotel','Hotel SP34 (Latin Quarter)',55.6796,12.5681],
-      ['hotel','1 Hotel Copenhagen',55.6805,12.5742],
-      ['hotel','Airbnb studio — Amager',55.6620,12.5980],
-      ['hotel','Airbnb apartment — Nørrebro',55.6900,12.5520],
+      ['base','Studio in Amager (base)',55.6586,12.6090],
+      // food
+      ['food','Mad & Kaffe, Amagerbro',55.6603,12.6105],
+      ['food','Wulff & Konstali, Amager',55.6612,12.6055],
+      ['food','Sneezing Fruits, Islands Brygge',55.6675,12.5790],
+      ['food','Atelier September',55.6810,12.5808],
+      ['food','Reffen',55.6928,12.6090],
+      ['food','Scarpetta, Islands Brygge',55.6650,12.5772],
+      ['food','Aristo, Islands Brygge',55.6662,12.5782],
+      ['food','PONY, Vesterbro',55.6686,12.5460],
+      ['food','Kadeau, Christianshavn',55.6720,12.5928],
+      ['food','Torvehallerne',55.6838,12.5713],
+      // music
+      ['music','Loppen, Christiania',55.6755,12.5985],
+      ['music','Brewers Inc., Islands Brygge',55.6690,12.5800],
+      ['music','Stengade, Nørrebro',55.6905,12.5470],
+      ['music','Pumpehuset',55.6770,12.5683],
+      // sights
+      ['sight','Amager Strand (beach)',55.6595,12.6300],
       ['sight','Nyhavn',55.6796,12.5910],
       ['sight','Tivoli Gardens',55.6737,12.5681],
-      ['sight','Rosenborg Castle',55.6857,12.5774],
       ['sight','Christiania',55.6760,12.5990],
-      ['food','Torvehallerne market',55.6838,12.5713],
-      ['food','Reffen street food',55.6925,12.6075],
-      ['gig','Loppen, Christiania (live music)',55.6755,12.5985]
+      ['sight','Rosenborg Castle',55.6857,12.5774],
+      // cocktails
+      ['cocktail','Ruby',55.6786,12.5790],
+      ['cocktail','Lidkoeb, Vesterbro',55.6690,12.5520]
     ]
   };
 
-  var CENTRES = {
-    london:[51.5074,-0.1100],
-    copenhagen:[55.6790,12.5790]
-  };
+  // Centre each map on its base, with a comfortable neighbourhood zoom.
+  var CENTRES = { london:{c:[51.4980,-0.1380],z:13}, copenhagen:{c:[55.6660,12.5950],z:13} };
 
   function dot(color){
-    return L.divIcon({
-      className:'',
+    return L.divIcon({className:'',
       html:'<span style="display:block;width:15px;height:15px;border-radius:50%;background:'+color+';border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.3)"></span>',
-      iconSize:[15,15], iconAnchor:[7,7], popupAnchor:[0,-8]
-    });
+      iconSize:[15,15], iconAnchor:[7,7], popupAnchor:[0,-8]});
+  }
+  function homeDot(){
+    return L.divIcon({className:'',
+      html:'<span style="display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:'+CAT.base+';border:3px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.35);color:#fff;font-size:13px;font-weight:800">★</span>',
+      iconSize:[26,26], iconAnchor:[13,13], popupAnchor:[0,-13]});
   }
 
   function buildMap(city){
-    var map = L.map('map-'+city, {scrollWheelZoom:false}).setView(CENTRES[city], 13);
+    var cfg = CENTRES[city];
+    var map = L.map('map-'+city, {scrollWheelZoom:false}).setView(cfg.c, cfg.z);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom:19,
-      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    var bounds = [];
+    var baseMarker = null;
     PLACES[city].forEach(function(p){
       var cat = p[0], name = p[1], lat = p[2], lng = p[3];
-      L.marker([lat,lng], {icon:dot(CAT[cat])})
+      var m = L.marker([lat,lng], {icon: cat==='base'?homeDot():dot(CAT[cat]), zIndexOffset: cat==='base'?1000:0})
         .addTo(map)
         .bindPopup('<span class="cat">'+CAT_LABEL[cat]+'</span><b>'+name+'</b>');
-      bounds.push([lat,lng]);
+      if (cat==='base') baseMarker = m;
     });
-    if (bounds.length) map.fitBounds(bounds, {padding:[36,36]});
-    maps[city] = {map:map, bounds:bounds};
+    maps[city] = {map:map, center:cfg.c, zoom:cfg.z, base:baseMarker};
   }
 
   buildMap('london');
   buildMap('copenhagen');
+  if (maps.london.base) maps.london.base.openPopup();
 
-  /* ---- Linkify activity/venue cards to Google Maps (photos + location) ---- */
-  document.querySelectorAll('#do .card h3, #ella .card h3').forEach(function(h){
+  /* ---- Linkify venue cards to Google Maps (photos + location) ---- */
+  document.querySelectorAll('#around .card h3, #ella .card h3').forEach(function(h){
     if (h.querySelector('a')) return;
+    var city = 'London';
     var pane = h.closest('.city-pane');
-    var city = (pane && pane.classList.contains('copenhagen')) ? 'Copenhagen' : 'London';
+    if (pane && pane.classList.contains('copenhagen')) {
+      city = 'Copenhagen';
+    } else if (h.closest('#ella')) {
+      // In the Ella section, read the city from the nearest preceding leg-label.
+      var grid = h.closest('.grid');
+      var lab = grid ? grid.previousElementSibling : null;
+      while (lab && !lab.classList.contains('leg-label')) lab = lab.previousElementSibling;
+      if (lab && /Copenhagen/i.test(lab.textContent)) city = 'Copenhagen';
+    }
     var text = h.textContent.trim();
     var a = document.createElement('a');
     a.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(text + ' ' + city);
-    a.target = '_blank';
-    a.rel = 'noopener';
+    a.target = '_blank'; a.rel = 'noopener';
     a.textContent = text;
     h.textContent = '';
     h.appendChild(a);
