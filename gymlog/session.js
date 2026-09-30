@@ -224,8 +224,11 @@
       clearDraft();
       location.href = "/gymlog/";
     }).catch(function (e) {
-      var m = /^exercises\[(\d+)\]:?\s*(.*)$/.exec(e.message);
-      if (m && st.rows[+m[1]]) st.rows[+m[1]].error = m[2];
+      // "exercises[1].sets[2]: reps must…" -> shown on row 2 as "Set 3: reps must…"
+      var m = /^exercises\[(\d+)\][.:]?\s*(.*)$/.exec(e.message);
+      if (m && st.rows[+m[1]]) {
+        st.rows[+m[1]].error = m[2].replace(/^sets\[(\d+)\]:\s*/, function (_, n) { return "Set " + (+n + 1) + ": "; });
+      }
       else st.formError = e.message;
       render();
       var first = document.querySelector(".error");
