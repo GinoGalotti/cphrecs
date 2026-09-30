@@ -13,6 +13,9 @@
     "seed": "node scripts/seed.mjs",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
-    "test:install": "playwright install chromium"
+    "test:install": "playwright install chromium",
+    "gymlog:db:local": "npx wrangler d1 execute ginogalotti-stories --local --file=gymlog-schema.sql && npx wrangler d1 execute ginogalotti-stories --local --file=gymlog-seed.sql",
+    "gymlog:db:remote": "npx wrangler d1 execute ginogalotti-stories --remote --file=gymlog-schema.sql && npx wrangler d1 execute ginogalotti-stories --remote --file=gymlog-seed.sql",
+    "gymlog:reset:local": "npx wrangler d1 execute ginogalotti-stories --local --file=gymlog-reset.sql"
   }
 }
