@@ -15,6 +15,11 @@ Static site, no build step.
 Framework preset: **None**. Build command: **(empty)**. Output directory: **/** (root).
 Pure static — Pages just serves the files as-is.
 
+## Stormstories (`/stormstories`)
+- `stormstories/zero/` → `/stormstories/zero` — session zero primer for the Stonewalkers campaign.
+- Static. Wording source is `session-zero.md`, design spec is `DESIGN.md` (same folder).
+- `noindex`, and not linked from the landing page.
+
 ## Gym log (`/gymlog`)
 Private, mobile-first lifting log with **variation cycling**. Vanilla JS pages in `gymlog/`, JSON API in `functions/gymlog/`, tables prefixed `gym_` in the shared `DB` (D1 `ginogalotti-stories`). Everything under `/gymlog/*` (pages, assets and API) is behind the same Basic Auth as `/admin` (`functions/gymlog/_middleware.js` re-exports it; no extra secrets).
 
