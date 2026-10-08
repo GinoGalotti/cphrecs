@@ -59,6 +59,7 @@ dun:  same shape, filter: grayscale(.85) brightness(.45), no glow
 
 - Hero spheres: 30px.
 - Section-header spheres: 34px.
+- **Dun sphere** (`.sphere.dun`): the unlit state, permanently. Used only for the starting-hooks appendix, which is reference material from the adventure, not one of the seven question sections. It is not in the hero contents list; Q7 links to it.
 
 ## Layout
 
@@ -82,11 +83,19 @@ dun:  same shape, filter: grayscale(.85) brightness(.45), no glow
 │    "On Roshar, power enters…"   │  ← epigraph, italic, mist; echoes
 │  9 …                            │     the books' chapter epigraphs
 │  ┃ The table contract…          │  ← garnet left rule, storm-deep panel
+├─────────────────────────────────┤
+│ ○  Why You Walk with Taszo      │  ← dun sphere; appendix after section VII
+│  Agent or Hunter                │  ← Unicase h3
+│  hook paragraph                 │
+│  italic mist questions          │
+│  Suggested goal: …              │  ← label in crem bold
+│  ─────────                      │  ← faint crem rule between hooks
 └─────────────────────────────────┘
 ```
 
 - Everything is left-aligned in a single column with a max width of 40rem (~65ch). The page is read on phones first.
 - Sections are separated by generous space plus one thin crem rule. Avoid cards and drop shadows.
+- The book presents the hooks as a 4-column table. Don't reproduce it as a table: it's unreadable on phones. Each hook is a stacked block.
 - Question numbers count continuously 1–15 across sections, because players will refer to them at the table ("about 12…").
 
 ## Principles

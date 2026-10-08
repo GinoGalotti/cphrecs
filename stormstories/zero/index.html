@@ -163,6 +163,7 @@ ol.qs > li::before {
   width: 2rem; text-align: right;
 }
 ol.qs strong { font-weight: 700; }
+ol.qs a { text-decoration-color: var(--crem); text-underline-offset: 3px; }
 
 ul.prompts { margin: 0.6rem 0 0; padding-left: 1.1rem; }
 ul.prompts li { margin: 0.25rem 0; }
@@ -208,6 +209,25 @@ ul.prompts li::marker { color: var(--crem); }
 }
 .contract p { margin: 0; }
 .contract strong { font-weight: 700; }
+
+/* ---------- Dun sphere: reference material, not a question section ---------- */
+.sphere.dun {
+  --gem: var(--mist);
+  filter: grayscale(.85) brightness(.45);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--mist) 40%, transparent);
+}
+
+/* ---------- Starting hooks ---------- */
+.hook { padding: 1.5rem 0; border-top: 1px solid color-mix(in srgb, var(--crem) 20%, transparent); }
+.hook:first-of-type { border-top: 0; padding-top: 0.5rem; }
+.hook h3 {
+  font-family: var(--display); font-weight: 600;
+  font-size: 1.4rem; line-height: 1.2; margin: 0 0 0.5rem; color: var(--stormlight);
+}
+.hook p { margin: 0 0 0.6rem; }
+.hook .ask { font-style: italic; color: var(--mist); }
+.hook .goal { margin: 0; }
+.hook .goal strong { color: var(--crem); font-weight: 700; }
 
 /* ---------- Footer ---------- */
 footer.sign {
@@ -274,7 +294,7 @@ footer.sign {
     <ol class="qs">
       <li data-n="5"><strong>Purpose:</strong> What drives your character? Why do they get up in the morning?</li>
       <li data-n="6"><strong>Goals:</strong> Name one you could achieve soon, one that might take the whole campaign, and one dream your character would never say out loud.</li>
-      <li data-n="7"><strong>On the road:</strong> We open in the Unclaimed Hills. You've been travelling toward the Shattered Plains warcamps with the same companions for about a week. Why are you going there, and what are you leaving behind?</li>
+      <li data-n="7"><strong>On the road:</strong> We open in the Unclaimed Hills. For about a week you've been travelling toward the Shattered Plains warcamps with each other and with Taszo, an injured Shin monk. Why are you with him, and what are you leaving behind? The <a href="#hooks">starting hooks</a> at the end of this page can help.</li>
       <li data-n="8">In this era, most people believe the Knights Radiant betrayed humanity and the Heralds are myth. What does your character believe, and who taught them that?</li>
     </ol>
   </section>
@@ -303,12 +323,19 @@ footer.sign {
     <div class="sec-head"><span class="sphere g-heliodor" aria-hidden="true"></span><h2>Each Other</h2></div>
     <p class="note">Answered together at the table.</p>
     <ol class="qs">
-      <li data-n="13">Each player answers one of these about another character:
+      <li data-n="13">Each player picks at least one of these and asks it of another player, who answers. Explore as many as you like, or invent your own.
         <ul class="prompts">
-          <li>Who here do you owe?</li>
-          <li>Who here reminds you of someone you lost?</li>
-          <li>Whose secret do you know, or think you know?</li>
-          <li>Who don't you trust yet, and why are you wrong?</li>
+          <li>You don't trust me. What suspicious act did you witness me doing?</li>
+          <li>I had a moment of vulnerability with you on the road. What caused it, and why could you relate?</li>
+          <li>You've either woken up early with me or stayed up late with me. What have we learned about each other?</li>
+          <li>By coincidence, I have a friend or family member in common with you. Who is our mutual connection? How did I find this out?</li>
+          <li>You and I have butted heads. What was our argument about?</li>
+          <li>I'm fast friends with you. What pastime have we enjoyed together on our travels?</li>
+          <li>I have a controversial opinion about Taszo. Why do you agree with me? How have we communicated away from the others?</li>
+          <li>I'm fascinated by something about you or your life. What question of mine were you not ready to answer?</li>
+          <li>One night over dinner, I shared a cultural practice or family tradition. Did you already know the tradition? If not, what made you join in?</li>
+          <li>I needed a small favor along the way. Why did I approach you instead of another companion, and what did I ask you for?</li>
+          <li>I remind you of someone you lost. Who, and what do you do differently around me?</li>
         </ul>
       </li>
       <li data-n="14">As a group: what happened on the road this week that you still talk about?</li>
@@ -320,6 +347,47 @@ footer.sign {
     <ol class="qs">
       <li data-n="15">Think of one scene you hope we play, and one thing you'd hate to see.</li>
     </ol>
+  </section>
+
+  <section id="hooks">
+    <div class="sec-head"><span class="sphere dun" aria-hidden="true"></span><h2>Why You Walk with Taszo</h2></div>
+    <p class="note">Starting hooks from Stonewalkers. Each suggests the heroic paths it suits best. Take one, bend one, or ignore them all.</p>
+    <article class="hook">
+      <h3>Agent or Hunter</h3>
+      <p>Taszo mentioned his companions were killed by agents in green robes, their faces painted with strange glyphs. You can't ignore a mystery like this, so you agreed to help him.</p>
+      <p class="ask">Why do you take a personal interest in the mysterious circumstances of the Shin monks' assassination?</p>
+      <p class="goal"><strong>Suggested goal:</strong> Solve the mystery of who killed Taszo's companions and why.</p>
+    </article>
+    <article class="hook">
+      <h3>Envoy or Scholar</h3>
+      <p>You're interested in the people, cultures, or religions of the world. Perhaps knowledge beyond the ways of your home country will help you make a difference on the world stage. Given the insularity of the Shin, Taszo is one of the few Shin you've met, and you've agreed to aid him and explain local Alethi culture.</p>
+      <p class="ask">How will learning more about the world and its people help you? Why do the Shin matter particularly to you?</p>
+      <p class="goal"><strong>Suggested goal:</strong> Learn about the Shin Stone Shamans.</p>
+    </article>
+    <article class="hook">
+      <h3>Agent or Leader</h3>
+      <p>For the last year, you've been plagued by dreams of a dark storm, larger and more terrible than any highstorm. In the eye of the storm is a curly-haired Shin monk. A week ago, you met the monk from your dreams. He was looking for traveling companions, so you joined.</p>
+      <p class="ask">Why can't you ignore these strange dreams? Have you shared your dreams with anyone, or do you keep them a secret?</p>
+      <p class="goal"><strong>Suggested goal:</strong> Discover the meaning of your dreams.</p>
+    </article>
+    <article class="hook">
+      <h3>Leader or Warrior</h3>
+      <p>You traveled with the retinue of Stone Shamans who were sent to retrieve a sacred relic. While you aren't privy to the politics or plans of the shamans, you were there when the assassins attacked and Taszo saved you, risking his own life. Now the two of you seek to complete the original task.</p>
+      <p class="ask">What's your relationship to Taszo and your role in the retinue? Are you an acolyte from Shinovar or someone met during the journey east?</p>
+      <p class="goal"><strong>Suggested goal:</strong> Repay Taszo for saving your life.</p>
+    </article>
+    <article class="hook">
+      <h3>Scholar or Envoy</h3>
+      <p>Fascinated by myth and lore, your scholarly work concerns the Lost Radiants, Heralds, or Honorblades. You met Taszo while traveling to the Shattered Plains and are intrigued by his vast knowledge of secret histories.</p>
+      <p class="ask">What set you on this path of knowledge? What lively theological debate have you had with Taszo?</p>
+      <p class="goal"><strong>Suggested goal:</strong> Investigate the secrets of the Lost Radiants and the Heralds.</p>
+    </article>
+    <article class="hook">
+      <h3>Warrior or Hunter</h3>
+      <p>You met a strange injured Shin monk who was looking for the services of a guide and bodyguard to see him safely to the Shattered Plains. You agreed to help him.</p>
+      <p class="ask">Who were you before becoming a bodyguard? Why did you agree to travel with Taszo?</p>
+      <p class="goal"><strong>Suggested goal:</strong> Protect Taszo and help him complete his mission.</p>
+    </article>
   </section>
 
 </main>
