@@ -19,6 +19,11 @@ Pure static — Pages just serves the files as-is.
 - `stormstories/zero/` → `/stormstories/zero` — session zero primer for the Stonewalkers campaign.
 - Static. Wording source is `session-zero.md`, design spec is `DESIGN.md` (same folder).
 - `noindex`, and not linked from the landing page.
+- `stormstories/characterbuilder/` → `/stormstories/characterbuilder/` — Stormlight Character Atlas (talent trees + character-building reference) for the players. **Password-protected**: everything in the folder (`index.html`, `Stormlight-Character-Atlas.pdf`, `atlas.json`, `atlas.md`) goes through `functions/stormstories/characterbuilder/_middleware.js`, the admin Basic Auth pattern with its own secrets `STORMLIGHT_USER` / `STORMLIGHT_PASS` (so the admin password is never handed out). Responses carry `Cache-Control: private, no-store` and `X-Robots-Tag: noindex, nofollow`.
+  - The page is self-contained (data embedded in `<script id="data">`); `atlas.json` is the same data for reuse elsewhere, and the page never fetches it. Hash routes: `#agent`, `#windrunner`, `#singer`, `#create`, `#gear`, …
+  - Palette and display face follow `stormstories/zero` (dark-only); print falls back to the original light palette.
+  - Production: `npx wrangler pages secret put STORMLIGHT_USER --project-name ginogalotti` and the same for `STORMLIGHT_PASS`. Preview deployments read the *Preview* environment, so add the same two there too (dashboard → Pages → ginogalotti → Settings → Variables and Secrets → Preview). Local: add both to `.dev.vars` (wrangler ignores `--binding` when `.dev.vars` exists). Unset secrets lock the page.
+  - Tests: `npx playwright test tests/stormlight-atlas.spec.js`.
 
 ### Bridge Nine session notes
 - `stormstories/sessions/<slug>.md` → `/stormstories/<slug>`, rendered with `marked` by `functions/stormstories/[slug].js` (same look as `/stormstories/zero`; shared code in `functions/stormstories/_lib/sessions.js`). Other `/stormstories/*` paths fall through to static files.
