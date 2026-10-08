@@ -20,6 +20,13 @@ Pure static — Pages just serves the files as-is.
 - Static. Wording source is `session-zero.md`, design spec is `DESIGN.md` (same folder).
 - `noindex`, and not linked from the landing page.
 
+### Bridge Nine session notes
+- `stormstories/sessions/<slug>.md` → `/stormstories/<slug>`, rendered with `marked` by `functions/stormstories/[slug].js` (same look as `/stormstories/zero`; shared code in `functions/stormstories/_lib/sessions.js`). Other `/stormstories/*` paths fall through to static files.
+- `/bridge-nine` lists sessions newest first. Slugs must be contiguous: `session-zero`, `session-1`, `session-2`, … — the index stops at the first missing number.
+- Each file starts with `# Title`, optionally followed by an `*italic subtitle*` line. New session = drop in the next `.md` and push.
+- Public only. `*-internal.md` is gitignored; GM notes never go in this folder.
+- Tests: `npx playwright test tests/bridge-nine.spec.js`.
+
 ## Gym log (`/gymlog`)
 Private, mobile-first lifting log with **variation cycling**. Vanilla JS pages in `gymlog/`, JSON API in `functions/gymlog/`, tables prefixed `gym_` in the shared `DB` (D1 `ginogalotti-stories`). Everything under `/gymlog/*` (pages, assets and API) is behind the same Basic Auth as `/admin` (`functions/gymlog/_middleware.js` re-exports it; no extra secrets).
 
