@@ -6,8 +6,8 @@ Design direction for the Stonewalkers session zero page. Content lives in `sessi
 
 **Spheres in the dark.** On Roshar, light is money, and it comes from gemstones infused by the highstorm. The page reads like a quiet room lit by spheres.
 
-- Each section of the primer is keyed to one of the ten Essences, shown as its gemstone.
-- The section markers are spheres, not numbers.
+- The primer has six numbered parts. Parts 1 to 3 hold seven gem subsections, each keyed to one of the ten Essences, shown as its gemstone. Parts 4 to 6 are reference.
+- The subsection markers are spheres, not numbers.
 - The hero holds the seven spheres in a row as the table of contents. On load they are *dun* (unlit), then they infuse one by one. That is the page's single motion moment.
 
 ## Tokens
@@ -20,29 +20,31 @@ Design direction for the Stonewalkers session zero page. Content lives in `sessi
 | `--storm-deep` | `#121a23` | Hero band, contract panel |
 | `--stormlight` | `#e4eef4` | Body text: pale, slightly blue, like held Stormlight |
 | `--mist` | `#9fb0bf` | Secondary text, scale descriptions |
-| `--crem` | `#a88a5c` | Rules, scale track, question numbers: the mud that coats Roshar |
+| `--crem` | `#a88a5c` | Rules, scale track, numerals, labels: the mud that coats Roshar |
 
-### Gems (one per section)
+### Gems (one per section or order)
 
 The pairings are deliberate nods to each section's theme. The gem colours are reserved for spheres and their glow. Never use them for body text or backgrounds.
 
-| Section | Essence / Herald / Order | Gem | Hex | Why |
+| Gem subsection | Essence / Herald / Order | Gem | Hex | Why |
 |---|---|---|---|---|
-| I. The World | Palah / Pailiah / Truthwatchers | Emerald | `#3fbf87` | Knowledge, learning |
-| II. The Tone | Chach / Chana / Dustbringers | Ruby | `#ef4f5f` | Bravery, danger |
-| III. Who You Are | Kokh / Kalak / Willshapers | Amethyst | `#a77ee8` | Self-making, creation |
-| IV. The Cracks | Shash / Shalash / Lightweavers | Garnet | `#b4436a` | Painful truths, art from brokenness |
-| V. Someone Else | Vev / Vedel / Edgedancers | Diamond | `#dbeeff` | Care, remembering those overlooked |
-| VI. Each Other | Ishi / Ishar / Bondsmiths | Heliodor | `#e8c547` | Bonds, connection |
-| VII. Bring a Moment | Tanat / Talenel / Stonewards | Topaz | `#e39a3b` | Dependable. Also a nod to the campaign itself |
+| The World | Palah / Pailiah / Truthwatchers | Emerald | `#3fbf87` | Knowledge, learning |
+| The Tone | Chach / Chana / Dustbringers | Ruby | `#ef4f5f` | Bravery, danger |
+| Character Foundations | Kokh / Kalak / Willshapers | Amethyst | `#a77ee8` | Self-making, creation |
+| The Cracks | Shash / Shalash / Lightweavers | Garnet | `#b4436a` | Painful truths, art from brokenness |
+| Someone Else | Vev / Vedel / Edgedancers | Diamond | `#dbeeff` | Care, remembering those overlooked |
+| Each Other | Ishi / Ishar / Bondsmiths | Heliodor | `#e8c547` | Bonds, connection |
+| Bring a Moment | Tanat / Talenel / Stonewards | Topaz | `#e39a3b` | Dependable. Also a nod to the campaign itself |
 
-Ruby and garnet sit close together. Keep garnet pushed toward wine/pink so they stay distinct.
+Three more Essences exist only in the orders list: Windrunners (Jezrien) sapphire `#4f86e8`, Skybreakers (Nale) smokestone `#8f8a84`, Elsecallers (Battah) zircon `#57cfd6`.
+
+Ruby and garnet sit close together. Keep garnet pushed toward wine/pink so they stay distinct. Smokestone is lit (highlight and glow), so it must never read as the dun sphere.
 
 ### Type
 
 | Role | Face | Notes |
 |---|---|---|
-| Display (title, section heads, question numbers) | **Cormorant Unicase** 600 | Unicase reads as carved inscription or glyph-script without falling into "fantasy Cinzel". Use it only at display sizes. |
+| Display (title, part and subsection heads, part and Each Other numerals) | **Cormorant Unicase** 600 | Unicase reads as carved inscription or glyph-script without falling into "fantasy Cinzel". Use it only at display sizes. |
 | Body | **Alegreya** 400 / 400 italic / 700 | Calligraphic humanist serif; holds up on phones. Line-height 1.65. |
 
 - Scale: 1.250 (major third), with a 1.0625rem body.
@@ -58,8 +60,8 @@ dun:  same shape, filter: grayscale(.85) brightness(.45), no glow
 ```
 
 - Hero spheres: 30px.
-- Section-header spheres: 34px.
-- **Dun sphere** (`.sphere.dun`): the unlit state, permanently. Used only for the starting-hooks appendix, which is reference material from the adventure, not one of the seven question sections. It is not in the hero contents list; Q7 links to it.
+- Gem subsection spheres: 34px. Reference part spheres (dun): 28px. Orders list spheres: 16px with a smaller glow.
+- **Dun sphere** (`.sphere.dun`): the unlit state, permanently. Used for the three reference parts (4 to 6), in their headers and in the hero reference links. It marks material from the rules and the adventure, not one of the seven gem subsections. Part 4 is linked from the "On the Road" question.
 
 ## Layout
 
@@ -67,41 +69,57 @@ dun:  same shape, filter: grayscale(.85) brightness(.45), no glow
 ┌─────────────────────────────────┐
 │ HERO (storm-deep band)          │
 │  Before the First Storm         │  ← Unicase, left-aligned
-│  Session zero primer…           │
+│  Session Zero Primer for…       │
 │  intro paragraph                │
-│  ● ● ● ● ● ● ●                  │  ← sphere TOC, infuse on load
-│  World Tone You Cracks …        │
+│  ● ● ● ● ● ● ●                  │  ← sphere TOC (7 gems), infuse on load
+│  World Tone Foundations …       │
+│  ○ Why You Walk with Taszo      │  ← dun links to parts 4 to 6
+│  ○ Spren, Radiant Orders…       │
+│  ○ Scene Types…                 │
 ├─────────────────────────────────┤
-│ ●  The World                    │  ← sphere + h2, left-aligned
-│  1  How close to canon?         │  ← crem Unicase numerals, one continuous count 1–15
-│     ┃ 1 Canon is sacred…        │  ← scale: vertical track on mobile,
-│     ┃ 3 Canon is the spine…     │     horizontal 3-column ≥ 640px
-│     ┃ 5 Our Roshar…             │
-│  2  What do you love…           │
+│ 1  World & Tone                 │  ← part h2: crem Unicase numeral + title
+│ ●  The World: How Close…        │  ← gem sphere + h3
+│    ┃ 1 Canon is Sacred…         │  ← scale: vertical on mobile,
+│    ┃ 3 Canon is the Spine…      │     horizontal 3-column ≥ 640px
+│    ┃ 5 Our Roshar…              │
+│    Question: What do you love…  │  ← bold label, no numeral
 ├─────────────────────────────────┤
+│ 2  Who You Are & The Cracks     │
 │ ●  The Cracks                   │
-│    "On Roshar, power enters…"   │  ← epigraph, italic, mist; echoes
-│  9 …                            │     the books' chapter epigraphs
-│  ┃ The table contract…          │  ← garnet left rule, storm-deep panel
+│    "On Roshar, power enters…"   │  ← epigraph, italic, mist
+│  ┃ The Table Contract: …        │  ← garnet left rule, storm-deep panel
 ├─────────────────────────────────┤
-│ ○  Why You Walk with Taszo      │  ← dun sphere; appendix after section VII
-│  Agent or Hunter                │  ← Unicase h3
-│  hook paragraph                 │
-│  italic mist questions          │
-│  Suggested goal: …              │  ← label in crem bold
-│  ─────────                      │  ← faint crem rule between hooks
+│ 3  Connections & Group Prompts  │
+│ ●  Each Other                   │
+│  1 …  12 As a group: …          │  ← the only numbered list, crem numerals
+├─────────────────────────────────┤
+│ ○ 4 Why You Walk with Taszo     │  ← dun sphere + numeral
+│    The Assassin's Glyphs        │  ← Unicase h3
+│    Agent or Hunter              │  ← mist, below the name
+│    hook paragraph               │
+│    italic mist Question: …      │
+│    Suggested Goal: …            │  ← label in crem bold
+├─────────────────────────────────┤
+│ ○ 5 Reference Guide: Spren…     │
+│    Nahel Bond paragraph + items │
+│  ● Windrunner  Adhesion & …     │  ← stacked list, 16px sphere in the
+│    Protection, defending…       │     order's gem; Unicase name, crem surges
+├─────────────────────────────────┤
+│ ○ 6 Reference Guide: Scene Types│
+│    1. Combats / 2. … / 3. …     │
+│    The Plot Die: …              │
 └─────────────────────────────────┘
 ```
 
 - Everything is left-aligned in a single column with a max width of 40rem (~65ch). The page is read on phones first.
-- Sections are separated by generous space plus one thin crem rule. Avoid cards and drop shadows.
-- The book presents the hooks as a 4-column table. Don't reproduce it as a table: it's unreadable on phones. Each hook is a stacked block.
-- Question numbers count continuously 1–15 across sections, because players will refer to them at the table ("about 12…").
+- Parts are separated by generous space plus one thin crem rule. Gem subsections within a part get a fainter rule. Avoid cards and drop shadows.
+- Questions are labelled items (**Purpose:**, **Goals:**…), not numbered. Only Each Other is numbered, 1 to 12.
+- The book presents the hooks and the orders as multi-column tables. Don't reproduce them as tables: they are unreadable on phones. Hooks are stacked blocks, and orders are a stacked list on all widths with the column names kept as visually hidden text.
 
 ## Principles
 
 1. **Light is the only ornament.** Spheres are the one decorative device. No glyph watermarks, parchment textures or gradient washes.
-2. **Gems mean something.** Every colour on the page maps to a section, and a section's sphere colour shows up nowhere else.
+2. **Gems mean something.** Every gem maps to one Essence/Order, and appears only for that section and that order in the reference list.
 3. **One motion moment.** Hero spheres infuse in sequence on load, about 120ms apart. Under `prefers-reduced-motion` they render lit immediately. Nothing else animates.
 4. **Readable at the table.** Phone-first, ≥ 4.5:1 contrast for all text, visible focus rings in `--stormlight`.
 

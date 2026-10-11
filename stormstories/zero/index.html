@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Before the First Storm</title>
-<meta name="description" content="Session zero primer for the Stonewalkers Stormlight campaign: fifteen questions to think about before the first session.">
+<meta name="description" content="Session zero primer for the Stonewalkers Stormlight campaign: questions, starting hooks and a quick guide to Radiants and scenes.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#121a23">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3CradialGradient id='g' cx='35%25' cy='30%25' r='75%25'%3E%3Cstop offset='0' stop-color='%23fff'/%3E%3Cstop offset='.08' stop-color='%23fff'/%3E%3Cstop offset='.38' stop-color='%23e39a3b'/%3E%3Cstop offset='1' stop-color='%2350320f'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='15' fill='url(%23g)'/%3E%3C/svg%3E">
@@ -40,6 +40,9 @@
   --diamond: #dbeeff;
   --heliodor: #e8c547;
   --topaz: #e39a3b;
+  --sapphire: #4f86e8;
+  --smokestone: #8f8a84;
+  --zircon: #57cfd6;
 
   --display: "Cormorant Unicase", "Cormorant Garamond", Georgia, serif;
   --body: "Alegreya", Georgia, serif;
@@ -65,6 +68,11 @@ a { color: inherit; }
 
 .wrap { max-width: var(--measure); margin: 0 auto; padding: 0 1rem; }
 
+.sr {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
 /* ---------- Hero ---------- */
 .hero {
   background: var(--storm-deep);
@@ -85,6 +93,7 @@ a { color: inherit; }
   font-size: 1.25rem;
   margin: 0 0 1.5rem;
 }
+.hero .sub em { font-style: normal; }
 .hero .intro { margin: 0 0 2.5rem; max-width: 34rem; }
 
 /* ---------- Spheres ---------- */
@@ -102,13 +111,23 @@ a { color: inherit; }
   box-shadow: 0 0 18px color-mix(in srgb, var(--gem) 55%, transparent),
               inset 0 0 0 1px color-mix(in srgb, var(--gem) 60%, #fff 10%);
 }
-.g-emerald  { --gem: var(--emerald); }
-.g-ruby     { --gem: var(--ruby); }
-.g-amethyst { --gem: var(--amethyst); }
-.g-garnet   { --gem: var(--garnet); }
-.g-diamond  { --gem: var(--diamond); }
-.g-heliodor { --gem: var(--heliodor); }
-.g-topaz    { --gem: var(--topaz); }
+.g-emerald    { --gem: var(--emerald); }
+.g-ruby       { --gem: var(--ruby); }
+.g-amethyst   { --gem: var(--amethyst); }
+.g-garnet     { --gem: var(--garnet); }
+.g-diamond    { --gem: var(--diamond); }
+.g-heliodor   { --gem: var(--heliodor); }
+.g-topaz      { --gem: var(--topaz); }
+.g-sapphire   { --gem: var(--sapphire); }
+.g-smokestone { --gem: var(--smokestone); }
+.g-zircon     { --gem: var(--zircon); }
+
+/* Dun sphere: unlit, permanently. Reference material, not a question section */
+.sphere.dun {
+  --gem: var(--mist);
+  filter: grayscale(.85) brightness(.45);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--mist) 40%, transparent);
+}
 
 /* Sphere table of contents: the one motion moment */
 .toc { list-style: none; margin: 0; padding: 0;
@@ -118,7 +137,7 @@ a { color: inherit; }
   display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
   text-decoration: none; color: var(--mist); font-size: 0.875rem; line-height: 1.25; text-align: center;
 }
-.toc a:hover { color: var(--stormlight); }
+.toc a:hover, .refs a:hover { color: var(--stormlight); }
 
 .toc .sphere { animation: infuse 900ms ease-out both; animation-delay: calc(300ms + var(--i) * 120ms); }
 @keyframes infuse {
@@ -127,33 +146,61 @@ a { color: inherit; }
 }
 @media (prefers-reduced-motion: reduce) { .toc .sphere { animation: none; } }
 
-/* ---------- Sections ---------- */
+/* Reference links under the TOC */
+.refs { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: 0.6rem; }
+.refs a {
+  display: flex; align-items: center; gap: 0.7rem;
+  color: var(--mist); text-decoration: none; font-size: 0.975rem; line-height: 1.3;
+}
+.refs .sphere { --size: 14px; }
+
+/* ---------- Parts ---------- */
 main { padding-bottom: 4rem; }
-section {
+.part {
   padding: 3.5rem 0 0.5rem;
   scroll-margin-top: 1rem;
 }
-section + section { border-top: 1px solid color-mix(in srgb, var(--crem) 30%, transparent); margin-top: 2rem; }
+.part + .part { border-top: 1px solid color-mix(in srgb, var(--crem) 30%, transparent); margin-top: 2.5rem; }
+
+.part > h2 {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(1.9rem, 6vw, 2.5rem); line-height: 1.1; margin: 0 0 2rem;
+}
+.part > h2 .num { color: var(--crem); font-size: 1.15em; }
+.part > h2 .sphere { --size: 28px; margin-top: 0.2em; }
+
+/* ---------- Gem subsections ---------- */
+.gem { scroll-margin-top: 1rem; }
+.gem + .gem { margin-top: 2.75rem; padding-top: 2.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--crem) 20%, transparent); }
 
 .sec-head { display: flex; align-items: center; gap: 0.9rem; margin: 0 0 1.25rem; }
 .sec-head .sphere { --size: 34px; }
-.sec-head h2 {
+.sec-head h3 {
   font-family: var(--display); font-weight: 600;
-  font-size: clamp(1.75rem, 5vw, 2.25rem); line-height: 1.1; margin: 0;
+  font-size: clamp(1.45rem, 4.6vw, 1.85rem); line-height: 1.15; margin: 0;
 }
-.note { color: var(--mist); font-style: italic; margin: -0.5rem 0 1.25rem; }
+.note { color: var(--mist); font-style: italic; margin: 0 0 1.25rem; }
 
 .epigraph {
   margin: 0 0 1.75rem; padding: 0;
   font-style: italic; color: var(--mist); font-size: 1.15rem;
 }
 
-/* Questions: one continuous count, 1 to 15 */
+/* Labelled items: no numerals, no markers */
+ul.items { list-style: none; margin: 0; padding: 0; }
+ul.items > li { margin: 0 0 1.1rem; }
+ul.items strong { font-weight: 700; }
+ul.items a, .hook a { text-decoration-color: var(--crem); text-underline-offset: 3px; }
+.scale + ul.items { margin-top: 1.75rem; }
+
+/* Each Other: numbered 1 to 12 */
 ol.qs { list-style: none; margin: 0; padding: 0; }
 ol.qs > li {
   position: relative;
   padding-left: 2.6rem;
-  margin: 0 0 1.5rem;
+  margin: 0 0 1.25rem;
 }
 ol.qs > li::before {
   content: attr(data-n);
@@ -163,11 +210,6 @@ ol.qs > li::before {
   width: 2rem; text-align: right;
 }
 ol.qs strong { font-weight: 700; }
-ol.qs a { text-decoration-color: var(--crem); text-underline-offset: 3px; }
-
-ul.prompts { margin: 0.6rem 0 0; padding-left: 1.1rem; }
-ul.prompts li { margin: 0.25rem 0; }
-ul.prompts li::marker { color: var(--crem); }
 
 /* ---------- Scale ---------- */
 .scale { list-style: none; margin: 1rem 0 0; padding: 0 0 0 1.25rem; position: relative; }
@@ -183,7 +225,7 @@ ul.prompts li::marker { color: var(--crem); }
 }
 .scale .stop { display: block; font-weight: 700; }
 .scale .desc { display: block; color: var(--mist); font-size: 0.975rem; line-height: 1.5; }
-.scale .val { font-family: var(--display); color: var(--crem); margin-right: 0.35rem; }
+.scale .val { font-family: var(--display); color: var(--crem); font-size: 1.25em; margin-right: 0.15rem; }
 
 @media (min-width: 640px) {
   .scale {
@@ -210,24 +252,43 @@ ul.prompts li::marker { color: var(--crem); }
 .contract p { margin: 0; }
 .contract strong { font-weight: 700; }
 
-/* ---------- Dun sphere: reference material, not a question section ---------- */
-.sphere.dun {
-  --gem: var(--mist);
-  filter: grayscale(.85) brightness(.45);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--mist) 40%, transparent);
+/* ---------- Reference: hooks, subheads ---------- */
+.ref-h {
+  font-family: var(--display); font-weight: 600;
+  font-size: 1.4rem; line-height: 1.2; margin: 2.25rem 0 0.6rem; color: var(--stormlight);
 }
+.part > .ref-h:first-of-type { margin-top: 0; }
+.part p { margin: 0 0 0.9rem; }
+.part > .note { margin-bottom: 1.5rem; }
 
-/* ---------- Starting hooks ---------- */
 .hook { padding: 1.5rem 0; border-top: 1px solid color-mix(in srgb, var(--crem) 20%, transparent); }
 .hook:first-of-type { border-top: 0; padding-top: 0.5rem; }
 .hook h3 {
   font-family: var(--display); font-weight: 600;
-  font-size: 1.4rem; line-height: 1.2; margin: 0 0 0.5rem; color: var(--stormlight);
+  font-size: 1.4rem; line-height: 1.2; margin: 0 0 0.15rem; color: var(--stormlight);
 }
+.hook .paths { color: var(--mist); font-size: 0.975rem; margin: 0 0 0.6rem; }
 .hook p { margin: 0 0 0.6rem; }
+.hook .paths { margin-bottom: 0.6rem; }
 .hook .ask { font-style: italic; color: var(--mist); }
 .hook .goal { margin: 0; }
 .hook .goal strong { color: var(--crem); font-weight: 700; }
+
+/* ---------- Radiant orders ---------- */
+.orders { list-style: none; margin: 1.5rem 0 0; padding: 0; }
+.orders li {
+  display: grid; grid-template-columns: 16px minmax(0, 1fr); column-gap: 0.85rem;
+  padding: 0.9rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--crem) 20%, transparent);
+}
+.orders li:first-child { border-top: 0; padding-top: 0; }
+.orders .sphere { --size: 16px; margin-top: 0.4rem;
+  box-shadow: 0 0 7px color-mix(in srgb, var(--gem) 50%, transparent),
+              inset 0 0 0 1px color-mix(in srgb, var(--gem) 60%, #fff 10%); }
+.orders .head { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.75rem; }
+.orders .name { font-family: var(--display); font-weight: 600; font-size: 1.35rem; line-height: 1.3; }
+.orders .surges { color: var(--crem); font-size: 0.925rem; }
+.orders .phil { display: block; }
 
 /* ---------- Footer ---------- */
 footer.sign {
@@ -243,151 +304,238 @@ footer.sign {
 <header class="hero">
   <div class="wrap">
     <h1>Before the First Storm</h1>
-    <p class="sub">Session zero primer for Stonewalkers</p>
-    <p class="intro">Read this, think about it, and bring your answers to session zero. Half-answers are fine. You can't get any of this wrong.</p>
+    <p class="sub">Session Zero Primer for <em>Stonewalkers</em></p>
+    <p class="intro">Read this, think about it, and bring your answers to Session Zero. Half-answers are fine. You can't get any of this wrong.</p>
 
     <nav aria-label="Sections">
       <ol class="toc">
         <li><a href="#world"><span class="sphere g-emerald" aria-hidden="true" style="--i:0"></span>The World</a></li>
         <li><a href="#tone"><span class="sphere g-ruby" aria-hidden="true" style="--i:1"></span>The Tone</a></li>
-        <li><a href="#you"><span class="sphere g-amethyst" aria-hidden="true" style="--i:2"></span>Who You Are</a></li>
+        <li><a href="#you"><span class="sphere g-amethyst" aria-hidden="true" style="--i:2"></span>Character Foundations</a></li>
         <li><a href="#cracks"><span class="sphere g-garnet" aria-hidden="true" style="--i:3"></span>The Cracks</a></li>
         <li><a href="#someone"><span class="sphere g-diamond" aria-hidden="true" style="--i:4"></span>Someone Else</a></li>
         <li><a href="#each-other"><span class="sphere g-heliodor" aria-hidden="true" style="--i:5"></span>Each Other</a></li>
         <li><a href="#moment"><span class="sphere g-topaz" aria-hidden="true" style="--i:6"></span>Bring a Moment</a></li>
       </ol>
     </nav>
+
+    <nav aria-label="Reference">
+      <ul class="refs">
+        <li><a href="#hooks"><span class="sphere dun" aria-hidden="true"></span>Why You Walk with Taszo</a></li>
+        <li><a href="#orders"><span class="sphere dun" aria-hidden="true"></span>Spren, Radiant Orders &amp; The Nahel Bond</a></li>
+        <li><a href="#scenes"><span class="sphere dun" aria-hidden="true"></span>Scene Types &amp; Game Mechanics</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
 
 <main class="wrap">
 
-  <section id="world">
-    <div class="sec-head"><span class="sphere g-emerald" aria-hidden="true"></span><h2>The World</h2></div>
-    <ol class="qs">
-      <li data-n="1"><strong>How close to canon?</strong>
-        <ul class="scale">
-          <li><span class="stop"><span class="val">1</span>Canon is sacred</span><span class="desc">The books happen exactly as written, and we stay at the edges.</span></li>
-          <li><span class="stop"><span class="val">3</span>Canon is the spine</span><span class="desc">Big events hold, but the details can bend around us.</span></li>
-          <li><span class="stop"><span class="val">5</span>Our Roshar</span><span class="desc">Canon is a backdrop, and we may change it.</span></li>
-        </ul>
-      </li>
-      <li data-n="2">What do you love most about Roshar? What should be in every session?</li>
-    </ol>
+  <!-- 1 -->
+  <section class="part" id="world-tone">
+    <h2><span class="num">1</span> World &amp; Tone</h2>
+
+    <section class="gem" id="world">
+      <div class="sec-head"><span class="sphere g-emerald" aria-hidden="true"></span><h3>The World: How Close to Canon?</h3></div>
+      <ul class="scale">
+        <li><span class="stop"><span class="val">1</span> Canon is Sacred</span><span class="desc">The books happen exactly as written, and we stay at the edges.</span></li>
+        <li><span class="stop"><span class="val">3</span> Canon is the Spine</span><span class="desc">Big events hold, but the details can bend around us.</span></li>
+        <li><span class="stop"><span class="val">5</span> Our Roshar</span><span class="desc">Canon is a backdrop, and we may change it.</span></li>
+      </ul>
+      <ul class="items">
+        <li><strong>Question:</strong> What do you love most about Roshar? What should be in every session?</li>
+      </ul>
+    </section>
+
+    <section class="gem" id="tone">
+      <div class="sec-head"><span class="sphere g-ruby" aria-hidden="true"></span><h3>The Tone: Lethal or Heroic?</h3></div>
+      <ul class="scale">
+        <li><span class="stop">Lethal</span><span class="desc">Any fight can kill you, and injuries follow you for weeks.</span></li>
+        <li><span class="stop">Heroic</span><span class="desc">You will bleed, fail, and lose, but death comes only when it matters and the story has earned it.</span></li>
+      </ul>
+      <ul class="items">
+        <li><strong>Questions:</strong> What's off the table entirely? What should happen off-screen?</li>
+      </ul>
+    </section>
   </section>
 
-  <section id="tone">
-    <div class="sec-head"><span class="sphere g-ruby" aria-hidden="true"></span><h2>The Tone</h2></div>
-    <ol class="qs">
-      <li data-n="3"><strong>Lethal or heroic?</strong>
-        <ul class="scale">
-          <li><span class="stop">Lethal</span><span class="desc">Any fight can kill you, and injuries follow you for weeks.</span></li>
-          <li><span class="stop">Heroic</span><span class="desc">You will bleed, fail and lose, but death comes only when it matters and the story has earned it.</span></li>
-        </ul>
-      </li>
-      <li data-n="4">What's off the table entirely? What should happen off-screen?</li>
-    </ol>
+  <!-- 2 -->
+  <section class="part" id="you-cracks">
+    <h2><span class="num">2</span> Who You Are &amp; The Cracks</h2>
+
+    <section class="gem" id="you">
+      <div class="sec-head"><span class="sphere g-amethyst" aria-hidden="true"></span><h3>Character Foundations</h3></div>
+      <ul class="items">
+        <li><strong>Purpose:</strong> What drives your character? Why do they get up in the morning?</li>
+        <li><strong>Goals:</strong> Name one goal you could achieve soon, one that might take the whole campaign, and one dream your character would never say out loud.</li>
+        <li><strong>On the Road:</strong> We open in the Unclaimed Hills. For about a week, you've been traveling toward the Shattered Plains warcamps with each other and with Taszo, an injured Shin monk. Why are you with him, and what are you leaving behind? <em>(See the <a href="#hooks">starting hooks in Section 4</a>.)</em></li>
+        <li><strong>Beliefs:</strong> In this era, most people believe the Knights Radiant betrayed humanity and the Heralds are myth. What does your character believe, and who taught them that?</li>
+      </ul>
+    </section>
+
+    <section class="gem" id="cracks">
+      <div class="sec-head"><span class="sphere g-garnet" aria-hidden="true"></span><h3>The Cracks</h3></div>
+      <blockquote class="epigraph">On Roshar, power enters through the broken places.</blockquote>
+      <ul class="items">
+        <li><strong>Obstacle &amp; Flaws:</strong> Name two or three real flaws. They should be things that cost your character, not cute quirks. Share them with the group, or only with the GM.</li>
+        <li><strong>Painful Truth:</strong> What is a painful truth your character has never said out loud?</li>
+        <li><strong>Sacrifice:</strong> What would your character trade a piece of themselves for?</li>
+      </ul>
+      <aside class="contract">
+        <p><strong>The Table Contract:</strong> Flaws create friction, never an exit. Playing your cracks will be rewarded—sometimes in small ways, sometimes in ways that change who you are. Finding the reason your character stays with the group is always your job, not the GM's.</p>
+      </aside>
+    </section>
   </section>
 
-  <section id="you">
-    <div class="sec-head"><span class="sphere g-amethyst" aria-hidden="true"></span><h2>Who You Are</h2></div>
-    <ol class="qs">
-      <li data-n="5"><strong>Purpose:</strong> What drives your character? Why do they get up in the morning?</li>
-      <li data-n="6"><strong>Goals:</strong> Name one you could achieve soon, one that might take the whole campaign, and one dream your character would never say out loud.</li>
-      <li data-n="7"><strong>On the road:</strong> We open in the Unclaimed Hills. For about a week you've been travelling toward the Shattered Plains warcamps with each other and with Taszo, an injured Shin monk. Why are you with him, and what are you leaving behind? The <a href="#hooks">starting hooks</a> at the end of this page can help.</li>
-      <li data-n="8">In this era, most people believe the Knights Radiant betrayed humanity and the Heralds are myth. What does your character believe, and who taught them that?</li>
-    </ol>
+  <!-- 3 -->
+  <section class="part" id="connections">
+    <h2><span class="num">3</span> Connections &amp; Group Prompts</h2>
+
+    <section class="gem" id="someone">
+      <div class="sec-head"><span class="sphere g-diamond" aria-hidden="true"></span><h3>Someone Else (Secondary Character)</h3></div>
+      <ul class="items">
+        <li><strong>A Second Life:</strong> Sketch someone tied to your character or the group. Give their name, how they know you, what they want, and where they are right now. They'll grow alongside the story. They may cross your path as someone you meet, or step in as your character if Roshar takes the first one. Keep it light now; we'll flesh them out if they're needed.</li>
+      </ul>
+    </section>
+
+    <section class="gem" id="each-other">
+      <div class="sec-head"><span class="sphere g-heliodor" aria-hidden="true"></span><h3>Each Other</h3></div>
+      <p class="note">Answered together at the table. Each player picks at least one question and asks it of another player:</p>
+      <ol class="qs">
+        <li data-n="1">You don't trust me. What suspicious act did you witness me doing?</li>
+        <li data-n="2">I had a moment of vulnerability with you on the road. What caused it, and why could you relate?</li>
+        <li data-n="3">You've either woken up early with me or stayed up late with me. What have we learned about each other?</li>
+        <li data-n="4">By coincidence, I have a friend or family member in common with you. Who is our mutual connection? How did I find this out?</li>
+        <li data-n="5">You and I have butted heads. What was our argument about?</li>
+        <li data-n="6">I'm fast friends with you. What pastime have we enjoyed together on our travels?</li>
+        <li data-n="7">I have a controversial opinion about Taszo. Why do you agree with me? How have we communicated away from the others?</li>
+        <li data-n="8">I'm fascinated by something about you or your life. What question of mine were you not ready to answer?</li>
+        <li data-n="9">One night over dinner, I shared a cultural practice or family tradition. Did you already know the tradition? If not, what made you join in?</li>
+        <li data-n="10">I needed a small favor along the way. Why did I approach you instead of another companion, and what did I ask you for?</li>
+        <li data-n="11">I remind you of someone you lost. Who, and what do you do differently around me?</li>
+        <li data-n="12"><strong>As a group:</strong> What happened on the road this week that you still talk about?</li>
+      </ol>
+    </section>
+
+    <section class="gem" id="moment">
+      <div class="sec-head"><span class="sphere g-topaz" aria-hidden="true"></span><h3>Bring a Moment</h3></div>
+      <ul class="items">
+        <li>Think of one scene you hope we play, and one thing you'd hate to see.</li>
+      </ul>
+    </section>
   </section>
 
-  <section id="cracks">
-    <div class="sec-head"><span class="sphere g-garnet" aria-hidden="true"></span><h2>The Cracks</h2></div>
-    <blockquote class="epigraph">On Roshar, power enters through the broken places.</blockquote>
-    <ol class="qs">
-      <li data-n="9"><strong>Obstacle and flaws:</strong> Name two or three real flaws. They should be things that cost your character, not cute quirks. Share them with the group, or only with me.</li>
-      <li data-n="10">What is a painful truth your character has never said out loud?</li>
-      <li data-n="11">What would your character trade a piece of themselves for?</li>
-    </ol>
-    <aside class="contract">
-      <p><strong>The table contract:</strong> Flaws create friction, never an exit. Playing your cracks will be rewarded, sometimes in small ways, sometimes in ways that change who you are. Finding the reason your character stays with the group is always your job, not mine.</p>
-    </aside>
-  </section>
-
-  <section id="someone">
-    <div class="sec-head"><span class="sphere g-diamond" aria-hidden="true"></span><h2>Someone Else</h2></div>
-    <ol class="qs">
-      <li data-n="12"><strong>A second life:</strong> Sketch someone tied to your character or the group. Give their name, how they know you, what they want, and where they are right now. They'll grow alongside the story. They may cross your path as someone you meet, or step in as your character if Roshar takes the first one. Keep it light now; we'll flesh them out if they're needed.</li>
-    </ol>
-  </section>
-
-  <section id="each-other">
-    <div class="sec-head"><span class="sphere g-heliodor" aria-hidden="true"></span><h2>Each Other</h2></div>
-    <p class="note">Answered together at the table.</p>
-    <ol class="qs">
-      <li data-n="13">Each player picks at least one of these and asks it of another player, who answers. Explore as many as you like, or invent your own.
-        <ul class="prompts">
-          <li>You don't trust me. What suspicious act did you witness me doing?</li>
-          <li>I had a moment of vulnerability with you on the road. What caused it, and why could you relate?</li>
-          <li>You've either woken up early with me or stayed up late with me. What have we learned about each other?</li>
-          <li>By coincidence, I have a friend or family member in common with you. Who is our mutual connection? How did I find this out?</li>
-          <li>You and I have butted heads. What was our argument about?</li>
-          <li>I'm fast friends with you. What pastime have we enjoyed together on our travels?</li>
-          <li>I have a controversial opinion about Taszo. Why do you agree with me? How have we communicated away from the others?</li>
-          <li>I'm fascinated by something about you or your life. What question of mine were you not ready to answer?</li>
-          <li>One night over dinner, I shared a cultural practice or family tradition. Did you already know the tradition? If not, what made you join in?</li>
-          <li>I needed a small favor along the way. Why did I approach you instead of another companion, and what did I ask you for?</li>
-          <li>I remind you of someone you lost. Who, and what do you do differently around me?</li>
-        </ul>
-      </li>
-      <li data-n="14">As a group: what happened on the road this week that you still talk about?</li>
-    </ol>
-  </section>
-
-  <section id="moment">
-    <div class="sec-head"><span class="sphere g-topaz" aria-hidden="true"></span><h2>Bring a Moment</h2></div>
-    <ol class="qs">
-      <li data-n="15">Think of one scene you hope we play, and one thing you'd hate to see.</li>
-    </ol>
-  </section>
-
-  <section id="hooks">
-    <div class="sec-head"><span class="sphere dun" aria-hidden="true"></span><h2>Why You Walk with Taszo</h2></div>
+  <!-- 4 -->
+  <section class="part" id="hooks">
+    <h2><span class="sphere dun" aria-hidden="true"></span><span class="num">4</span> Why You Walk with Taszo (Starting Hooks)</h2>
     <p class="note">Starting hooks from Stonewalkers. Each suggests the heroic paths it suits best. Take one, bend one, or ignore them all.</p>
+
     <article class="hook">
-      <h3>Agent or Hunter</h3>
+      <h3>The Assassin's Glyphs</h3>
+      <p class="paths">Agent or Hunter</p>
       <p>Taszo mentioned his companions were killed by agents in green robes, their faces painted with strange glyphs. You can't ignore a mystery like this, so you agreed to help him.</p>
-      <p class="ask">Why do you take a personal interest in the mysterious circumstances of the Shin monks' assassination?</p>
-      <p class="goal"><strong>Suggested goal:</strong> Solve the mystery of who killed Taszo's companions and why.</p>
+      <p class="ask"><em>Question:</em> Why do you take a personal interest in the Shin monks' assassination?</p>
+      <p class="goal"><strong>Suggested Goal:</strong> Solve the mystery of who killed Taszo's companions and why.</p>
     </article>
     <article class="hook">
-      <h3>Envoy or Scholar</h3>
-      <p>You're interested in the people, cultures, or religions of the world. Perhaps knowledge beyond the ways of your home country will help you make a difference on the world stage. Given the insularity of the Shin, Taszo is one of the few Shin you've met, and you've agreed to aid him and explain local Alethi culture.</p>
-      <p class="ask">How will learning more about the world and its people help you? Why do the Shin matter particularly to you?</p>
-      <p class="goal"><strong>Suggested goal:</strong> Learn about the Shin Stone Shamans.</p>
+      <h3>Cultural Guide</h3>
+      <p class="paths">Envoy or Scholar</p>
+      <p>You're interested in the people, cultures, or religions of the world. Given the insularity of the Shin, Taszo is one of the few Shin you've met, and you've agreed to aid him and explain local Alethi culture.</p>
+      <p class="ask"><em>Question:</em> How will learning more about the world help you? Why do the Shin matter particularly to you?</p>
+      <p class="goal"><strong>Suggested Goal:</strong> Learn about the Shin Stone Shamans.</p>
     </article>
     <article class="hook">
-      <h3>Agent or Leader</h3>
-      <p>For the last year, you've been plagued by dreams of a dark storm, larger and more terrible than any highstorm. In the eye of the storm is a curly-haired Shin monk. A week ago, you met the monk from your dreams. He was looking for traveling companions, so you joined.</p>
-      <p class="ask">Why can't you ignore these strange dreams? Have you shared your dreams with anyone, or do you keep them a secret?</p>
-      <p class="goal"><strong>Suggested goal:</strong> Discover the meaning of your dreams.</p>
+      <h3>Dreams of the Storm</h3>
+      <p class="paths">Agent or Leader</p>
+      <p>For the last year, you've been plagued by dreams of a dark storm, larger and more terrible than any highstorm. In the eye of the storm is a curly-haired Shin monk. A week ago, you met the monk from your dreams.</p>
+      <p class="ask"><em>Question:</em> Why can't you ignore these strange dreams? Have you shared them with anyone?</p>
+      <p class="goal"><strong>Suggested Goal:</strong> Discover the meaning of your dreams.</p>
     </article>
     <article class="hook">
-      <h3>Leader or Warrior</h3>
-      <p>You traveled with the retinue of Stone Shamans who were sent to retrieve a sacred relic. While you aren't privy to the politics or plans of the shamans, you were there when the assassins attacked and Taszo saved you, risking his own life. Now the two of you seek to complete the original task.</p>
-      <p class="ask">What's your relationship to Taszo and your role in the retinue? Are you an acolyte from Shinovar or someone met during the journey east?</p>
-      <p class="goal"><strong>Suggested goal:</strong> Repay Taszo for saving your life.</p>
+      <h3>Sacred Relic Guard</h3>
+      <p class="paths">Leader or Warrior</p>
+      <p>You traveled with the retinue of Stone Shamans sent to retrieve a sacred relic. You were there when the assassins attacked, and Taszo saved you, risking his own life. Now the two of you seek to complete the original task.</p>
+      <p class="ask"><em>Question:</em> What's your relationship to Taszo and your role in the retinue?</p>
+      <p class="goal"><strong>Suggested Goal:</strong> Repay Taszo for saving your life.</p>
     </article>
     <article class="hook">
-      <h3>Scholar or Envoy</h3>
+      <h3>Secrets of the Lost Radiants</h3>
+      <p class="paths">Scholar or Envoy</p>
       <p>Fascinated by myth and lore, your scholarly work concerns the Lost Radiants, Heralds, or Honorblades. You met Taszo while traveling to the Shattered Plains and are intrigued by his vast knowledge of secret histories.</p>
-      <p class="ask">What set you on this path of knowledge? What lively theological debate have you had with Taszo?</p>
-      <p class="goal"><strong>Suggested goal:</strong> Investigate the secrets of the Lost Radiants and the Heralds.</p>
+      <p class="ask"><em>Question:</em> What set you on this path of knowledge? What lively debate have you had with Taszo?</p>
+      <p class="goal"><strong>Suggested Goal:</strong> Investigate the secrets of the Lost Radiants and Heralds.</p>
     </article>
     <article class="hook">
-      <h3>Warrior or Hunter</h3>
-      <p>You met a strange injured Shin monk who was looking for the services of a guide and bodyguard to see him safely to the Shattered Plains. You agreed to help him.</p>
-      <p class="ask">Who were you before becoming a bodyguard? Why did you agree to travel with Taszo?</p>
-      <p class="goal"><strong>Suggested goal:</strong> Protect Taszo and help him complete his mission.</p>
+      <h3>Hired Bodyguard</h3>
+      <p class="paths">Warrior or Hunter</p>
+      <p>You met a strange injured Shin monk who was looking for a guide and bodyguard to see him safely to the Shattered Plains. You agreed to help him.</p>
+      <p class="ask"><em>Question:</em> Who were you before becoming a bodyguard? Why did you agree to travel with Taszo?</p>
+      <p class="goal"><strong>Suggested Goal:</strong> Protect Taszo and help him complete his mission.</p>
     </article>
+  </section>
+
+  <!-- 5 -->
+  <section class="part" id="orders">
+    <h2><span class="sphere dun" aria-hidden="true"></span><span class="num">5</span> Reference Guide: Spren, Radiant Orders &amp; The Nahel Bond</h2>
+
+    <h3 class="ref-h">Understanding the Nahel Bond</h3>
+    <p>In the Cosmere RPG, becoming a Knight Radiant isn't just leveling up; it is a spiritual commitment to an Ideal and a growing bond with a sapient spren.</p>
+    <ul class="items">
+      <li><strong>Attracting a Spren:</strong> Spren are drawn to people who embody their specific philosophy or exhibit behavior aligned with their order. You don't start with a full bond—you begin by attracting their attention.</li>
+      <li><strong>The "Crack":</strong> Radiant spren are attracted to individuals with "cracks" in their spirit web—trauma, deep regrets, or personal struggles—into which Investiture can fit.</li>
+      <li><strong>Swearing Ideals:</strong> Radiants progress through five Ideals. Each sworn Ideal grants access to new powers, unlocks surge talents, and provides a temporary burst of power called the <strong>Empowered</strong> condition.</li>
+      <li><strong>Investiture &amp; Stormlight:</strong> Radiant powers cost <strong>Investiture</strong>. You replenish Investiture by inhaling Stormlight from infused gemstone spheres.</li>
+    </ul>
+
+    <p class="sr" id="orders-cols">Radiant Order, Associated Surges, Core Philosophy / Personality Focus</p>
+    <ul class="orders" aria-describedby="orders-cols">
+      <li class="g-sapphire"><span class="sphere" aria-hidden="true"></span><div><div class="head"><span class="name">Windrunner</span><span class="surges">Adhesion &amp; Gravitation</span></div><span class="phil">Protection, defending the helpless, leadership</span></div></li>
+      <li class="g-smokestone"><span class="sphere" aria-hidden="true"></span><div><div class="head"><span class="name">Skybreaker</span><span class="surges">Division &amp; Gravitation</span></div><span class="phil">Justice, legal codes, moral authority, duty</span></div></li>
+      <li class="g-ruby"><span class="sphere" aria-hidden="true"></span><div><div class="head"><span class="name">Dustbringer</span><span class="surges">Abrasion &amp; Division</span></div><span class="phil">Self-mastery, discipline, controlling destruction</span></div></li>
+      <li class="g-diamond"><span class="sphere" aria-hidden="true"></span><div><div class="head"><span class="name">Edgedancer</span><span class="surges">Abrasion &amp; Progression</span></div><span class="phil">Remembering the forgotten, caring for the marginalized</span></div></li>
+      <li class="g-emerald"><span class="sphere" aria-hidden="true"></span><div><div class="head"><span class="name">Truthwatcher</span><span class="surges">Illumination &amp; Progression</span></div><span class="phil">Uncovering hidden truths, seeking knowledge, healing</span></div></li>
+      <li class="g-garnet"><span class="sphere" aria-hidden="true"></span><div><div class="head"><span class="name">Lightweaver</span><span class="surges">Illumination &amp; Transform.</span></div><span class="phil">Creative expression, disguise, facing painful truths</span></div></li>
+      <li class="g-zircon"><span class="sphere" aria-hidden="true"></span><div><div class="head"><span class="name">Elsecaller</span><span class="surges">Transform. &amp; Transport.</span></div><span class="phil">Reaching potential, wisdom, self-improvement</span></div></li>
+      <li class="g-amethyst"><span class="sphere" aria-hidden="true"></span><div><div class="head"><span class="name">Willshaper</span><span class="surges">Cohesion &amp; Transport.</span></div><span class="phil">Freedom, liberating the oppressed, exploration</span></div></li>
+      <li class="g-topaz"><span class="sphere" aria-hidden="true"></span><div><div class="head"><span class="name">Stoneward</span><span class="surges">Cohesion &amp; Tension</span></div><span class="phil">Dependability, standing firm, teamwork, endurance</span></div></li>
+      <li class="g-heliodor"><span class="sphere" aria-hidden="true"></span><div><div class="head"><span class="name">Bondsmith</span><span class="surges">Adhesion &amp; Tension</span></div><span class="phil">Unity, forging connections, peace (Max 3 on Roshar)</span></div></li>
+    </ul>
+  </section>
+
+  <!-- 6 -->
+  <section class="part" id="scenes">
+    <h2><span class="sphere dun" aria-hidden="true"></span><span class="num">6</span> Reference Guide: Scene Types &amp; Game Mechanics</h2>
+    <p>The Cosmere RPG categorizes gameplay into three distinct scene types, each designed for a different style of storytelling:</p>
+
+    <h3 class="ref-h">1. Combats</h3>
+    <p>Fast-paced, tactical physical conflicts where time is measured in 10-second rounds.</p>
+    <ul class="items">
+      <li><strong>Fast vs. Slow Turns:</strong> Each round, choose whether to go <strong>Fast</strong> (act before enemies, but get <strong>2 Actions</strong>) or <strong>Slow</strong> (act after fast combatants, but gain <strong>3 Actions</strong>).</li>
+      <li><strong>Reactions:</strong> You gain 1 Reaction per round (e.g., <em>Dodge</em>, <em>Aid</em>, <em>Reactive Strike</em>).</li>
+      <li><strong>Resource Pools:</strong> Manage <strong>Health</strong> (physical endurance), <strong>Focus</strong> (mental clarity for special actions), and <strong>Investiture</strong> (Stormlight for magic).</li>
+    </ul>
+
+    <h3 class="ref-h">2. Conversations</h3>
+    <p>Structured social interactions where dialogue and influence matter.</p>
+    <ul class="items">
+      <li><strong>Targeting Defenses:</strong> Social skill tests target an NPC's <strong>Cognitive Defense</strong> (logic, deduction) or <strong>Spiritual Defense</strong> (willpower, presence).</li>
+      <li><strong>Focus as Resolve:</strong> Characters use <strong>Focus</strong> to resist social influence. Wearing down an opponent's Focus allows you to sway them or win negotiations.</li>
+    </ul>
+
+    <h3 class="ref-h">3. Endeavors</h3>
+    <p>High-stakes narrative challenges focusing on environments, chases, or investigations rather than direct combat.</p>
+    <ul class="items">
+      <li><strong>Endeavor Types:</strong> <em>Discovery</em> (investigation), <em>Exploration</em> (traversing wilderness), <em>Mission</em> (heists/infiltrations), and <em>Pursuit</em> (chases).</li>
+      <li><strong>Collective Thresholds:</strong> The group makes skill tests together to accumulate successes toward an overall target before accumulating too many failures.</li>
+      <li><strong>Against the Odds:</strong> Group survival tests used during environmental hazards (e.g., highstorms, chasms).</li>
+    </ul>
+
+    <h3 class="ref-h">The Plot Die: Opportunities &amp; Complications</h3>
+    <p>Whenever you raise the stakes on a test, you roll a special 6-sided <strong>Plot Die</strong> alongside your standard d20:</p>
+    <ul class="items">
+      <li><strong>Opportunity:</strong> Triggers a positive tactical or narrative bonus, regardless of whether your test succeeded or failed.</li>
+      <li><strong>Complication:</strong> Triggers a narrative twist, setback, or complication, even if your test was a success.</li>
+    </ul>
   </section>
 
 </main>

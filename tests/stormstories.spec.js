@@ -3,12 +3,58 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const md = fs.readFileSync(path.join('stormstories', 'zero', 'session-zero.md'), 'utf8').replace(/\r/g, '');
-const mdLine = (re) => {
-  const m = md.match(re);
-  if (!m) throw new Error('not found in session-zero.md: ' + re);
-  return m[1].trim();
-};
-const IDS = ['world', 'tone', 'you', 'cracks', 'someone', 'each-other', 'moment'];
+const norm = (s) => s.replace(/\s+/g, ' ').trim();
+
+const PARTS = ['world-tone', 'you-cracks', 'connections', 'hooks', 'orders', 'scenes'];
+const GEMS = [
+  ['world', 'emerald'], ['tone', 'ruby'], ['you', 'amethyst'], ['cracks', 'garnet'],
+  ['someone', 'diamond'], ['each-other', 'heliodor'], ['moment', 'topaz'],
+];
+const HOOKS = [
+  "The Assassin's Glyphs", 'Cultural Guide', 'Dreams of the Storm',
+  'Sacred Relic Guard', 'Secrets of the Lost Radiants', 'Hired Bodyguard',
+];
+const ORDERS = [
+  ['Windrunner', 'sapphire'], ['Skybreaker', 'smokestone'], ['Dustbringer', 'ruby'],
+  ['Edgedancer', 'diamond'], ['Truthwatcher', 'emerald'], ['Lightweaver', 'garnet'],
+  ['Elsecaller', 'zircon'], ['Willshaper', 'amethyst'], ['Stoneward', 'topaz'],
+  ['Bondsmith', 'heliodor'],
+];
+
+/** Every plain-text fragment the md says, as strings that must appear on the page. */
+function mdFragments() {
+  const out = [];
+  const push = (s, min) => {
+    s = norm(s.replace(/\*/g, ''));
+    if (s.length >= min) out.push(s);
+  };
+  for (let line of md.split('\n')) {
+    line = line.trimEnd();
+    if (!line.trim() || /^---+$/.test(line.trim())) continue;
+    if (/^\|\s*-/.test(line)) continue;
+    if (/^\|\s*Radiant Order/.test(line)) continue;
+    if (line.startsWith('|')) {
+      for (const cell of line.split('|').slice(1, -1)) push(cell, 3);
+      continue;
+    }
+    const heading = line.match(/^(#+)\s+(.*)$/);
+    if (heading) {
+      let t = heading[2];
+      if (heading[1] === '##') t = t.replace(/^\d+\.\s+/, ''); // part numerals render in their own span
+      push(t, 3);
+      continue;
+    }
+    line = line.replace(/^>\s*/, '').replace(/^\s*[*-]\s+/, '').replace(/^\d+\.\s+/, '');
+    const label = line.match(/^\*\*(.+?)\*\*\s*(.*)$/) || line.match(/^\*([^*]+:)\*\s*(.*)$/);
+    if (label) {
+      for (const piece of label[1].replace(/:$/, '').split(' · ')) push(piece, 3);
+      push(label[2], 20);
+    } else {
+      push(line, 20);
+    }
+  }
+  return out;
+}
 
 test.describe('Stormstories session zero', () => {
   test('serves with and without trailing slash, with the right title', async ({ page, request }) => {
@@ -22,84 +68,112 @@ test.describe('Stormstories session zero', () => {
     await expect(page).toHaveTitle('Before the First Storm');
   });
 
-  test('seven question sections plus the hooks appendix, and a working sphere TOC', async ({ page }) => {
+  test('six numbered parts and seven gem subsections with the right gems', async ({ page }) => {
     await page.goto('/stormstories/zero');
-    const ids = await page.locator('main section').evaluateAll((els) => els.map((e) => e.id));
-    expect(ids).toEqual([...IDS, 'hooks']);
-    const hrefs = await page.locator('.toc a').evaluateAll((els) => els.map((e) => e.getAttribute('href')));
-    expect(hrefs).toEqual(IDS.map((i) => '#' + i));
+    expect(await page.locator('main > section.part').evaluateAll((els) => els.map((e) => e.id))).toEqual(PARTS);
+    expect(await page.locator('main > section.part > h2 .num').allTextContents()).toEqual(['1', '2', '3', '4', '5', '6']);
+    expect(await page.locator('main section.gem').evaluateAll((els) => els.map((e) => e.id))).toEqual(GEMS.map((g) => g[0]));
+    for (const [id, gem] of GEMS) {
+      const sphere = page.locator(`#${id} > .sec-head .sphere`);
+      await expect(sphere).toHaveClass(new RegExp(`(^| )g-${gem}( |$)`));
+      await expect(page.locator(`#${id} > .sec-head h3`)).toHaveCount(1);
+    }
+    // gems 1-3 live in parts 1-3
+    expect(await page.locator('#world-tone section.gem').count()).toBe(2);
+    expect(await page.locator('#you-cracks section.gem').count()).toBe(2);
+    expect(await page.locator('#connections section.gem').count()).toBe(3);
+    // reference parts carry the dun sphere
+    for (const id of ['hooks', 'orders', 'scenes']) {
+      await expect(page.locator(`#${id} > h2 .sphere`)).toHaveClass(/(^| )dun( |$)/);
+    }
+  });
+
+  test('hero: seven sphere links, reference links, all targets exist', async ({ page }) => {
+    await page.goto('/stormstories/zero');
+    const toc = page.locator('.toc a');
+    await expect(toc).toHaveCount(7);
+    const hrefs = await toc.evaluateAll((els) => els.map((e) => e.getAttribute('href')));
+    expect(hrefs).toEqual(GEMS.map((g) => '#' + g[0]));
     for (const h of hrefs) await expect(page.locator(h)).toHaveCount(1);
-  });
-
-  test('fifteen questions numbered 1..15 in order', async ({ page }) => {
-    await page.goto('/stormstories/zero');
-    const items = page.locator('ol.qs > li');
-    await expect(items).toHaveCount(15);
-    const ns = await items.evaluateAll((els) => els.map((e) => e.getAttribute('data-n')));
-    expect(ns).toEqual(Array.from({ length: 15 }, (_, i) => String(i + 1)));
-  });
-
-  test('wording matches session-zero.md', async ({ page }) => {
-    await page.goto('/stormstories/zero');
-    const epigraph = mdLine(/^> \*(.+)\*$/m);
-    await expect(page.locator('.epigraph')).toHaveText(epigraph);
-
-    const contract = mdLine(/^\*\*The table contract:\*\* (.+)$/m);
-    await expect(page.locator('.contract')).toHaveText('The table contract: ' + contract);
-
-    const q7 = mdLine(/^7\. \*\*On the road:\*\* (.+)$/m);
-    await expect(page.locator('ol.qs > li[data-n="7"]')).toHaveText('On the road: ' + q7);
-
-    const q13 = md.split(/^13\. /m)[1].split(/^14\. /m)[0].split('\n').filter((l) => /^ {4}- /.test(l)).map((l) => l.replace(/^ {4}- /, '').trim());
-    expect(q13).toHaveLength(11);
-    await expect(page.locator('ol.qs > li[data-n="13"] ul.prompts li')).toHaveText(q13);
-
-    const hookMd = md.split('### Leader or Warrior\n')[1].split('\n###')[0].split('\n').filter(Boolean);
-    const hook = page.locator('#hooks .hook').nth(3);
-    await expect(hook.locator('p').first()).toHaveText(hookMd[0]);
-    await expect(hook.locator('.ask')).toHaveText(hookMd[1].replace(/^\*|\*$/g, ''));
-    await expect(hook.locator('.goal')).toHaveText(hookMd[2].replace(/\*\*/g, ''));
-
-    const footer = mdLine(/^\*(Journey before destination\.)\*$/m);
-    await expect(page.locator('footer.sign')).toContainText(footer);
-  });
-
-  test('hooks appendix: six hooks, dun sphere, not in hero TOC', async ({ page }) => {
-    await page.goto('/stormstories/zero');
-    const hooks = page.locator('#hooks');
-    await expect(hooks).toHaveCount(1);
-    await expect(hooks.locator('.hook')).toHaveCount(6);
-    await expect(hooks.locator('.hook h3')).toHaveText([
-      'Agent or Hunter', 'Envoy or Scholar', 'Agent or Leader',
-      'Leader or Warrior', 'Scholar or Envoy', 'Warrior or Hunter',
+    await expect(toc).toHaveText([
+      'The World', 'The Tone', 'Character Foundations', 'The Cracks', 'Someone Else', 'Each Other', 'Bring a Moment',
     ]);
-    await expect(hooks.locator('.sec-head .sphere')).toHaveClass(/(^| )dun( |$)/);
-    const hrefs = await page.locator('.toc a').evaluateAll((els) => els.map((e) => e.getAttribute('href')));
-    expect(hrefs).toHaveLength(7);
-    expect(hrefs).not.toContain('#hooks');
+    const refs = page.locator('.refs a');
+    expect(await refs.evaluateAll((els) => els.map((e) => e.getAttribute('href')))).toEqual(['#hooks', '#orders', '#scenes']);
+    await expect(refs).toHaveText(['Why You Walk with Taszo', 'Spren, Radiant Orders & The Nahel Bond', 'Scene Types & Game Mechanics']);
+    await expect(page.locator('.refs .sphere.dun')).toHaveCount(3);
   });
 
-  test('Q7 links to the hooks and scrolls them into view', async ({ page }) => {
+  test('"Section 4" link goes to the hooks and scrolls them into view', async ({ page }) => {
     await page.goto('/stormstories/zero');
-    const link = page.locator('li[data-n="7"] a[href="#hooks"]');
+    const link = page.locator('#you a[href="#hooks"]');
     await expect(link).toHaveCount(1);
+    await expect(link).toContainText('Section 4');
     await link.click();
     await expect(page.locator('#hooks')).toBeInViewport();
     await expect(page.locator('#hooks h2')).toBeInViewport();
   });
 
-  test('Q13 has eleven prompts', async ({ page }) => {
+  test('Each Other: twelve numbered items', async ({ page }) => {
     await page.goto('/stormstories/zero');
-    await expect(page.locator('ol.qs > li[data-n="13"] ul.prompts li')).toHaveCount(11);
+    const items = page.locator('#each-other ol.qs > li');
+    await expect(items).toHaveCount(12);
+    expect(await items.evaluateAll((els) => els.map((e) => e.getAttribute('data-n')))).toEqual(
+      Array.from({ length: 12 }, (_, i) => String(i + 1)));
+    await expect(items.nth(11).locator('strong')).toHaveText('As a group:');
+    // no other numbered lists
+    await expect(page.locator('ol.qs')).toHaveCount(1);
   });
 
-  test('spoiler: no Honorblade in the Leader or Warrior hook', async ({ page }) => {
+  test('hooks: six named hooks in order, no cut copy', async ({ page }) => {
     await page.goto('/stormstories/zero');
-    expect(await page.content()).not.toContain("Taln's Honorblade");
-    const hook = page.locator('#hooks .hook').nth(3);
-    await expect(hook).toContainText('a sacred relic');
-    await expect(hook).not.toContainText('Honorblade');
+    const hooks = page.locator('#hooks .hook');
+    await expect(hooks).toHaveCount(6);
+    await expect(hooks.locator('h3')).toHaveText(HOOKS);
+    // paths sit below the name, never above it
+    const order = await hooks.first().evaluate((el) => [...el.children].map((c) => c.tagName + '.' + c.className));
+    expect(order.slice(0, 2)).toEqual(['H3.', 'P.paths']);
+    await expect(hooks.first().locator('.paths')).toHaveText('Agent or Hunter');
+    await expect(hooks.first().locator('.ask')).toContainText('Question:');
+    await expect(hooks.first().locator('.goal')).toContainText('Suggested Goal:');
+    const text = await page.locator('body').innerText();
+    for (const bad of ["Taln's Honorblade", "Po'ahu", 'Parry', '[cite', '&amp;', '⚡', '💥']) {
+      expect(text, bad).not.toContain(bad);
+    }
     expect(md).not.toContain("Taln's Honorblade");
+  });
+
+  test('orders: ten in md order, each with its gem', async ({ page }) => {
+    await page.goto('/stormstories/zero');
+    const rows = page.locator('#orders .orders > li');
+    await expect(rows).toHaveCount(10);
+    await expect(rows.locator('.name')).toHaveText(ORDERS.map((o) => o[0]));
+    const cls = await rows.evaluateAll((els) => els.map((e) => e.className));
+    expect(cls).toEqual(ORDERS.map((o) => `g-${o[1]}`));
+    await expect(page.locator('#orders .orders .surges').nth(5)).toHaveText('Illumination & Transform.');
+    await expect(page.locator('#orders .orders .surges').nth(6)).toHaveText('Transform. & Transport.');
+    // the column names stay available
+    await expect(page.locator('#orders-cols')).toHaveText('Radiant Order, Associated Surges, Core Philosophy / Personality Focus');
+    // smokestone is lit, not dun
+    const filter = await rows.nth(1).locator('.sphere').evaluate((e) => getComputedStyle(e).filter);
+    expect(filter).toBe('none');
+  });
+
+  test('scenes: headings and the plot die', async ({ page }) => {
+    await page.goto('/stormstories/zero');
+    await expect(page.locator('#scenes h3')).toHaveText([
+      '1. Combats', '2. Conversations', '3. Endeavors', 'The Plot Die: Opportunities & Complications',
+    ]);
+    await expect(page.locator('#scenes li strong', { hasText: 'Fast' }).first()).toBeVisible();
+  });
+
+  test('every sentence in session-zero.md appears on the page', async ({ page }) => {
+    await page.goto('/stormstories/zero');
+    const text = norm(await page.locator('body').innerText());
+    const frags = mdFragments();
+    expect(frags.length).toBeGreaterThan(100);
+    const missing = frags.filter((f) => !text.includes(f));
+    expect(missing).toEqual([]);
   });
 
   test('keyboard focus shows an outline on the first TOC link', async ({ page }) => {
