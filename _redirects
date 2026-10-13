@@ -1,0 +1,6 @@
+# Stormlight pages moved to cosmereplay.ginogalotti.com (repo GinoGalotti/cosmereplay). Keep for a while, then delete.
+/stormstories                 https://cosmereplay.ginogalotti.com/              301
+/stormstories/                https://cosmereplay.ginogalotti.com/              301
+/stormstories/*               https://cosmereplay.ginogalotti.com/:splat        301
+/bridge-nine                  https://cosmereplay.ginogalotti.com/bridge-nine/  301
+/bridge-nine/                 https://cosmereplay.ginogalotti.com/bridge-nine/  301

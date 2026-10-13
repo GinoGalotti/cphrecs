@@ -15,22 +15,8 @@ Static site, no build step.
 Framework preset: **None**. Build command: **(empty)**. Output directory: **/** (root).
 Pure static — Pages just serves the files as-is.
 
-## Stormstories (`/stormstories`)
-- `stormstories/zero/` → `/stormstories/zero` — session zero primer for the Stonewalkers campaign.
-- Static. Wording source is `session-zero.md`, design spec is `DESIGN.md` (same folder).
-- `noindex`, and not linked from the landing page.
-- `stormstories/characterbuilder/` → `/stormstories/characterbuilder/` — Stormlight Character Atlas (talent trees + character-building reference) for the players. **Password-protected**: everything in the folder (`index.html`, `Stormlight-Character-Atlas.pdf`, `atlas.json`, `atlas.md`) goes through `functions/stormstories/characterbuilder/_middleware.js`, the admin Basic Auth pattern with its own secrets `STORMLIGHT_USER` / `STORMLIGHT_PASS` (so the admin password is never handed out). Responses carry `Cache-Control: private, no-store` and `X-Robots-Tag: noindex, nofollow`.
-  - The page is self-contained (data embedded in `<script id="data">`); `atlas.json` is the same data for reuse elsewhere, and the page never fetches it. Hash routes: `#agent`, `#windrunner`, `#singer`, `#create`, `#gear`, …
-  - Palette and display face follow `stormstories/zero` (dark-only); print falls back to the original light palette.
-  - Production: `npx wrangler pages secret put STORMLIGHT_USER --project-name ginogalotti` and the same for `STORMLIGHT_PASS`. Preview deployments read the *Preview* environment, so add the same two there too (dashboard → Pages → ginogalotti → Settings → Variables and Secrets → Preview). Local: add both to `.dev.vars` (wrangler ignores `--binding` when `.dev.vars` exists). Unset secrets lock the page.
-  - Tests: `npx playwright test tests/stormlight-atlas.spec.js`.
-
-### Bridge Nine session notes
-- `stormstories/sessions/<slug>.md` → `/stormstories/<slug>`, rendered with `marked` by `functions/stormstories/[slug].js` (same look as `/stormstories/zero`; shared code in `functions/stormstories/_lib/sessions.js`). Other `/stormstories/*` paths fall through to static files.
-- `/bridge-nine` lists sessions newest first. Slugs must be contiguous: `session-zero`, `session-1`, `session-2`, … — the index stops at the first missing number.
-- Each file starts with `# Title`, optionally followed by an `*italic subtitle*` line. New session = drop in the next `.md` and push.
-- Public only. `*-internal.md` is gitignored; GM notes never go in this folder.
-- Tests: `npx playwright test tests/bridge-nine.spec.js`.
+## Stormlight pages (moved)
+`/stormstories/*` and `/bridge-nine` now live at cosmereplay.ginogalotti.com (private repo `GinoGalotti/cosmereplay`, folder `site/`). `_redirects` sends the old URLs there with a 301; delete those lines once old links have died out.
 
 ## Gym log (`/gymlog`)
 Private, mobile-first lifting log with **variation cycling**. Vanilla JS pages in `gymlog/`, JSON API in `functions/gymlog/`, tables prefixed `gym_` in the shared `DB` (D1 `ginogalotti-stories`). Everything under `/gymlog/*` (pages, assets and API) is behind the same Basic Auth as `/admin` (`functions/gymlog/_middleware.js` re-exports it; no extra secrets).
